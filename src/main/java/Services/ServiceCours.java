@@ -32,7 +32,25 @@ public class ServiceCours implements workInterface<Cours> {
 
     @Override
     public List<Cours> getAll() {
-        return null;
+        List<Cours> cours = new ArrayList<>();
+        try {
+            Statement st = this.connection.createStatement();
+            String req= "SELECT * FROM cours where id=1";
+            ResultSet res=st.executeQuery(req);
+            while(res.next()){
+                Cours c =new Cours();
+                c.setId(res.getInt("id"));
+                c.setTitre(res.getString(2));
+                c.setDescription(res.getString(3));
+                c.setVideo(res.getInt(4));
+
+
+                cours.add(c);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cours;
     }
 
     @Override
