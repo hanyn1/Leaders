@@ -8,7 +8,7 @@ public class Cours extends Entite {
         super(titre, description);
         this.video = video;
     }
-    public Cours(String id, String titre, String description, String video) {
+    public Cours(int id, String titre, String description, String video) {
         super(id, titre, description);
         this.video = video;
     }
