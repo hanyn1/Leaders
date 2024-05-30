@@ -18,6 +18,7 @@ public class Cours extends Entite {
         this.video = video;
     }
 
+
     public void publier() {
 
     }
