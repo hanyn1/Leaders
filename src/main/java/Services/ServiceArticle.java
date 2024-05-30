@@ -49,4 +49,14 @@ public class ServiceArticle implements workInterface<Article> {
 
         return articles;
     }
+
+    @Override
+    public void update(Article article) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Article article) {
+
+    }
 }

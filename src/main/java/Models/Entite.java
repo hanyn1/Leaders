@@ -1,13 +1,13 @@
 package Models;
 
 public class Entite {
-    private String id;
+    private int id;
     private String titre;
     private String description;
 
     // Constructors, getters, and setters
     public Entite() {}
-    public Entite(String id, String titre, String description) {
+    public Entite(int id, String titre, String description) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -18,7 +18,7 @@ public class Entite {
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -30,7 +30,7 @@ public class Entite {
         return description;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
