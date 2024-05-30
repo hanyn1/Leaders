@@ -39,7 +39,7 @@ public class ServiceCours implements workInterface<Cours> {
             ResultSet res=st.executeQuery(req);
             while(res.next()){
                 Cours c =new Cours();
-                c.setId(res.getString("id"));
+                c.setId(res.getInt("id"));
                 c.setTitre(res.getString(2));
                 c.setDescription(res.getString(3));
                 c.setVideo(res.getString(4));
@@ -55,12 +55,13 @@ public class ServiceCours implements workInterface<Cours> {
 
     @Override
     public void update(Cours cours) throws SQLException {
-    String req = "UPDATE `cours` SET `titre`='?',`description`='?',`video`='?' WHERE 1";
-    PreparedStatement ps = this.connection.prepareStatement(req);
-    ps.setString(1,cours.getTitre());
-    ps.setString(2,cours.getDescription());
-    ps.setString(3,cours.getVideo());
-    ps.executeUpdate();
+        String req = "UPDATE `cours` SET `titre`=?, `description`=?, `video`=? WHERE id=?";
+        PreparedStatement ps = this.connection.prepareStatement(req);
+        ps.setString(1,cours.getTitre());
+        ps.setString(2,cours.getDescription());
+        ps.setString(3,cours.getVideo());
+        ps.setInt(4,cours.getId());
+        ps.executeUpdate();
 
 
     }
