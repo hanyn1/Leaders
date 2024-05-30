@@ -15,7 +15,7 @@ public class MyConfig {
         try {
             connection = DriverManager.getConnection(url, user, pass);
 
-            System.out.println("connection etablie");
+            System.out.println("connection etablie!");
         } catch (SQLException q) {
             q.printStackTrace();
             //System.out.println(q.getMessage());
