@@ -2,7 +2,7 @@ package org.example;
 
 import Models.Article;
 import Services.ServiceArticle;
-import UTILS.MyConfig;
+import utils.MyConfig;
 
 import java.sql.Date;
 

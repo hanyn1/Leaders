@@ -2,7 +2,7 @@ package Services;
 
 import Interfaces.workInterface;
 import Models.Article;
-import UTILS.MyConfig;
+import utils.MyConfig;
 
 import java.sql.*;
 import java.util.ArrayList;
