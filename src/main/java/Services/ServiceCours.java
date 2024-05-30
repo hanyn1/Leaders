@@ -31,10 +31,10 @@ public class ServiceCours implements workInterface<Cours> {
 
     @Override
     public List<Cours> getAll() {
-        List<Cours> cours = new ArrayList<>();
+        List<Cours> crs = new ArrayList<>();
         try {
             Statement st = this.connection.createStatement();
-            String req= "SELECT * FROM cours where id=1";
+            String req= "SELECT * FROM cours";
             ResultSet res=st.executeQuery(req);
             while(res.next()){
                 Cours c =new Cours();
@@ -44,12 +44,12 @@ public class ServiceCours implements workInterface<Cours> {
                 c.setVideo(res.getString(4));
 
 
-                cours.add(c);
+                crs.add(c);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return cours;
+        return crs;
     }
 
     @Override
