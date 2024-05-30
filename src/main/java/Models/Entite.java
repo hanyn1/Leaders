@@ -6,8 +6,14 @@ public class Entite {
     private String description;
 
     // Constructors, getters, and setters
+    public Entite() {}
     public Entite(String id, String titre, String description) {
         this.id = id;
+        this.titre = titre;
+        this.description = description;
+    }
+    public Entite( String titre, String description) {
+
         this.titre = titre;
         this.description = description;
     }
