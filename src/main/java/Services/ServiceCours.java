@@ -1,10 +1,9 @@
 package Services;
 
 import Interfaces.workInterface;
-import Models.Article;
 import Models.Cours;
 import utils.MyConfig;
-import javax.swing.plaf.nimbus.State;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +67,15 @@ public class ServiceCours implements workInterface<Cours> {
 
     @Override
     public void delete(Cours cours) {
+
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        String req = "DELETE FROM `cours` WHERE id=?";
+        PreparedStatement ps = this.connection.prepareStatement(req);
+        ps.setInt(1,id);
+        ps.executeUpdate();
 
     }
 }

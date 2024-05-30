@@ -23,11 +23,14 @@ public class Main {
 
         // Creating a Cours object without id
         Cours c1 = new Cours(1,"javascript", "Deep dive into javascript", "advanced_javascript.mp4");
-        sc.update(c1);
+        //sc.update(c1);
         try {
-            sc.update(c1);
-            System.out.println("Cours updated successfully!");
+            sc.delete(4);
+            //System.out.println("Cours updated successfully!");
+            System.out.println("Cours deleted successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }    }
+
+
 }
