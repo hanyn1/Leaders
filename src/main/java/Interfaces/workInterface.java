@@ -9,4 +9,5 @@ public interface workInterface<T> {
     void update(T t) throws SQLException;
     void delete(T t);
 
+    void delete(int id) throws SQLException;
 }

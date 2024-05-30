@@ -59,4 +59,9 @@ public class ServiceArticle implements workInterface<Article> {
     public void delete(Article article) {
 
     }
+
+    @Override
+    public void delete(int id) throws SQLException {
+
+    }
 }
