@@ -145,11 +145,11 @@ CREATE TABLE Evenement_Utilisateur (
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE Cours_Badge (
-    cours_id INT,
+CREATE TABLE Quizz_Badge (
+    quizz_id INT,
     badge_id INT,
-    PRIMARY KEY (cours_id, badge_id),
-    FOREIGN KEY (cours_id) REFERENCES Cours(id),
+    PRIMARY KEY (quizz_id, badge_id),
+    FOREIGN KEY (quizz_id) REFERENCES Quizz(id),
     FOREIGN KEY (badge_id) REFERENCES Badge(id)
 );
 
@@ -184,3 +184,4 @@ CREATE TABLE Formation_Categorie (
     FOREIGN KEY (formation_id) REFERENCES Formation(id),
     FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
 );
+
