@@ -12,9 +12,9 @@
 EvoLearn is an online learning platform that allows users to create and follow courses, take quizzes, earn badges, and obtain certifications. This repository contains the source code and instructions for setting up the EvoLearn application.
 
 ## Prerequisites
-- Java Development Kit (JDK) 8 or higher
+- Java Development Kit
 - MySQL Server
-- MySQL Workbench or phpMyAdmin for database management
+- MySQL phpMyAdmin for database management
 
 ## Database Setup
 1. Start your MySQL server.
