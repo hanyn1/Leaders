@@ -4,36 +4,28 @@ import java.sql.Date;
 
 public class Article {
     private int id;
-    private Date date;
-    private String Objet;
-    private String Description;
+    private String titre;
+    private String description;
+    private String contenu;
+    private Date datePublication;
 
     public Article() {
 
     }
 
-    public Article(int id, Date date, String objet, String description) {
+    public Article(String titre, String description, String contenu, Date datePublication) {
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.datePublication = datePublication;
+    }
+    public Article(int id, String titre, String description, String contenu, Date datePublication) {
         this.id = id;
-        this.date = date;
-        Objet = objet;
-        Description = description;
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.datePublication = datePublication;
     }
-    public Article(Date date, String objet, String description) {
-
-        this.date = date;
-        Objet = objet;
-        Description = description;
-    }
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", date=" + date +
-                ", Objet='" + Objet + '\'' +
-                ", Description='" + Description + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
@@ -42,27 +34,45 @@ public class Article {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getObjet() {
-        return Objet;
-    }
-
-    public void setObjet(String objet) {
-        Objet = objet;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
-}
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public Date getDatePublication() {
+        return datePublication;
+    }
+
+    public void setDatePublication(Date datePublication) {
+        this.datePublication = datePublication;
+    }
+
+    @Override
+    public String toString() {
+        return "article{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", contenu='" + contenu + '\'' +
+                ", datePublication=" + datePublication +
+                '}';
+    }}
