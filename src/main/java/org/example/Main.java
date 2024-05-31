@@ -1,21 +1,23 @@
 package org.example;
 
-import Models.Article;
-import Services.ServiceArticle;
+import Models.Evenement;
+import Services.EvenementService;
 import UTILS.MyConfig;
 
-import java.sql.Date;
+import java.sql.SQLException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        MyConfig m = MyConfig.getInstance();
+        System.out.println("Hello and welcome!");
 
-        MyConfig m= MyConfig.getInstance();
-       System.out.printf("Hello and welcome!");
-       ServiceArticle sa = new ServiceArticle();
-       Article a1 = new Article(new Date(2002,12,23),"objet","produit1");
-        sa.add(a1);
+        EvenementService ps = new EvenementService();
+        //ps.ajouter(new Evenement(4, "TeamCommunication", "Yallah")); // Assurez-vous que l'ID 1 existe dans 'entité'
+       ps.modifier(new Evenement(4, "TeamCommunication", "Yal")); // Assurez-vous que l'ID 1 existe dans 'entité'
+        //ps.supprimer( 4); // Assurez-vous que l'ID 1 existe dans 'entité'
 
     }
 }
+
+
+
