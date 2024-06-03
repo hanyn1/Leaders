@@ -25,6 +25,7 @@ EvoLearn is an online learning platform that allows users to create and follow c
 CREATE TABLE Utilisateur (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     motDePasse VARCHAR(255) NOT NULL
 );
@@ -57,13 +58,13 @@ CREATE TABLE Quizz (
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
-    date DATE,
+ date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
 CREATE TABLE Inscription (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    dateInscription DATE,
+     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     cours_id INT,
     utilisateur_id INT,
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
@@ -109,7 +110,7 @@ CREATE TABLE Article (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     contenu TEXT,
-    datePublication DATE,
+     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
@@ -185,3 +186,23 @@ CREATE TABLE Formation_Categorie (
     FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
 );
 
+CREATE TABLE Ressources (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    description TEXT,
+    url VARCHAR(255),
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Temoignages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    utilisateur_id INT,
+    contenu TEXT,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+);
+CREATE TABLE Communaute (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    description TEXT,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
