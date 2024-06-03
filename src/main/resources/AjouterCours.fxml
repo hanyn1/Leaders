@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCours">
+   <children>
+      <Label layoutX="68.0" layoutY="41.0" text="Titre" />
+      <Label layoutX="48.0" layoutY="100.0" text="Description" />
+      <Label layoutX="65.0" layoutY="224.0" text="Video" />
+      <Button layoutX="255.0" layoutY="340.0" mnemonicParsing="false" text="Ajouter" />
+      <TextField layoutX="192.0" layoutY="45.0" />
+      <TextField layoutX="189.0" layoutY="106.0" />
+      <TextField layoutX="193.0" layoutY="221.0" />
+   </children>
+</AnchorPane>
