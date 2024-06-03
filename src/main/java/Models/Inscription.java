@@ -1,24 +1,25 @@
 package Models;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Inscription {
     private int id;
-    private LocalDate dateInscription;
+    private Date date_creation;
     private int coursId;
     private int utilisateurId;
     // Constructeurs
     public Inscription() {}
 
-    public Inscription(int id, LocalDate dateInscription, int coursId, int utilisateurId) {
+    public Inscription(int id, Date  date_creation, int coursId, int utilisateurId) {
         this.id = id;
-        this.dateInscription = dateInscription;
+        this.date_creation = date_creation;
         this.coursId = coursId;
         this.utilisateurId = utilisateurId;
     }
 
-    public Inscription(LocalDate dateInscription, int coursId, int utilisateurId) {
-        this.dateInscription = dateInscription;
+    public Inscription(Date  date_creation, int coursId, int utilisateurId) {
+        this. date_creation=  date_creation;
         this.coursId = coursId;
         this.utilisateurId = utilisateurId;
     }
@@ -31,12 +32,12 @@ public class Inscription {
         this.id = id;
     }
 
-    public LocalDate getDateInscription() {
-        return dateInscription;
+    public Date getDate_creation() {
+        return date_creation;
     }
 
-    public void setDateInscription(LocalDate dateInscription) {
-        this.dateInscription = dateInscription;
+    public void setDate_creation(Date date_creation) {
+        this.date_creation = date_creation;
     }
 
     public int getCoursId() {
