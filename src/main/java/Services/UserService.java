@@ -2,7 +2,7 @@ package Services;
 
 import Interfaces.IUserInterface;
 import Models.User;
-import UTILS.MyConfig;
+import utils.MyConfig;
 
 import java.sql.*;
 import java.util.ArrayList;
