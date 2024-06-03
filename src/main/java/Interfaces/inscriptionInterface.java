@@ -1,14 +1,15 @@
 package Interfaces;
 
+import Models.Inscription;
+
 import java.sql.SQLException;
 import java.util.List;
 
 public interface inscriptionInterface<T> {
 
-    void addInscription(T t);
+    void addInscription(T t) throws SQLException;
     List<T> getAllInscriptions();
-    void update(T t) throws SQLException;
-    void delete(T t);
 
+    Inscription getInscriptionById(T t);
 
 }

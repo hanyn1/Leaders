@@ -22,7 +22,7 @@ EvoLearn is an online learning platform that allows users to create and follow c
 3. Use the following SQL scripts to create the necessary tables:
 
 ```sql
-CREATE TABLE Utilisateur (
+CREATE TABLE Utilisateurs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE Utilisateur (
     motDePasse VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Profil (
+CREATE TABLE Profils (
     id INT AUTO_INCREMENT PRIMARY KEY,
     bio TEXT,
     photo VARCHAR(255),
@@ -53,7 +53,7 @@ CREATE TABLE Cours (
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
-CREATE TABLE Quizz (
+CREATE TABLE Quizzs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE Quizz (
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
-CREATE TABLE Inscription (
+CREATE TABLE Inscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
      date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     cours_id INT,
@@ -71,7 +71,7 @@ CREATE TABLE Inscription (
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE Formation (
+CREATE TABLE Formations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE Formation (
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
-CREATE TABLE Evenement (
+CREATE TABLE Evenements (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
@@ -87,24 +87,24 @@ CREATE TABLE Evenement (
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
-CREATE TABLE Categorie (
+CREATE TABLE Categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     parent_id INT,
     FOREIGN KEY (parent_id) REFERENCES Categorie(id)
 );
 
-CREATE TABLE Badge (
+CREATE TABLE Badges (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Certif (
+CREATE TABLE Certifs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Article (
+CREATE TABLE Articles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE Article (
     FOREIGN KEY (entite_id) REFERENCES Entite(id)
 );
 
-CREATE TABLE Cours_Utilisateur (
+CREATE TABLE Cours_Utilisateurs (
     cours_id INT,
     utilisateur_id INT,
     PRIMARY KEY (cours_id, utilisateur_id),
@@ -122,7 +122,7 @@ CREATE TABLE Cours_Utilisateur (
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE Utilisateur_Quizz (
+CREATE TABLE Utilisateurs_Quizzs (
     utilisateur_id INT,
     quizz_id INT,
     PRIMARY KEY (utilisateur_id, quizz_id),
@@ -130,7 +130,7 @@ CREATE TABLE Utilisateur_Quizz (
     FOREIGN KEY (quizz_id) REFERENCES Quizz(id)
 );
 
-CREATE TABLE Formation_Utilisateur (
+CREATE TABLE Formations_Utilisateurs (
     formation_id INT,
     utilisateur_id INT,
     PRIMARY KEY (formation_id, utilisateur_id),
@@ -138,7 +138,7 @@ CREATE TABLE Formation_Utilisateur (
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE Evenement_Utilisateur (
+CREATE TABLE Evenements_Utilisateurs (
     evenement_id INT,
     utilisateur_id INT,
     PRIMARY KEY (evenement_id, utilisateur_id),
@@ -146,7 +146,7 @@ CREATE TABLE Evenement_Utilisateur (
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
 
-CREATE TABLE Quizz_Badge (
+CREATE TABLE Quizzs_Badges (
     quizz_id INT,
     badge_id INT,
     PRIMARY KEY (quizz_id, badge_id),
@@ -154,7 +154,7 @@ CREATE TABLE Quizz_Badge (
     FOREIGN KEY (badge_id) REFERENCES Badge(id)
 );
 
-CREATE TABLE Cours_Certif (
+CREATE TABLE Cours_Certifs (
     cours_id INT,
     certif_id INT,
     PRIMARY KEY (cours_id, certif_id),
@@ -162,7 +162,7 @@ CREATE TABLE Cours_Certif (
     FOREIGN KEY (certif_id) REFERENCES Certif(id)
 );
 
-CREATE TABLE Utilisateur_Article (
+CREATE TABLE Utilisateurs_Articles (
     utilisateur_id INT,
     article_id INT,
     PRIMARY KEY (utilisateur_id, article_id),
@@ -170,7 +170,7 @@ CREATE TABLE Utilisateur_Article (
     FOREIGN KEY (article_id) REFERENCES Article(id)
 );
 
-CREATE TABLE Cours_Categorie (
+CREATE TABLE Cours_Categories (
     cours_id INT,
     categorie_id INT,
     PRIMARY KEY (cours_id, categorie_id),
@@ -178,7 +178,7 @@ CREATE TABLE Cours_Categorie (
     FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
 );
 
-CREATE TABLE Formation_Categorie (
+CREATE TABLE Formations_Categories (
     formation_id INT,
     categorie_id INT,
     PRIMARY KEY (formation_id, categorie_id),
@@ -200,7 +200,7 @@ CREATE TABLE Temoignages (
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
 );
-CREATE TABLE Communaute (
+CREATE TABLE Communautes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     description TEXT,
