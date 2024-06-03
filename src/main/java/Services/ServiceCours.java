@@ -1,6 +1,6 @@
 package Services;
 
-import Interfaces.workInterface;
+import Interfaces.coursInterface;
 import Models.Cours;
 import utils.MyConfig;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceCours implements workInterface<Cours> {
+public class ServiceCours implements coursInterface<Cours> {
     MyConfig instance= MyConfig.getInstance();
     Connection connection;
     public  ServiceCours(){
