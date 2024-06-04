@@ -19,7 +19,7 @@ public class ServiceInscription implements inscriptionInterface<Inscription> {
 
     @Override
     public void addInscription(Inscription inscription) throws SQLException {
-    String req = "INSERT INTO Inscription (cours_id, utilisateur_id) VALUES (?, ?)";
+    String req = "INSERT INTO inscriptions (cours_id, utilisateur_id) VALUES ('"+inscription.getCoursId()+"', '"+inscription.getUtilisateurId()+"')";
 
         Statement st = connection.createStatement();
         st.executeUpdate(req);
@@ -28,10 +28,10 @@ public class ServiceInscription implements inscriptionInterface<Inscription> {
 
     @Override
     public List<Inscription> getAllInscriptions() {
-        List<Inscription> inscri = new ArrayList<>();
+        List<Inscription> ins = new ArrayList<>();
         try {
             Statement st = this.connection.createStatement();
-            String req= "SELECT * FROM inscription";
+            String req= "SELECT * FROM inscriptions";
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 Inscription i = new Inscription();
@@ -40,12 +40,12 @@ public class ServiceInscription implements inscriptionInterface<Inscription> {
                 i.setCoursId(res.getInt(3));
                 i.setUtilisateurId(res.getInt(4));
 
-                inscri.add(i);
+                ins.add(i);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return inscri;
+        return ins;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ServiceInscription implements inscriptionInterface<Inscription> {
 
         try  {
             Statement statement = this.connection.createStatement();
-            String req = "SELECT * FROM Inscription WHERE id = ?";
+            String req = "SELECT * FROM inscriptions WHERE id = ?";
             ResultSet resultSet = statement.executeQuery(req);
             if (resultSet.next()) {
                 Inscription i = new Inscription();

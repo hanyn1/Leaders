@@ -24,6 +24,11 @@ public class Inscription {
         this.utilisateurId = utilisateurId;
     }
 
+    public Inscription( int coursId, int utilisateurId) {
+        this.coursId = coursId;
+        this.utilisateurId = utilisateurId;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,5 +59,15 @@ public class Inscription {
 
     public void setUtilisateurId(int utilisateurId) {
         this.utilisateurId = utilisateurId;
+    }
+
+    @Override
+    public String toString() {
+        return "Inscription{" +
+                "id=" + id +
+                ", date_creation=" + date_creation +
+                ", coursId=" + coursId +
+                ", utilisateurId=" + utilisateurId +
+                '}';
     }
 }

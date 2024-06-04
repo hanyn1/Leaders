@@ -1,9 +1,7 @@
 package org.example;
 
-import Models.Article;
-import Models.Cours;
-import Services.ServiceArticle;
-import Services.ServiceCours;
+import Models.*;
+import Services.*;
 import utils.MyConfig;
 
 import java.sql.Date;
@@ -25,19 +23,32 @@ public class Main {
         ServiceCours sc = new ServiceCours();
 
         // Creating a Cours object without id
-        Cours c1 = new Cours(1,"Linux", "Deep dive into Linux", "advanced_linux.mp4");
-        Cours c2 = new Cours(1,"Devops", "Deep dive into Devops", "advanced_devops.mp4");
+        Cours c1 = new Cours("Linux", "Deep dive into Linux", "advanced_linux.mp4");
+        Cours c2 = new Cours("Devops", "Deep dive into Devops", "advanced_devops.mp4");
         System.out.println(sc.getAll());
-        Date datePublication = new Date(2024, 12, 30);
-        ServiceArticle s1= new ServiceArticle();
+       // Date datePublication = new Date(2024, 12, 30);
+       // ServiceArticle s1= new ServiceArticle();
 
-        s1.updateArticle(new Article(1,"nouveau titre","nouvelle description","nouveau contenu",datePublication));
-        System.out.println("article updated successfully.");
+        //s1.updateArticle(new Article(1,"nouveau titre","nouvelle description","nouveau contenu",datePublication));
+        //System.out.println("article updated successfully.");
 
-        // sc.add(c1);
-       // sc.add(c2);
+        //sc.add(c1);
+        //sc.add(c2);
         //sc.update(c1);
-      /*  try {
+
+        //System.out.println(si.getInscriptionById(i1));
+        ServiceInscription si = new ServiceInscription();
+        Inscription i1 = new Inscription(4,1);
+        //si.addInscription(i1);
+        System.out.println(si.getAllInscriptions());
+
+        ServiceCertificat serviceCertif= new ServiceCertificat();
+
+        Certifs cer1 = new Certifs("Python Fondamentaux");
+        serviceCertif.addCertif(cer1);
+        System.out.println(serviceCertif.getAllCertifs());
+
+        /*  try {
             sc.delete(4);
             //System.out.println("Cours updated successfully!");
             System.out.println("Cours deleted successfully!");
