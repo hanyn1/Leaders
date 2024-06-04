@@ -62,6 +62,30 @@ CREATE TABLE Quizzs (
     FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
+CREATE TABLE Questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quizz_id INT,
+    question_text TEXT NOT NULL,
+    FOREIGN KEY (quizz_id) REFERENCES Quizzs(id)
+);
+
+CREATE TABLE Options (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT,
+    option_text TEXT NOT NULL,
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (question_id) REFERENCES Questions(id)
+);
+
+CREATE TABLE Answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    question_id INT,
+    selected_option INT,
+    FOREIGN KEY (question_id) REFERENCES Questions(id),
+    FOREIGN KEY (selected_option) REFERENCES Options(id)
+);
+
 CREATE TABLE Inscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
