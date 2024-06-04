@@ -28,7 +28,15 @@ public class Certifs {
         return nom;
     }
 
+
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    @Override
+    public String toString() {
+        return "Certifs{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                '}';
     }
 }

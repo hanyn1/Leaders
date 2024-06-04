@@ -19,11 +19,11 @@ public class ServiceCertificat implements certifInterface<Certifs> {
 
     @Override
     public void addCertif(Certifs certifs) throws SQLException {
-        String req = "INSERT INTO Certificats (nom) VALUES (?)";
+        String req = "INSERT INTO certifs (nom) VALUES ('"+certifs.getNom()+"')";
         try  {
             Statement st = connection.createStatement();
             st.executeUpdate(req);
-            System.out.println("certif is generated");
+            System.out.println("certif is created");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +35,7 @@ public class ServiceCertificat implements certifInterface<Certifs> {
         List<Certifs> certifs = new ArrayList<>();
         try {
             Statement st = this.connection.createStatement();
-            String req= "SELECT * FROM certif";
+            String req= "SELECT * FROM certifs";
             ResultSet res = st.executeQuery(req);
             while (res.next()){
                 Certifs c = new Certifs();
@@ -54,7 +54,7 @@ public class ServiceCertificat implements certifInterface<Certifs> {
     public Certifs getCertifById(Certifs certifs) {
         try  {
             Statement statement = this.connection.createStatement();
-            String req = "SELECT * FROM certif WHERE id = ?";
+            String req = "SELECT * FROM certifs WHERE id = ?";
             ResultSet resultSet = statement.executeQuery(req);
             if (resultSet.next()) {
                 Certifs c = new Certifs();
