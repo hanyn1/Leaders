@@ -17,7 +17,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void ajouter(User user) throws SQLException {
-        String req = "INSERT INTO utilisateur (id,nom,email,motDePasse) VALUES('"+user.getId()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";
+        String req = "INSERT INTO utilisateurs (id,nom,email,motDePasse,role) VALUES('"+user.getId()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"','"+user.getRole()+"') ";
         Statement st = connection.createStatement();
         st.executeUpdate(req);
 
@@ -25,12 +25,14 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void modifier(User user) throws SQLException {
-        String req= "UPDATE utilisateur SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
+        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? , role = ? WHERE id = ?";
         PreparedStatement us = connection.prepareStatement(req);
         us.setString(1, user.getNom());
         us.setString(2, user.getEmail());
         us.setString(3, user.getMotDePasse());
         us.setInt(4, user.getId());
+        us.setString(5, user.getRole());
+
         us.executeUpdate();
 
 
@@ -38,7 +40,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void supprimer(int id) throws SQLException {
-        String req = "DELETE FROM utilisateur WHERE id = ?";
+        String req = "DELETE FROM utilisateurs WHERE id = ?";
         PreparedStatement us = connection.prepareStatement(req);
         us.setInt(1,id);
         us.executeUpdate();
@@ -47,7 +49,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public List<User> recuperer() throws SQLException {
-        List<User> utilisateur = new ArrayList<>();
+        List<User> utilisateurs = new ArrayList<>();
         String req = "SELECT * FROM utilisateur";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(req);
@@ -58,10 +60,11 @@ public class UserService implements IUserInterface<User> {
             user.setNom(rs.getString("nom"));
             user.setEmail(rs.getString("email"));
             user.setMotDePasse(rs.getString("motDePasse"));
+            user.setRole(rs.getString("role"));
 
-            utilisateur.add(user);
+            utilisateurs.add(user);
         }
-        return utilisateur;
+        return utilisateurs;
     }
 
 }
