@@ -35,10 +35,10 @@ CREATE TABLE Profils (
     bio TEXT,
     photo VARCHAR(255),
     utilisateur_id INT,
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
-CREATE TABLE Entite (
+CREATE TABLE Entites (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titre VARCHAR(255) NOT NULL,
     description TEXT
@@ -50,7 +50,7 @@ CREATE TABLE Cours (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     video VARCHAR(255),
-    FOREIGN KEY (entite_id) REFERENCES Entite(id)
+    FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
 CREATE TABLE Quizzs (
@@ -58,17 +58,17 @@ CREATE TABLE Quizzs (
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
- date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (entite_id) REFERENCES Entite(id)
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
 CREATE TABLE Inscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cours_id INT,
     utilisateur_id INT,
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
 CREATE TABLE Formations (
@@ -76,7 +76,7 @@ CREATE TABLE Formations (
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
-    FOREIGN KEY (entite_id) REFERENCES Entite(id)
+    FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
 CREATE TABLE Evenements (
@@ -84,14 +84,14 @@ CREATE TABLE Evenements (
     entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
-    FOREIGN KEY (entite_id) REFERENCES Entite(id)
+    FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
 CREATE TABLE Categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     parent_id INT,
-    FOREIGN KEY (parent_id) REFERENCES Categorie(id)
+    FOREIGN KEY (parent_id) REFERENCES Categories(id)
 );
 
 CREATE TABLE Badges (
@@ -110,8 +110,8 @@ CREATE TABLE Articles (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     contenu TEXT,
-     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (entite_id) REFERENCES Entite(id)
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 
 CREATE TABLE Cours_Utilisateurs (
@@ -119,39 +119,39 @@ CREATE TABLE Cours_Utilisateurs (
     utilisateur_id INT,
     PRIMARY KEY (cours_id, utilisateur_id),
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
 CREATE TABLE Utilisateurs_Quizzs (
     utilisateur_id INT,
     quizz_id INT,
     PRIMARY KEY (utilisateur_id, quizz_id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id),
-    FOREIGN KEY (quizz_id) REFERENCES Quizz(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id),
+    FOREIGN KEY (quizz_id) REFERENCES Quizzs(id)
 );
 
 CREATE TABLE Formations_Utilisateurs (
     formation_id INT,
     utilisateur_id INT,
     PRIMARY KEY (formation_id, utilisateur_id),
-    FOREIGN KEY (formation_id) REFERENCES Formation(id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (formation_id) REFERENCES Formations(id),
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
 CREATE TABLE Evenements_Utilisateurs (
     evenement_id INT,
     utilisateur_id INT,
     PRIMARY KEY (evenement_id, utilisateur_id),
-    FOREIGN KEY (evenement_id) REFERENCES Evenement(id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (evenement_id) REFERENCES Evenements(id),
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
 CREATE TABLE Quizzs_Badges (
     quizz_id INT,
     badge_id INT,
     PRIMARY KEY (quizz_id, badge_id),
-    FOREIGN KEY (quizz_id) REFERENCES Quizz(id),
-    FOREIGN KEY (badge_id) REFERENCES Badge(id)
+    FOREIGN KEY (quizz_id) REFERENCES Quizzs(id),
+    FOREIGN KEY (badge_id) REFERENCES Badges(id)
 );
 
 CREATE TABLE Cours_Certifs (
@@ -159,15 +159,15 @@ CREATE TABLE Cours_Certifs (
     certif_id INT,
     PRIMARY KEY (cours_id, certif_id),
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
-    FOREIGN KEY (certif_id) REFERENCES Certif(id)
+    FOREIGN KEY (certif_id) REFERENCES Certifs(id)
 );
 
 CREATE TABLE Utilisateurs_Articles (
     utilisateur_id INT,
     article_id INT,
     PRIMARY KEY (utilisateur_id, article_id),
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id),
-    FOREIGN KEY (article_id) REFERENCES Article(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id),
+    FOREIGN KEY (article_id) REFERENCES Articles(id)
 );
 
 CREATE TABLE Cours_Categories (
@@ -175,15 +175,15 @@ CREATE TABLE Cours_Categories (
     categorie_id INT,
     PRIMARY KEY (cours_id, categorie_id),
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
-    FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
+    FOREIGN KEY (categorie_id) REFERENCES Categories(id)
 );
 
 CREATE TABLE Formations_Categories (
     formation_id INT,
     categorie_id INT,
     PRIMARY KEY (formation_id, categorie_id),
-    FOREIGN KEY (formation_id) REFERENCES Formation(id),
-    FOREIGN KEY (categorie_id) REFERENCES Categorie(id)
+    FOREIGN KEY (formation_id) REFERENCES Formations(id),
+    FOREIGN KEY (categorie_id) REFERENCES Categories(id)
 );
 
 CREATE TABLE Ressources (
@@ -193,13 +193,15 @@ CREATE TABLE Ressources (
     url VARCHAR(255),
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 CREATE TABLE Temoignages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     utilisateur_id INT,
     contenu TEXT,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateur(id)
+    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
+
 CREATE TABLE Communautes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
