@@ -8,21 +8,25 @@ public class User {
     private String email;
     private String motDePasse;
 
+    private String role;
+
     //Constructeur
     public User(){
     }
 
-    public User(int id, String nom, String email, String motDePasse){
+    public User(int id, String nom, String email, String motDePasse, String role){
         this.id = id;
         this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
+        this.role = role;
 
     }
-    public User(String nom, String email, String motDePasse){
+    public User(String nom, String email, String motDePasse,String role){
         this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
+        this.role = role;
     }
 
     //Getters and Setters
@@ -30,6 +34,8 @@ public class User {
     public int getId() {
         return id;
     }
+
+    public String getRole() { return role; }
 
     public String getNom() {
         return nom;
@@ -68,4 +74,5 @@ public class User {
                 ", motDePasse='" + motDePasse + '\'' +
                 '}';
     }
+    public void setRole(String role) { this.role = role; }
 }
