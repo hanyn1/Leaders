@@ -1,23 +1,30 @@
 package Models;
 
-import java.util.Date;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
 
-public class Quizz {
+public class Quizz extends QuizzCategorie {
     private int id;
     private String titre;
     private String description;
-    private Date date;
+
 
     // Constructor
-    public Quizz(int id, String titre, String description, Date date) {
+
+
+    public Quizz(int id, String titre, String description) throws SQLException {
+        super(id, titre, description);
         this.id = id;
         this.titre = titre;
         this.description = description;
-        this.date = date;
+        ;
     }
 
-    // Default Constructor
-    public Quizz() {
+    public Quizz(int id, String prog, String skillSOnHtml, Date datequizz) {
+        super(id, null, null);
+
     }
 
     // Getters and Setters
@@ -45,13 +52,6 @@ public class Quizz {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     // toString method
     @Override
@@ -60,7 +60,14 @@ public class Quizz {
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
                 '}';
     }
-}
+
+
+    // Method to retrieve quiz date from the database
+    public CallableStatement getQuizzDate(Connection connection) throws SQLException {
+        String sql = "{call get_quizz_date(?)}";
+        CallableStatement callableStatement = connection.prepareCall(sql);
+        callableStatement.setInt(1, this.id);
+        return callableStatement;
+    }

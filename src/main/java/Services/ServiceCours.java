@@ -1,6 +1,7 @@
 package Services;
 
 import Interfaces.workInterface;
+import Models.Article;
 import Models.Cours;
 import utils.MyConfig;
 
@@ -76,6 +77,16 @@ public class ServiceCours implements workInterface<Cours> {
         PreparedStatement ps = this.connection.prepareStatement(req);
         ps.setInt(1,id);
         ps.executeUpdate();
+
+    }
+
+    @Override
+    public List<Article> getByIndex() {
+        return null;
+    }
+
+    @Override
+    public void updateArticle(Article article) throws SQLException {
 
     }
 }

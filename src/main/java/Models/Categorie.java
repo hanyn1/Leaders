@@ -11,4 +11,7 @@ public class Categorie {
         this.nom = nom;
         this.parent = parent;
     }
+
+    public Categorie(int id, String programmation, String descriptionDeLaCatégorieProgrammation) {
+    }
 }

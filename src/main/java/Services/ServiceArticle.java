@@ -49,6 +49,22 @@ public class ServiceArticle implements workInterface<Article> {
 
         return articles;
     }
+
+    @Override
+    public void update(Article article) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Article article) {
+
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+
+    }
+
     @Override
     public List<Article> getByIndex() {
         List<Article> articles = new ArrayList();
