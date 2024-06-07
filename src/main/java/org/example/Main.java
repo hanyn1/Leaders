@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-        MyConfig m= MyConfig.getInstance();
+        /*MyConfig m= MyConfig.getInstance();
         System.out.printf("Hello and welcome!");
 
         ServiceArticle sa = new ServiceArticle();
@@ -54,8 +54,28 @@ public class Main {
             System.out.println("Cours deleted successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
-        } */
         }
+        }*/
+
+        /*UserService us = new UserService();
+
+        try {
+            us.ajouter(new User(5, "chayma", "samaali", "ssr", 5));
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+        }
+        /*RoleService rs = new RoleService();
+
+        try {
+            rs.ajouter(new Role(5,"etudiant"));
+
+        } catch (SQLException e) {
+
+            System.err.println(e.getMessage());
+        }*/
+    }
 
 
 

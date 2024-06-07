@@ -17,7 +17,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void ajouter(User user) throws SQLException {
-        String req = "INSERT INTO utilisateurs (id,nom,email,motDePasse,role) VALUES('"+user.getId()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"','"+user.getRole()+"') ";
+        String req = "INSERT INTO utilisateurs (id,nom,email,motDePasse,role_id) VALUES('"+user.getId()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"','"+user.getRoleId()+"') ";
         Statement st = connection.createStatement();
         st.executeUpdate(req);
 
@@ -25,13 +25,13 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void modifier(User user) throws SQLException {
-        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? , role = ? WHERE id = ?";
+        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? , role_id = ? WHERE id = ?";
         PreparedStatement us = connection.prepareStatement(req);
         us.setString(1, user.getNom());
         us.setString(2, user.getEmail());
         us.setString(3, user.getMotDePasse());
         us.setInt(4, user.getId());
-        us.setString(5, user.getRole());
+        us.setInt(5, user.getRoleId());
 
         us.executeUpdate();
 
@@ -60,7 +60,7 @@ public class UserService implements IUserInterface<User> {
             user.setNom(rs.getString("nom"));
             user.setEmail(rs.getString("email"));
             user.setMotDePasse(rs.getString("motDePasse"));
-            user.setRole(rs.getString("role"));
+            user.setRoleId(rs.getInt("roleid"));
 
             utilisateurs.add(user);
         }
