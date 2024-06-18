@@ -1,6 +1,8 @@
 package Models;
 
-public class Role {//variables
+public class Role {
+
+    //variables
     private int id;
     private String name;
 

@@ -22,12 +22,13 @@ public class User {
         this.roleId = roleId;
 
     }
-    public User(String nom, String email, String motDePasse,int roleId){
+    public User(String nom, String email, String motDePasse){
         this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
-        this.roleId = roleId;
     }
+
+
 
     //Getters and Setters
 

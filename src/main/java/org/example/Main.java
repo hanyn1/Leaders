@@ -60,16 +60,16 @@ public class Main {
         /*UserService us = new UserService();
 
         try {
-            us.ajouter(new User(5, "chayma", "samaali", "ssr", 5));
+            us.ajouter(new User("chaymaa", "samaalii", "ssr", 6));
 
         } catch (SQLException e) {
 
             System.err.println(e.getMessage());
-        }
+        }*/
         /*RoleService rs = new RoleService();
 
         try {
-            rs.ajouter(new Role(5,"etudiant"));
+            rs.ajouter(new Role(6,"etudiant"));
 
         } catch (SQLException e) {
 

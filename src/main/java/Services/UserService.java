@@ -17,7 +17,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void ajouter(User user) throws SQLException {
-        String req = "INSERT INTO utilisateurs (id,nom,email,motDePasse,role_id) VALUES('"+user.getId()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"','"+user.getRoleId()+"') ";
+        String req = "INSERT INTO utilisateurs (nom,email,motDePasse) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";
         Statement st = connection.createStatement();
         st.executeUpdate(req);
 
@@ -25,13 +25,12 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void modifier(User user) throws SQLException {
-        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? , role_id = ? WHERE id = ?";
+        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
         PreparedStatement us = connection.prepareStatement(req);
         us.setString(1, user.getNom());
         us.setString(2, user.getEmail());
         us.setString(3, user.getMotDePasse());
         us.setInt(4, user.getId());
-        us.setInt(5, user.getRoleId());
 
         us.executeUpdate();
 
