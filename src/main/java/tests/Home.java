@@ -1,4 +1,4 @@
-package tests;
+/*package tests;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,4 +26,4 @@ public class Home  extends Application {
         }
 
     }
-}
+}*/

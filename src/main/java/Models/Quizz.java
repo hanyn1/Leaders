@@ -1,6 +1,6 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Quizz {
     private int id;
@@ -11,6 +11,12 @@ public class Quizz {
     // Constructor
     public Quizz(int id, String titre, String description, Date date) {
         this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.date = date;
+    }
+
+    public Quizz(String titre, String description, Date date) {
         this.titre = titre;
         this.description = description;
         this.date = date;
