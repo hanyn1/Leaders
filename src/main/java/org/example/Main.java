@@ -1,8 +1,8 @@
 package org.example;
 
 import Models.*;
-import Services.*;
 import utils.MyConfig;
+import Services.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -57,15 +57,15 @@ public class Main {
         }
         }*/
 
-        /*UserService us = new UserService();
+       /* UserService us = new UserService();
 
         try {
-            us.ajouter(new User("chaymaa", "samaalii", "ssr", 6));
+            us.ajouter(new User("chaym", "samaai", "hjr"));
 
         } catch (SQLException e) {
 
             System.err.println(e.getMessage());
-        }*/
+        }
         /*RoleService rs = new RoleService();
 
         try {
@@ -75,6 +75,21 @@ public class Main {
 
             System.err.println(e.getMessage());
         }*/
+
+
+        /*ServiceQuizz sq = new ServiceQuizz();
+        try{
+
+            sq.addQuizz(new Quizz("abeer","cours", new Date(2002,12,23)));}
+        catch (SQLException e){System.out.println(e.getMessage());}*/
+
+        QuizzCatService sq = new QuizzCatService();
+        try{
+
+            sq.addQuizz(new QuizzCat("ali","rrrrr"));}
+        catch (SQLException e){System.out.println(e.getMessage());}
+
+
     }
 
 
