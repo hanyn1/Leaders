@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserCRUD.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -28,4 +28,5 @@ public class HelloApplication extends Application {
 
 
     }
+
 }

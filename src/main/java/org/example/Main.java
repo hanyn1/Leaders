@@ -57,10 +57,10 @@ public class Main {
         }
         }*/
 
-       /* UserService us = new UserService();
+      /* UserService us = new UserService();
 
         try {
-            us.ajouter(new User("chaym", "samaai", "hjr"));
+            us.ajouter(new User("chayma", "samaali", "hjr"));
 
         } catch (SQLException e) {
 
@@ -83,11 +83,11 @@ public class Main {
             sq.addQuizz(new Quizz("abeer","cours", new Date(2002,12,23)));}
         catch (SQLException e){System.out.println(e.getMessage());}*/
 
-        QuizzCatService sq = new QuizzCatService();
+        /*QuizzCatService sq = new QuizzCatService();
         try{
 
             sq.addQuizz(new QuizzCat("ali","rrrrr"));}
-        catch (SQLException e){System.out.println(e.getMessage());}
+        catch (SQLException e){System.out.println(e.getMessage());}*/
 
 
     }
