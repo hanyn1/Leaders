@@ -17,16 +17,16 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void ajouter(User user) throws SQLException {
-        String req = "INSERT INTO utilisateurs (nom,email,motDePasse) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";
+        String ajouter = "INSERT INTO utilisateurs (nom,email,motDePasse) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";
         Statement st = connection.createStatement();
-        st.executeUpdate(req);
+        st.executeUpdate(ajouter);
 
     }
 
     @Override
     public void modifier(User user) throws SQLException {
-        String req= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
-        PreparedStatement us = connection.prepareStatement(req);
+        String modifier= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
+        PreparedStatement us = connection.prepareStatement(modifier);
         us.setString(1, user.getNom());
         us.setString(2, user.getEmail());
         us.setString(3, user.getMotDePasse());
@@ -39,8 +39,8 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void supprimer(int id) throws SQLException {
-        String req = "DELETE FROM utilisateurs WHERE id = ?";
-        PreparedStatement us = connection.prepareStatement(req);
+        String supprimer = "DELETE FROM utilisateurs WHERE id = ?";
+        PreparedStatement us = connection.prepareStatement(supprimer);
         us.setInt(1,id);
         us.executeUpdate();
 
