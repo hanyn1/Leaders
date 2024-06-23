@@ -30,8 +30,7 @@ public class Cours extends Entite {
     @Override
     public String toString() {
         return "Cours{" +
-                super.toString() +
-                ", video='" + video + '\'' +
+                "video='" + video + '\'' +
                 '}';
     }
 }

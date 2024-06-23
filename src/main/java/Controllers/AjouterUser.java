@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class AjouterUser {
@@ -33,6 +34,8 @@ public class AjouterUser {
 
     @FXML
     private TextField NomTextField;
+    @FXML
+    private TableView<?> tableView;
 
     @FXML
     void AjouterUser(ActionEvent event) {
