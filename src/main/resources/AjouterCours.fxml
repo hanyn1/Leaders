@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="632.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCours">
     <children>
-        <Label layoutX="68.0" layoutY="41.0" text="Titre" />
+        <Label layoutX="67.0" layoutY="165.0" text="Image" />
         <Label layoutX="48.0" layoutY="100.0" text="Description" />
         <Label layoutX="65.0" layoutY="224.0" text="Video" />
         <Button fx:id="addBTN" layoutX="255.0" layoutY="340.0" mnemonicParsing="false" onAction="#addCours" text="Ajouter" />
@@ -23,5 +23,9 @@
                 <TableColumn fx:id="colVideo" prefWidth="170.40001220703124" text="Video link" />
             </columns>
         </TableView>
+        <TextField fx:id="imgTF" layoutX="189.0" layoutY="161.0" />
+        <Label layoutX="70.0" layoutY="42.0" text="Title" />
+        <Button fx:id="imgBTN" layoutX="148.0" layoutY="340.0" mnemonicParsing="false" onAction="#uploadImage" text="Upload Image" />
+        <Button fx:id="vidBTN" layoutX="52.0" layoutY="340.0" mnemonicParsing="false" onAction="#uploadVideo" text="Upload Video" />
     </children>
 </AnchorPane>

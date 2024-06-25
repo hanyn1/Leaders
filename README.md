@@ -50,6 +50,7 @@ CREATE TABLE Cours (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     video VARCHAR(255),
+     image VARCHAR(255) NOT NULL,
     FOREIGN KEY (entite_id) REFERENCES Entites(id)
 );
 

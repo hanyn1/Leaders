@@ -2,6 +2,8 @@ package Services;
 
 import Interfaces.coursInterface;
 import Models.Cours;
+import com.cloudinary.Cloudinary;
+import utils.CloudinaryConfig;
 import utils.MyConfig;
 
 import java.sql.*;
@@ -11,15 +13,17 @@ import java.util.List;
 public class ServiceCours implements coursInterface<Cours> {
     MyConfig instance= MyConfig.getInstance();
     Connection connection;
+    private Cloudinary cloudinary;
     public  ServiceCours(){
         this.connection= this.instance.getConnection();
         System.out.println("service");
+        this.cloudinary= CloudinaryConfig.getCloudinary();
     }
 
 
     @Override
     public void add(Cours cours) {
-        String req = "INSERT INTO `cours`(`titre`, `description`, `video`) VALUES ('"+cours.getTitre()+"','"+cours.getDescription()+"','"+cours.getVideo()+"')";
+        String req = "INSERT INTO `cours`(`titre`, `description`, `video`, `image`) VALUES ('"+cours.getTitre()+"','"+cours.getDescription()+"','"+cours.getVideo()+"','"+cours.getImage()+"')";
         try {
             Statement st = connection.createStatement();
             st.executeUpdate(req);
@@ -42,6 +46,7 @@ public class ServiceCours implements coursInterface<Cours> {
                 c.setTitre(res.getString(2));
                 c.setDescription(res.getString(3));
                 c.setVideo(res.getString(4));
+                c.setImage(res.getString(5));
 
 
                 crs.add(c);
@@ -54,12 +59,13 @@ public class ServiceCours implements coursInterface<Cours> {
 
     @Override
     public void update(Cours cours) throws SQLException {
-        String req = "UPDATE `cours` SET `titre`=?, `description`=?, `video`=? WHERE id=?";
+        String req = "UPDATE `cours` SET `titre`=?, `description`=?, `video`,`image`=? WHERE id=?";
         PreparedStatement ps = this.connection.prepareStatement(req);
         ps.setString(1,cours.getTitre());
         ps.setString(2,cours.getDescription());
         ps.setString(3,cours.getVideo());
-        ps.setInt(4,cours.getId());
+        ps.setString(4,cours.getImage());
+        ps.setInt(5,cours.getId());
         ps.executeUpdate();
 
 
