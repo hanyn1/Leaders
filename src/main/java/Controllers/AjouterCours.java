@@ -1,23 +1,29 @@
 package Controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import Models.Cours;
 import Services.ServiceCours;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import utils.CloudinaryConfig;
 
 public class AjouterCours {
 
@@ -49,30 +55,47 @@ public class AjouterCours {
     private TextField vidTF;
 
     @FXML
+    private TextField imgTF;
+
+    @FXML
     private TableView<Cours> tableView;
+
+    @FXML
+    private Button imgBTN;
+
+    @FXML
+    private Button vidBTN;
 
     private ObservableList<Cours> observableList;
     private ServiceCours sc;
+    private Cloudinary cloudinary;
+
+    private String uploadedImageUrl;
+    private String uploadedVideoUrl;
 
     @FXML
     void addCours(ActionEvent event) throws SQLException {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
-        String video = vidTF.getText().trim();
 
         // Validate input fields
-        if (titre.isEmpty() || description.isEmpty() || video.isEmpty()) {
-            showAlert("Validation Error", "All fields must be filled out.");
+        if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
+            showAlert("Validation Error", "All fields must be filled out and files must be uploaded.");
             return;
         }
 
-        Cours cours = new Cours(titre, description, video);
+        Cours cours = new Cours(titre, description, uploadedVideoUrl, uploadedImageUrl);
         sc.add(cours);
 
         // Clear the text fields after adding the course
         titreF.clear();
         descTF.clear();
         vidTF.clear();
+        imgTF.clear();
+
+        // Clear the uploaded URLs
+        uploadedImageUrl = null;
+        uploadedVideoUrl = null;
 
         // Update the ObservableList and refresh the TableView
         observableList.add(cours);
@@ -80,8 +103,45 @@ public class AjouterCours {
     }
 
     @FXML
+    void uploadImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                Map<String, Object> uploadResult = cloudinary.uploader().upload(selectedFile, ObjectUtils.emptyMap());
+                uploadedImageUrl = (String) uploadResult.get("secure_url");
+                imgTF.setText(uploadedImageUrl);
+            } catch (IOException e) {
+                showAlert("Upload Error", "Failed to upload image.");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    void uploadVideo(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.avi", "*.mkv", "*.mov"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                Map<String, Object> uploadResult = cloudinary.uploader().upload(selectedFile, ObjectUtils.asMap("resource_type", "video"));
+                uploadedVideoUrl = (String) uploadResult.get("secure_url");
+                vidTF.setText(uploadedVideoUrl);
+            } catch (IOException e) {
+                showAlert("Upload Error", "Failed to upload video.");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
     void initialize() {
         sc = new ServiceCours();
+        cloudinary = CloudinaryConfig.getCloudinary();
         colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colVideo.setCellValueFactory(new PropertyValueFactory<>("video"));
@@ -97,7 +157,7 @@ public class AjouterCours {
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
