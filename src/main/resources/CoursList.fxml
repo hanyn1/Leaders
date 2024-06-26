@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.Button?>
+
+<TilePane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Controllers.CoursListController"
+          prefHeight="600.0" prefWidth="800.0"
+          hgap="10" vgap="10"
+          tileAlignment="CENTER_LEFT">
+
+    <children>
+        <Button text="Add Course" onAction="#handleAddCourse"/>
+        <TilePane fx:id="coursesTilePane" hgap="10" vgap="10"/>
+    </children>
+</TilePane>

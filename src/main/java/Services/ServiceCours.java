@@ -43,11 +43,10 @@ public class ServiceCours implements coursInterface<Cours> {
             while(res.next()){
                 Cours c =new Cours();
                 c.setId(res.getInt("id"));
-                c.setTitre(res.getString(2));
-                c.setDescription(res.getString(3));
-                c.setVideo(res.getString(4));
-                c.setImage(res.getString(5));
-
+                c.setTitre(res.getString("titre"));
+                c.setDescription(res.getString("description"));
+                c.setVideo(res.getString("video"));
+                c.setImage(res.getString("image"));
 
                 crs.add(c);
             }
@@ -56,6 +55,7 @@ public class ServiceCours implements coursInterface<Cours> {
         }
         return crs;
     }
+
 
     @Override
     public void update(Cours cours) throws SQLException {
@@ -83,6 +83,27 @@ public class ServiceCours implements coursInterface<Cours> {
         ps.setInt(1,id);
         ps.executeUpdate();
 
+    }
+
+    public Cours getCoursById(int id) {
+        Cours cours = null;
+        String req = "SELECT * FROM cours WHERE id=?";
+        try (PreparedStatement ps = connection.prepareStatement(req)) {
+            ps.setInt(1, id);
+            try (ResultSet res = ps.executeQuery()) {
+                if (res.next()) {
+                    cours = new Cours();
+                    cours.setId(res.getInt("id"));
+                    cours.setTitre(res.getString("titre"));
+                    cours.setDescription(res.getString("description"));
+                    cours.setVideo(res.getString("video"));
+                    cours.setImage(res.getString("image"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cours;
     }
 }
 
