@@ -1,16 +1,22 @@
 package Controllers;
 
 import Models.Cours;
-import Services.ServiceCours;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
-
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+import java.util.Objects;
 
 public class CoursControllers {
 
@@ -25,58 +31,62 @@ public class CoursControllers {
 
     @FXML
     private MediaView mediaView;
+
     private MediaPlayer mediaPlayer;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    public void initialize() {
+        // Default initialization, if needed
+    }
+
+    public void initialize(Cours course) {
+        // Populate UI elements with course details
+        titleLabel.setText(course.getTitre());
+        descriptionLabel.setText(course.getDescription());
+
+        // Load image (if available)
+        if (course.getImage() != null && !course.getImage().isEmpty()) {
+            courseImageView.setImage(new Image(course.getImage()));
+        }
+
+        // Load video (if available)
+        if (course.getVideo() != null && !course.getVideo().isEmpty()) {
+            Media media = new Media(course.getVideo());
+            mediaPlayer = new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaPlayer);
+            mediaView.setVisible(true); // Show MediaView
+        } else {
+            mediaView.setVisible(false); // Hide MediaView if no video available
+        }
+    }
+
     @FXML
-    void pauseVideo(ActionEvent event) {
+    void pauseVideo() {
         if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             mediaPlayer.pause();
         }
     }
 
     @FXML
-    void playVideo(ActionEvent event) {
+    void playVideo() {
         if (mediaPlayer != null) {
             mediaPlayer.play();
         }
     }
 
     @FXML
-    void stopVideo(ActionEvent event) {
+    void stopVideo() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
-
-
-
-    public void initialize() {
-
-        Cours c = new Cours();
-
-        // Load course details based on courseId
-        loadCourseDetails(c.getId());
+    @FXML
+    public void handleReturn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-
-    public void loadCourseDetails(int id) {
-        // Retrieve course details from the service layer based on courseId
-        ServiceCours sc = new ServiceCours();
-        Cours course = sc.getCoursById(id);
-        if (course != null) {
-            // Populate UI elements with course details
-            titleLabel.setText(course.getTitre());
-            descriptionLabel.setText(course.getDescription());
-
-            // Load image (if available)
-            if (course.getImage() != null && !course.getImage().isEmpty()) {
-                courseImageView.setImage(new Image(course.getImage()));
-            }
-        } else {
-            // Handle case where course with given ID is not found
-            titleLabel.setText("Course Not Found");
-            descriptionLabel.setText("The course with ID " + id + " does not exist.");
-            courseImageView.setImage(null); // Clear image if course is not found
-        }
-    }
-
 }
-

@@ -5,12 +5,10 @@ import Services.ServiceCours;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -20,7 +18,7 @@ import java.util.List;
 public class CoursListController {
 
     @FXML
-    private TilePane coursesTilePane;
+    private VBox coursesVBox;
 
     private ServiceCours serviceCours;
 
@@ -32,10 +30,11 @@ public class CoursListController {
     }
 
     private void displayCourses(List<Cours> courses) {
-        coursesTilePane.getChildren().clear(); // Clear existing content
+        coursesVBox.getChildren().clear(); // Clear existing content
         for (Cours course : courses) {
             HBox card = createCourseCard(course);
-            coursesTilePane.getChildren().add(card);
+            card.setOnMouseClicked(event -> handleCardClick(course)); // Set click handler
+            coursesVBox.getChildren().add(card);
         }
     }
 
@@ -47,7 +46,7 @@ public class CoursListController {
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" +
                 "-fx-border-color: gray;");
-        card.setPrefWidth(250);
+        card.setPrefWidth(400);
 
         ImageView imageView = new ImageView();
         if (course.getImage() != null && !course.getImage().isEmpty()) {
@@ -75,16 +74,27 @@ public class CoursListController {
         return card;
     }
 
+    private void handleCardClick(Cours course) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Cours.fxml"));
+            Parent root = loader.load();
+
+            CoursControllers controller = loader.getController();
+            controller.initialize(course);
+
+            coursesVBox.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void handleAddCourse() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) coursesTilePane.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Stage stage = (Stage) coursesVBox.getScene().getWindow();
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

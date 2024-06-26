@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
@@ -7,24 +8,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="Controllers.CoursControllers"
-      prefHeight="600.0" prefWidth="800.0" spacing="10">
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.CoursControllers"
+            prefHeight="600.0" prefWidth="800.0" hbarPolicy="NEVER">
 
-    <ImageView fx:id="courseImageView" fitWidth="400.0" fitHeight="300.0" preserveRatio="true"/>
+    <content>
+        <VBox spacing="10">
 
-    <Label fx:id="titleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <ImageView fx:id="courseImageView" fitWidth="400.0" fitHeight="300.0" preserveRatio="true"/>
 
-    <Label fx:id="descriptionLabel" wrapText="true"/>
+            <Label fx:id="titleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
-    <MediaView fx:id="mediaView" fitWidth="600.0" fitHeight="400.0"/>
+            <Label fx:id="descriptionLabel" wrapText="true"/>
 
-    <!-- Buttons for controlling video playback -->
-    <HBox spacing="10">
-        <Button text="Play" onAction="#playVideo"/>
-        <Button text="Pause" onAction="#pauseVideo"/>
-        <Button text="Stop" onAction="#stopVideo"/>
-    </HBox>
+            <MediaView fx:id="mediaView" fitWidth="600.0" fitHeight="400.0"/>
 
-</VBox>
+            <!-- Buttons for controlling video playback -->
+            <HBox spacing="10">
+                <Button text="Play" onAction="#playVideo"/>
+                <Button text="Pause" onAction="#pauseVideo"/>
+                <Button text="Stop" onAction="#stopVideo"/>
+            </HBox>
+
+            <Button text="Return to Courses List" onAction="#handleReturn"/>
+        </VBox>
+    </content>
+</ScrollPane>
+
