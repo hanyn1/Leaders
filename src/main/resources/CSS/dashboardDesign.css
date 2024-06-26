@@ -170,3 +170,17 @@
     -fx-font-family: Arial;
 }
 
+.star-now-btn {
+    -fx-background-color: #ffff;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+    -fx-font-family: Arial;
+    -fx-font-size: 20px;
+    -fx-text-fill: #000;
+}
+
+.star-now-btn:hover{
+    -fx-background-color: #4e4406;
+    -fx-text-fill: #fff;
+    -fx-border-width: 0px;
+}
