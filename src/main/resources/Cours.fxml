@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
@@ -8,31 +15,77 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.CoursControllers"
-            prefHeight="600.0" prefWidth="800.0" hbarPolicy="NEVER">
+<AnchorPane fx:id="main_form"   prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CoursControllers">
+    <children>
+        <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="semi-top">
+                    <children>
+                        <AnchorPane prefHeight="35.0" prefWidth="1100.0" styleClass="top-form">
+                            <children>
+                                <Button fx:id="close" layoutX="1030.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
+                                <Button fx:id="minimize" layoutX="1000.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
+                                <Label layoutX="29.0" layoutY="11.0" text="Evolearn - eLearning Platform" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <VBox prefHeight="600.0" prefWidth="213.0" style="-fx-background-color: #f0bd4f;">
+                    <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label layoutX="48.0" layoutY="153.0" text="Welcome," textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font></Label>
+                                <Label fx:id="username" layoutX="59.0" layoutY="188.0" prefHeight="27.0" prefWidth="90.0" text="Instructor" textFill="WHITE">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font></Label>
+                                <VBox layoutX="14.0" layoutY="244.0" styleClass="nav-pane">
+                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
+                                    <Button fx:id="avaialbeFD_btn" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Courses" />
+                                    <Button fx:id="order_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Profile" />
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
+                    <AnchorPane prefHeight="800.0" prefWidth="987.0">
 
-    <content>
-        <VBox spacing="10">
 
-            <ImageView fx:id="courseImageView" fitWidth="400.0" fitHeight="300.0" preserveRatio="true"/>
+                        <ScrollPane hbarPolicy="NEVER">
 
-            <Label fx:id="titleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                            <content>
+                                <VBox spacing="10">
 
-            <Label fx:id="descriptionLabel" wrapText="true"/>
+                                    <ImageView fx:id="courseImageView" fitWidth="400.0" fitHeight="300.0" preserveRatio="true"/>
 
-            <MediaView fx:id="mediaView" fitWidth="600.0" fitHeight="400.0"/>
+                                    <Label fx:id="titleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
-            <!-- Buttons for controlling video playback -->
-            <HBox spacing="10">
-                <Button text="Play" onAction="#playVideo"/>
-                <Button text="Pause" onAction="#pauseVideo"/>
-                <Button text="Stop" onAction="#stopVideo"/>
-            </HBox>
+                                    <Label fx:id="descriptionLabel" wrapText="true"/>
 
-            <Button text="Return to Courses List" onAction="#handleReturn"/>
-        </VBox>
-    </content>
-</ScrollPane>
+                                    <MediaView fx:id="mediaView" fitWidth="600.0" fitHeight="400.0"/>
 
+                                    <HBox spacing="10">
+                                        <Button text="Play" onAction="#playVideo"/>
+                                        <Button text="Pause" onAction="#pauseVideo"/>
+                                        <Button text="Stop" onAction="#stopVideo"/>
+                                    </HBox>
+
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+
+
+                    </AnchorPane>
+                </ScrollPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

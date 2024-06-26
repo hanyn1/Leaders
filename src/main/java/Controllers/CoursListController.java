@@ -2,29 +2,36 @@ package Controllers;
 
 import Models.Cours;
 import Services.ServiceCours;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class CoursListController {
 
     @FXML
     private VBox coursesVBox;
 
-    private ServiceCours serviceCours;
+    @FXML
+    private AnchorPane main_form;
+    private Parent root;
 
     @FXML
     public void initialize() {
-        serviceCours = new ServiceCours();
+        ServiceCours serviceCours = new ServiceCours();
         List<Cours> courses = serviceCours.getAll();
         displayCourses(courses);
     }
@@ -98,5 +105,25 @@ public class CoursListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
+    public void goToCoursesList(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
