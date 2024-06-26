@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="632.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCours">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCours">
     <children>
         <Label layoutX="67.0" layoutY="165.0" text="Image" />
         <Label layoutX="48.0" layoutY="100.0" text="Description" />
@@ -27,5 +27,6 @@
         <Label layoutX="70.0" layoutY="42.0" text="Title" />
         <Button fx:id="imgBTN" layoutX="148.0" layoutY="340.0" mnemonicParsing="false" onAction="#uploadImage" text="Upload Image" />
         <Button fx:id="vidBTN" layoutX="52.0" layoutY="340.0" mnemonicParsing="false" onAction="#uploadVideo" text="Upload Video" />
+        <Button fx:id="viewDetailsBtn" text="View Details" onAction="#viewCourseDetails"/>
     </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import Models.Cours;
@@ -16,6 +17,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -23,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import utils.CloudinaryConfig;
 
 public class AjouterCours {
@@ -72,6 +78,9 @@ public class AjouterCours {
 
     private String uploadedImageUrl;
     private String uploadedVideoUrl;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     void addCours(ActionEvent event) throws SQLException {
@@ -163,4 +172,15 @@ public class AjouterCours {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    void viewCourseDetails(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+       stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+       scene = new Scene(root);
+       stage.setScene(scene);
+       stage.show();
+    }
+
+
 }

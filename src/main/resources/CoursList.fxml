@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CoursListController">
+<TilePane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Controllers.CoursListController"
+          prefHeight="600.0" prefWidth="800.0"
+          hgap="10" vgap="10"
+          tileAlignment="CENTER_LEFT">
+
     <children>
-        <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="1172.0">
-            <content>
-                <VBox fx:id="coursesVBox" spacing="20.0" />
-            </content>
-        </ScrollPane>
+        <Button text="Add Course" onAction="#handleAddCourse"/>
+        <TilePane fx:id="coursesTilePane" hgap="10" vgap="10"/>
     </children>
-</AnchorPane>
+</TilePane>
