@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -82,6 +83,9 @@ public class AjouterCours {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    @FXML
+    private AnchorPane main_form;
+
 
     @FXML
     void addCours(ActionEvent event) throws SQLException {
@@ -184,4 +188,25 @@ public class AjouterCours {
     }
 
 
+
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
+    public void goToCoursesList(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        stage =(Stage)( (Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }
