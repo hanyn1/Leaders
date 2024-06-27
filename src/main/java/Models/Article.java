@@ -18,7 +18,7 @@ public class Article {
         this.description = description;
         this.contenu = contenu;
         this.datePublication = datePublication;
-    }
+    }/*free palestine*/
     public Article(int id, String titre, String description, String contenu, Date datePublication) {
         this.id = id;
         this.titre = titre;
@@ -26,6 +26,14 @@ public class Article {
         this.contenu = contenu;
         this.datePublication = datePublication;
     }
+
+    public Article(String text, String text1, String text2, int date) {
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.datePublication = datePublication;
+    }
+
     public int getId() {
         return id;
     }
@@ -75,4 +83,8 @@ public class Article {
                 ", contenu='" + contenu + '\'' +
                 ", datePublication=" + datePublication +
                 '}';
-    }}
+    }
+
+    public void setDatePublication(int date) {
+    }
+}

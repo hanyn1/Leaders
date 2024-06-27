@@ -1,6 +1,6 @@
 package Services;
 
-import Interfaces.workInterface;
+import Interfaces.ArticleInterface;
 import Models.Article;
 import utils.MyConfig;
 
@@ -8,14 +8,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceArticle implements workInterface<Article> {
+public class ServiceArticle implements ArticleInterface<Article> {
 
     MyConfig instance= MyConfig.getInstance();
     Connection connection;
     public ServiceArticle(){
 
         this.connection= this.instance.getConnection();
-        System.out.println("service");
+        System.out.println("service Article");
     }
 
     @Override
@@ -74,8 +74,14 @@ public class ServiceArticle implements workInterface<Article> {
         ps.setString(2, article.getTitre());
         ps.setString(3, article.getDescription());
         ps.setString(4, article.getContenu());
-        ps.setDate(5, new java.sql.Date(article.getDatePublication().getTime()));
+        ps.setDate(5, new Date(article.getDatePublication().getTime()));
         ps.executeUpdate();
+    }
+
+
+    @Override
+    public void update(Article article) {
+
     }
 }
 
