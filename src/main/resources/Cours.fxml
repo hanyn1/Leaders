@@ -71,9 +71,9 @@
                                     <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" />
 
                                     <HBox spacing="10">
-                                        <Button onAction="#playVideo" text="Play" />
-                                        <Button onAction="#pauseVideo" text="Pause" />
-                                        <Button onAction="#stopVideo" text="Stop" />
+                                        <Button onAction="#playVideo" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Play" />
+                                        <Button onAction="#pauseVideo" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Pause" />
+                                        <Button onAction="#stopVideo" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Stop" />
                                     </HBox>
 
                                 </VBox>
