@@ -40,7 +40,6 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-
       <Text layoutX="118.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contenue" />
       <TextField fx:id="fxcontenue" layoutX="194.0" layoutY="195.0" prefHeight="90.0" prefWidth="345.0" />
    </children>
