@@ -71,8 +71,11 @@ public class CoursListController {
 
         VBox detailsVBox = new VBox(5);
         Label titleLabel = new Label(course.getTitre());
+        titleLabel.setStyle("-fx-font-size: 16px;");
+
         Label descriptionLabel = new Label(course.getDescription());
         descriptionLabel.setWrapText(true);
+        descriptionLabel.setStyle("-fx-font-size: 12px;");
 
         detailsVBox.getChildren().addAll(titleLabel, descriptionLabel);
 
@@ -80,6 +83,7 @@ public class CoursListController {
 
         return card;
     }
+
 
     private void handleCardClick(Cours course) {
         try {
