@@ -56,7 +56,7 @@
                         <VBox
                               spacing="10">
 
-                            <Button text="Add Course" onAction="#handleAddCourse"/>
+                            <Button text="+ Add Course" onAction="#handleAddCourse"  style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" styleClass="add-course-btn"/>
                             <VBox fx:id="coursesVBox" spacing="10"/>
 
                         </VBox>
