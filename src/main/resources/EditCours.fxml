@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane   stylesheets="@CSS/dashboardDesign.css"  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditCoursController" style="-fx-background-color: #4e4406;">
+    <children>
+        <VBox layoutX="50.0" layoutY="20.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #f0bd4f; -fx-padding: 20px;">
+            <Label text="Edit Course" styleClass="form-label" style="-fx-text-fill: #4e4406;">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+            <HBox spacing="10.0">
+                <Label text="Title" styleClass="form-label" style="-fx-text-fill: #4e4406;" />
+                <TextField fx:id="editTitleTF" styleClass="form-field" />
+            </HBox>
+            <HBox spacing="10.0">
+                <Label text="Description" styleClass="form-label" style="-fx-text-fill: #4e4406;" />
+                <TextField fx:id="editDescTF" styleClass="form-field" />
+            </HBox>
+            <HBox spacing="10.0">
+                <Label text="Image" styleClass="form-label" style="-fx-text-fill: #4e4406;" />
+                <TextField fx:id="editImageTF" styleClass="form-field" />
+            </HBox>
+            <HBox spacing="10.0">
+                <Label text="Video" styleClass="form-label" style="-fx-text-fill: #4e4406;" />
+                <TextField fx:id="editVideoTF" styleClass="form-field" />
+            </HBox>
+            <HBox spacing="10.0">
+                <Button text="Save" onAction="#saveChanges" styleClass="form-button"  />
+                <Button text="Cancel" onAction="#cancel" styleClass="form-button" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -57,24 +57,17 @@ public class ServiceCours implements coursInterface<Cours> {
     }
 
 
-    @Override
     public void update(Cours cours) throws SQLException {
-        String req = "UPDATE `cours` SET `titre`=?, `description`=?, `video`,`image`=? WHERE id=?";
+        String req = "UPDATE cours SET titre=?, description=?, video=?, image=? WHERE id=?";
         PreparedStatement ps = this.connection.prepareStatement(req);
-        ps.setString(1,cours.getTitre());
-        ps.setString(2,cours.getDescription());
-        ps.setString(3,cours.getVideo());
-        ps.setString(4,cours.getImage());
-        ps.setInt(5,cours.getId());
+        ps.setString(1, cours.getTitre());
+        ps.setString(2, cours.getDescription());
+        ps.setString(3, cours.getVideo());
+        ps.setString(4, cours.getImage());
+        ps.setInt(5, cours.getId());
         ps.executeUpdate();
-
-
     }
 
-    @Override
-    public void delete(Cours cours) {
-
-    }
 
     @Override
     public void delete(int id) throws SQLException {

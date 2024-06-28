@@ -8,19 +8,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_form"   prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InstructorDashboardController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InstructorDashboardController">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="semi-top">
+                <AnchorPane prefHeight="45.0" prefWidth="1100.0" styleClass="semi-top">
                     <children>
-                        <AnchorPane prefHeight="35.0" prefWidth="1100.0" styleClass="top-form">
-                            <children>
-                                <Button fx:id="close" layoutX="1030.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
-                                <Button fx:id="minimize" layoutX="1000.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
-                                <Label layoutX="29.0" layoutY="11.0" text="Evolearn - eLearning Platform" />
-                            </children>
-                        </AnchorPane>
+                        <Button fx:id="close" layoutX="1030.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
+                        <Button fx:id="minimize" layoutX="1000.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
+                        <Label layoutX="100.0" layoutY="19.0" text="Evolearn - eLearning Platform" />
+                        <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="26.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/logo-trans.png" />
+                            </image>
+                        </ImageView>
                     </children>
                 </AnchorPane>
             </top>

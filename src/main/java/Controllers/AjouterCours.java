@@ -29,8 +29,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import utils.CloudinaryConfig;
 
 public class AjouterCours {
@@ -85,7 +87,7 @@ public class AjouterCours {
     private Parent root;
     @FXML
     private AnchorPane main_form;
-
+    private ObservableList<Cours> coursList = FXCollections.observableArrayList();
 
     @FXML
     void addCours(ActionEvent event) throws SQLException {
@@ -208,5 +210,58 @@ public class AjouterCours {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    @FXML
+    public void deleteCours() {
+        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCours != null) {
+            // Create a confirmation dialog
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Delete Course");
+            alert.setContentText("Are you sure you want to delete the selected course?");
+
+            // Show the confirmation dialog and wait for user response
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // User clicked OK, proceed with deletion
+                    tableView.getItems().remove(selectedCours);
+                    try {
+                        ServiceCours serviceCours = new ServiceCours();
+                        serviceCours.delete(selectedCours.getId());
+                        System.out.println("Course deleted from database successfully!");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // User clicked Cancel or closed the dialog, do nothing
+                    System.out.println("Deletion canceled.");
+                }
+            });
+        } else {
+            // No course selected, handle accordingly
+            System.out.println("No course selected.");
+        }
+    }
+
+
+    @FXML
+    public void updateCours() {
+        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCours != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCours.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                EditCoursController controller = loader.getController();
+                controller.setCours(selectedCours);
+                stage.showAndWait();
+                tableView.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
