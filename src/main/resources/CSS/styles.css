@@ -29,7 +29,7 @@
 }
 
 .form_container Button{
-    -fx-background-color: linear-gradient(to right,#f0db4f, #4e4406);
+    -fx-background-color: #4e4406;
     -fx-pref-width: 100;
     -fx-font-size: 1.5em;
     -fx-font-family: "Calibri Light";
@@ -45,12 +45,12 @@
 }
 
 .table-view {
-    -fx-background-color: linear-gradient(to left ,white,#f0db4f, #f0db4f, #4e4406);
+    -fx-background-color: white;
     -fx-background-radius: 14 14 14 14;
 }
 
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to left,white,#f0db4f, #f0db4f, #4e4406);
+    -fx-background-color: white;
     -fx-background-radius: 14 14 0 0;
     -fx-background-insets: 0 0 10 0;
 }
@@ -65,23 +65,6 @@
     -fx-text-fill: black;
 }
 
-
-.button
-{
-    -fx-background-color : #05071F;
-    -fx-text-fill : #e7e5e5;
-}
-.button:hover{
-    -fx-background-color : #10165F;
-}
-.button:pressed
-{
-    -fx-background-color : #1620A1;
-}
-
-.scroll-pane {
-    -fx-background-color: #02030A;
-}
 
 .scroll-bar:horizontal, .scroll-bar:vertical{
     -fx-background-color:transparent;

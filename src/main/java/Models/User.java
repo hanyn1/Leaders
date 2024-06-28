@@ -8,6 +8,8 @@ public class User {
     private String email;
     private String motDePasse;
 
+    private String roleName;
+
     private int roleId;
 
     //Constructeur
@@ -28,7 +30,14 @@ public class User {
         this.motDePasse = motDePasse;
     }
 
-
+    public User(int id, String nom, String email, String motDePasse, String roleName, int roleId) {
+        this.id = id;
+        this.nom = nom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.roleName = roleName;
+        this.roleId = roleId;
+    }
 
     //Getters and Setters
 
@@ -37,6 +46,10 @@ public class User {
     }
 
     public int getRoleId() {return roleId;}
+
+    public String getRoleName() {
+        return roleName;
+    }
 
     public String getNom() {
         return nom;
@@ -68,6 +81,10 @@ public class User {
 
     public void setRoleId(int roleId) {this.roleId = roleId;}
 
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -75,6 +92,7 @@ public class User {
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
+                ", roleName='" + roleName + '\'' +
                 ", roleId=" + roleId +
                 '}';
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="531.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleCRUD">
+   <children>
+      <TextField fx:id="roleInput" layoutX="106.0" layoutY="433.0" prefHeight="25.0" prefWidth="206.0" promptText="Name" stylesheets="@CSS/styles.css" />
+      <Label layoutX="25.0" layoutY="437.0" stylesheets="@CSS/styles.css" text="Role Name" underline="true" />
+      <TableView fx:id="table" layoutX="38.0" layoutY="57.0" onMouseClicked="#getData" prefHeight="352.0" prefWidth="265.0" stylesheets="@CSS/styles.css">
+        <columns>
+          <TableColumn fx:id="columnID" prefWidth="82.0" text="ID" />
+          <TableColumn fx:id="columnNAME" prefWidth="181.0" text="NAME" />
+        </columns>
+      </TableView>
+      <Label layoutX="143.0" layoutY="14.0" styleClass="title" stylesheets="@CSS/styleRole.css" text="Role" />
+      <ButtonBar layoutX="14.0" layoutY="477.0" prefHeight="40.0" prefWidth="292.0" styleClass="form_container" stylesheets="@CSS/styleRole.css">
+        <buttons>
+            <Button fx:id="btnMOD" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRole" styleClass="form_container" stylesheets="@CSS/styleRole.css" text="UPDATE" />
+            <Button fx:id="btnSUPP" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRole" text="DELETE" />
+          <Button fx:id="btnADD" mnemonicParsing="false" onAction="#ajouterRole" text="ADD" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
