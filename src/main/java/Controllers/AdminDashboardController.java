@@ -6,12 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class AdminDashboardController {
+    @FXML
+    private AnchorPane main_form;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -20,7 +23,7 @@ public class AdminDashboardController {
 
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterCoursAdmin.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -28,23 +31,14 @@ public class AdminDashboardController {
     }
 
     public void close(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
     public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 
-    public void addCours(ActionEvent actionEvent) {
-    }
 
-    public void uploadImage(ActionEvent actionEvent) {
-    }
 
-    public void uploadVideo(ActionEvent actionEvent) {
-    }
-
-    public void deleteCours(ActionEvent actionEvent) {
-    }
-
-    public void updateCours(ActionEvent actionEvent) {
-    }
 }
