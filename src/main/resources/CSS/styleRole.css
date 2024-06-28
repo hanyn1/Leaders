@@ -1,0 +1,24 @@
+.title{
+    -fx-font-size: 2em;
+    -fx-text-fill: #4e4406;
+    -fx-font-weight: bold;
+}
+
+.form_container Button{
+    -fx-background-color: #4e4406;
+    -fx-pref-width: 100;
+    -fx-font-size: 1.5em;
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #000000;
+}
+
+.table-view {
+    -fx-background-color: linear-gradient(to left ,white,#4e4406);
+    -fx-background-radius: 14 14 14 14;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to left ,white,#4e4406);
+    -fx-background-radius: 14 14 0 0;
+    -fx-background-insets: 0 0 10 0;
+}

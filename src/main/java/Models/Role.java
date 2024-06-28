@@ -15,11 +15,10 @@ public class Role {
         this.name = name;
     }
 
-    public Role(String bio, String photo) {
+    public Role(String name) {
         this.name = name;
     }
-
-    //Getters and Setters
+//Getters and Setters
 
     public int getId() {
         return id;

@@ -17,7 +17,7 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void ajouter(User user) throws SQLException {
-        String ajouter = "INSERT INTO utilisateurs (nom,email,motDePasse) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";
+        String ajouter = "INSERT INTO utilisateurs (nom,email,motDePasse,role_id) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"','"+user.getRoleId()+"') ";
         Statement st = connection.createStatement();
         st.executeUpdate(ajouter);
 
@@ -25,15 +25,15 @@ public class UserService implements IUserInterface<User> {
 
     @Override
     public void modifier(User user) throws SQLException {
-        String modifier= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
+        String modifier= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ?, role_id = ? WHERE id = ?";
         PreparedStatement us = connection.prepareStatement(modifier);
         us.setString(1, user.getNom());
         us.setString(2, user.getEmail());
         us.setString(3, user.getMotDePasse());
         us.setInt(4, user.getId());
+        us.setInt(5, user.getRoleId());
 
         us.executeUpdate();
-
 
     }
 
@@ -49,7 +49,7 @@ public class UserService implements IUserInterface<User> {
     @Override
     public List<User> recuperer() throws SQLException {
         List<User> utilisateurs = new ArrayList<>();
-        String req = "SELECT * FROM utilisateur";
+        String req = "SELECT utilisateurs.id, utilisateurs.nom, utilisateurs.email, utilisateurs.motDePasse, roles.name AS roleName FROM utilisateurs JOIN roles ON utilisateurs.role_id = roles_id";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(req);
 
@@ -59,7 +59,8 @@ public class UserService implements IUserInterface<User> {
             user.setNom(rs.getString("nom"));
             user.setEmail(rs.getString("email"));
             user.setMotDePasse(rs.getString("motDePasse"));
-            user.setRoleId(rs.getInt("roleid"));
+            user.setRoleId(rs.getInt("role_id"));
+            user.setRoleName(rs.getString("roleName"));
 
             utilisateurs.add(user);
         }
