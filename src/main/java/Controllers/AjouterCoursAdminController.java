@@ -103,10 +103,11 @@ public class AjouterCoursAdminController {
         stage.setIconified(true);
     }
 
-    @FXML
+   /* @FXML
     void addCours(ActionEvent event) throws SQLException {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
+        String price =
 
         // Validate input fields
         if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
@@ -130,7 +131,7 @@ public class AjouterCoursAdminController {
         // Update the ObservableList and refresh the TableView
         observableList.add(cours);
         tableView.refresh();
-    }
+    }*/
 
     @FXML
     void uploadImage(ActionEvent event) {

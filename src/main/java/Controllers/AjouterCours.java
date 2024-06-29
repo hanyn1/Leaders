@@ -75,6 +75,8 @@ public class AjouterCours {
 
     @FXML
     private Button vidBTN;
+    @FXML
+    private TextField priceTF;
 
     private ObservableList<Cours> observableList;
     private ServiceCours sc;
@@ -93,14 +95,14 @@ public class AjouterCours {
     void addCours(ActionEvent event) throws SQLException {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
-
+        float price = Float.parseFloat(priceTF.getText().trim());
         // Validate input fields
         if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
             showAlert("Validation Error", "All fields must be filled out and files must be uploaded.");
             return;
         }
 
-        Cours cours = new Cours(titre, description, uploadedVideoUrl, uploadedImageUrl);
+        Cours cours = new Cours(titre, description, uploadedVideoUrl, uploadedImageUrl,price);
         sc.add(cours);
 
         // Clear the text fields after adding the course
@@ -108,6 +110,7 @@ public class AjouterCours {
         descTF.clear();
         vidTF.clear();
         imgTF.clear();
+        priceTF.clear();
 
         // Clear the uploaded URLs
         uploadedImageUrl = null;
@@ -182,11 +185,11 @@ public class AjouterCours {
 
     @FXML
     void viewCourseDetails(ActionEvent event) throws IOException {
-       Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
-       stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-       scene = new Scene(root);
-       stage.setScene(scene);
-       stage.show();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
