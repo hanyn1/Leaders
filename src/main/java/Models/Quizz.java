@@ -1,6 +1,7 @@
 package Models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Quizz {
     private int id;
@@ -16,10 +17,10 @@ public class Quizz {
         this.date = date;
     }
 
-    public Quizz(String titre, String description, Date date) {
+    public Quizz(String titre, String description, LocalDate date) {
         this.titre = titre;
         this.description = description;
-        this.date = date;
+        this.date = Date.valueOf(date);
     }
 
     // Default Constructor

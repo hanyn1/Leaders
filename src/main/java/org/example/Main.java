@@ -77,11 +77,11 @@ public class Main {
         }*/
 
 
-        /*ServiceQuizz sq = new ServiceQuizz();
+        ServiceQuizz sq = new ServiceQuizz();
         try{
 
-            sq.addQuizz(new Quizz("abeer","cours", new Date(2002,12,23)));}
-        catch (SQLException e){System.out.println(e.getMessage());}*/
+            sq.addQuizz(new Quizz("abeerrrr","cours", new Date(2002,12,23).toLocalDate()));}
+        catch (SQLException e){System.out.println(e.getMessage());}
 
         /*QuizzCatService sq = new QuizzCatService();
         try{

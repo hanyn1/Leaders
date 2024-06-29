@@ -16,7 +16,7 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RoleCRUD.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizzCatCRUD.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);

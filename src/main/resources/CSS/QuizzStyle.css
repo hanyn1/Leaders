@@ -1,0 +1,18 @@
+.title{
+    -fx-font-size: 2em;
+    -fx-text-fill: #4e4406;
+    -fx-font-weight: bold;
+}
+.title1{
+    -fx-font-size: 1em;
+    -fx-text-fill: #4e4406;
+    -fx-font-weight: bold;
+}
+.form_container {
+    -fx-background-color: #4e4406;
+    -fx-background-radius: 14 14 14 14;
+
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #EEEEEE;
+}
+
