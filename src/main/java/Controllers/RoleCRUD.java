@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 
 import static utils.MyConfig.*;
 
-public class RoleCRUD {
+public class RoleCRUD implements Initializable {
     Connection instance = null;
     PreparedStatement st = null;
     ResultSet rs = null;
@@ -156,4 +157,18 @@ public class RoleCRUD {
 
     }
 
+    private void loadRoles() {
+        try {
+            List<Role> roleList = roleService.recuperer();
+            roles = FXCollections.observableArrayList(roleList);
+            table.setItems(roles);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

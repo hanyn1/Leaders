@@ -4,6 +4,13 @@
     -fx-font-weight: bold;
 }
 
+.title2{
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #4e4406;
+    -fx-font-weight: bold;
+}
+
+
 .form_container{
     -fx-background-color: #EEEEEE;
 }
@@ -90,4 +97,35 @@
 
 .scroll-pane > .corner {
     -fx-background-color: black;
+}
+
+.form_container1{
+    -fx-background-color: #f0db4f;
+}
+
+.form_container2{
+    -fx-background-color: #EEEEEE;
+}
+
+.form_Button {
+    -fx-background-color: #EEEEEE;
+    -fx-font-size: 1.3em;
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #4e4406;
+}
+
+.ComboBox {
+    -fx-background-color: white;
+    -fx-background-radius: 14 14 14 14;
+    -fx-text-fill: black;
+
+
+    -fx-pref-width: 130;
+    -fx-font-size: 1.0em;
+}
+
+.Button123 {
+    -fx-background-color: white;
+    -fx-background-radius: 14 14 14 14;
+    -fx-text-fill: #4e4406;
 }

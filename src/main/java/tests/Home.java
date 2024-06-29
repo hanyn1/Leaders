@@ -18,7 +18,9 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEv.fxml"));
+
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);

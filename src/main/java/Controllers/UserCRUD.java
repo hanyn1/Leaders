@@ -1,6 +1,8 @@
 package Controllers;
 
+import Models.Role;
 import Models.User;
+import Services.RoleService;
 import Services.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserCRUD implements Initializable {
@@ -38,6 +41,12 @@ public class UserCRUD implements Initializable {
     private TextField textEmail;
 
     @FXML
+    private TableColumn<User, String> colRole;
+
+    @FXML
+    private ComboBox<Role> role;
+
+    @FXML
     private TextField textMotDePasse;
 
     @FXML
@@ -48,6 +57,8 @@ public class UserCRUD implements Initializable {
 
     @FXML
     private TableColumn<User, Integer> colID;
+    @FXML
+    private TableView<Role> table;
 
     @FXML
     private TableColumn<User, String> colMotdepasse;
@@ -56,7 +67,11 @@ public class UserCRUD implements Initializable {
     private TableColumn<User, String> colNom;
 
     @FXML
-    private TableView<User> table;
+    private TableView<User> tableUser;
+    private ObservableList<User> utilisateurs;
+    private UserService userService;
+    private RoleService roleService;
+    private ObservableList<Role> roles;
 
     int id=0;
 
@@ -64,6 +79,9 @@ public class UserCRUD implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+
+
 
     public ObservableList<User> getUtilisateurs(){
         ObservableList<User> utilisateurs = FXCollections.observableArrayList();
@@ -93,7 +111,7 @@ public class UserCRUD implements Initializable {
 
     public void showUtilisateurs(){
         ObservableList<User> list = getUtilisateurs();
-        table.setItems(list);
+        tableUser.setItems(list);
         colID.setCellValueFactory(new PropertyValueFactory<User,Integer>("id"));
         colNom.setCellValueFactory(new PropertyValueFactory<User,String>("nom"));
         colEmail.setCellValueFactory(new PropertyValueFactory<User,String>("email"));
@@ -102,7 +120,7 @@ public class UserCRUD implements Initializable {
     }
 
     @FXML
-    void ajouterUser(ActionEvent event) {
+    void ajouterUser() {
         User user = new User(textName.getText(),textEmail.getText(),textMotDePasse.getText());
         UserService userService = new UserService();
         try {
@@ -118,20 +136,17 @@ public class UserCRUD implements Initializable {
     }
     @FXML
     void getData(MouseEvent event) {
-        User user = table.getSelectionModel().getSelectedItem();
+        User user = tableUser.getSelectionModel().getSelectedItem();
         id = user.getId();
         textName.setText(user.getNom());
         textEmail.setText(user.getEmail());
         textMotDePasse.setText(user.getMotDePasse());
         btnAjou.setDisable(true);
 
-
-
-
     }
 
     @FXML
-    void modifierUser(ActionEvent event) {
+    void modifierUser() {
         String modifier ="UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
         instance = MyConfig.getInstance().getConnection();
         try {
@@ -153,7 +168,7 @@ public class UserCRUD implements Initializable {
     }
 
     @FXML
-    void supprimerUser(ActionEvent event) {
+    void supprimerUser() {
         String supprimer = "delete from utilisateurs where id=?";
         instance = MyConfig.getInstance().getConnection();
         try {
@@ -171,6 +186,10 @@ public class UserCRUD implements Initializable {
 
 
     }
+
+
+
+
 
 
 }
