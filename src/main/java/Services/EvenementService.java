@@ -19,10 +19,11 @@ public EvenementService(){
 
     @Override
     public void ajouter(Evenement evenement) throws SQLException {
-        String sql = "INSERT INTO evenement (`titre`, `description`) VALUES (?, ?)";
-        try {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(sql);
+        String sql = "INSERT INTO evenements (`titre`, `description`) VALUES (?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, evenement.getTitre());
+            stmt.setString(2, evenement.getDescription());
+            stmt.executeUpdate();
             System.out.println("Événement ajouté : " + evenement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -49,7 +50,7 @@ public EvenementService(){
 
     @Override
     public void supprimer(int id) {
-        String sql = "DELETE FROM evenement WHERE id = ?";
+        String sql = "DELETE FROM evenements WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             int rowsDeleted = statement.executeUpdate();
@@ -66,7 +67,7 @@ public EvenementService(){
     @Override
     public List<Evenement> recuperer() throws SQLException {
         List<Evenement> evenements = new ArrayList<>();
-        String sql = "SELECT * FROM evenement";
+        String sql = "SELECT * FROM evenements";
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
