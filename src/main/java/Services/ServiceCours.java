@@ -23,7 +23,7 @@ public class ServiceCours implements coursInterface<Cours> {
 
     @Override
     public void add(Cours cours) {
-        String req = "INSERT INTO `cours`(`titre`, `description`, `video`, `image`) VALUES ('"+cours.getTitre()+"','"+cours.getDescription()+"','"+cours.getVideo()+"','"+cours.getImage()+"')";
+        String req = "INSERT INTO `cours`(`titre`, `description`, `video`, `image`, `price`) VALUES ('"+cours.getTitre()+"','"+cours.getDescription()+"','"+cours.getVideo()+"','"+cours.getImage()+"','"+cours.getPrice()+"')";
         try {
             Statement st = connection.createStatement();
             st.executeUpdate(req);
@@ -47,6 +47,7 @@ public class ServiceCours implements coursInterface<Cours> {
                 c.setDescription(res.getString("description"));
                 c.setVideo(res.getString("video"));
                 c.setImage(res.getString("image"));
+                c.setPrice(res.getFloat("price"));
 
                 crs.add(c);
             }
@@ -58,13 +59,14 @@ public class ServiceCours implements coursInterface<Cours> {
 
 
     public void update(Cours cours) throws SQLException {
-        String req = "UPDATE cours SET titre=?, description=?, video=?, image=? WHERE id=?";
+        String req = "UPDATE cours SET titre=?, description=?, video=?, image=?, price=? WHERE id=?";
         PreparedStatement ps = this.connection.prepareStatement(req);
         ps.setString(1, cours.getTitre());
         ps.setString(2, cours.getDescription());
         ps.setString(3, cours.getVideo());
         ps.setString(4, cours.getImage());
-        ps.setInt(5, cours.getId());
+        ps.setFloat(5,cours.getPrice());
+        ps.setInt(6, cours.getId());
         ps.executeUpdate();
     }
 
@@ -91,6 +93,7 @@ public class ServiceCours implements coursInterface<Cours> {
                     cours.setDescription(res.getString("description"));
                     cours.setVideo(res.getString("video"));
                     cours.setImage(res.getString("image"));
+                    cours.setPrice(res.getFloat("price"));
                 }
             }
         } catch (SQLException e) {

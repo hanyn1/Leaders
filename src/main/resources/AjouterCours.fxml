@@ -23,11 +23,11 @@
                         <Button fx:id="close" layoutX="1030.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
                         <Button fx:id="minimize" layoutX="1000.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
                         <Label layoutX="100.0" layoutY="19.0" text="Evolearn - eLearning Platform" />
-                  <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="26.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/logo-trans.png" />
-                     </image>
-                  </ImageView>
+                        <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="26.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/logo-trans.png" />
+                            </image>
+                        </ImageView>
                     </children>
                 </AnchorPane>
             </top>
@@ -60,7 +60,7 @@
                 <!-- Center content, including AjouterCours form -->
                 <AnchorPane fx:id="ajouterCoursPane" prefHeight="600.0" prefWidth="800.0">
                     <children>
-                        <VBox layoutX="50.0" layoutY="20.0" prefWidth="300.0" spacing="10.0" styleClass="form-container">
+                        <VBox layoutX="28.0" layoutY="34.0" prefWidth="300.0" spacing="10.0" styleClass="form-container">
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Add your cours!">
                                     <font>
@@ -84,6 +84,10 @@
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Video" />
                                 <TextField fx:id="vidTF" styleClass="form-field" />
+                            </HBox>
+                            <HBox spacing="10.0">
+                                <Label styleClass="form-label" text="Price" />
+                                <TextField fx:id="priceTF" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Button fx:id="addBTN" mnemonicParsing="false" onAction="#addCours" styleClass="form-button" text="Add" />

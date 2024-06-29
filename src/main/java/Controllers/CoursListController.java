@@ -77,7 +77,9 @@ public class CoursListController {
         descriptionLabel.setWrapText(true);
         descriptionLabel.setStyle("-fx-font-size: 12px;");
 
-        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel);
+        Label priceLabel = new Label("Price: "+course.getPrice());
+
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel,priceLabel);
 
         card.getChildren().addAll(imageView, detailsVBox);
 
