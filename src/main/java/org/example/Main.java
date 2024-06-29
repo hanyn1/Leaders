@@ -1,97 +1,50 @@
 package org.example;
 
-import Models.*;
-import utils.MyConfig;
-import Services.*;
+import Models.Formation;
+import Services.ServiceFormation;
 
-import java.sql.Date;
-import java.sql.SQLException;
+import java.util.Optional;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
+        // Adding CRUD operations for Formation
+        ServiceFormation serviceFormation = new ServiceFormation();
 
-        /*MyConfig m= MyConfig.getInstance();
-        System.out.printf("Hello and welcome!");
+        // Test adding formations
+        Formation formation1 = new Formation(1, "Formation Java", "Description de la formation Java");
+        Formation formation2 = new Formation(2, "Formation Python", "Description de la formation Python");
 
-        ServiceArticle sa = new ServiceArticle();
-        Article a1= new Article();
-        // Article a1 = new Article(new Date(2002,12,23),"objet","produit1");
-        // sa.add(a1);
 
-        ServiceCours sc = new ServiceCours();
+        serviceFormation.addFormation(formation1);
+        serviceFormation.addFormation(formation2);
 
-        // Creating a Cours object without id
-        Cours c1 = new Cours("Linux", "Deep dive into Linux", "advanced_linux.mp4");
-        Cours c2 = new Cours("Devops", "Deep dive into Devops", "advanced_devops.mp4");
-        System.out.println(sc.getAll());
-       // Date datePublication = new Date(2024, 12, 30);
-       // ServiceArticle s1= new ServiceArticle();
+        // Test getting all formations
+        System.out.println("All Formations:");
+        serviceFormation.getAllFormations().forEach(System.out::println);
 
-        //s1.updateArticle(new Article(1,"nouveau titre","nouvelle description","nouveau contenu",datePublication));
-        //System.out.println("article updated successfully.");
+        // Test getting a formation by ID
+        int formationId = 1;
+        Optional<Formation> formationById = serviceFormation.getFormationById(formationId);
+        formationById.ifPresentOrElse(
+                formation -> System.out.println("Formation with ID " + formation.getId() + ": " + formation),
+                () -> System.out.println("Formation with ID " + formationId + " not found")
+        );
 
-        //sc.add(c1);
-        //sc.add(c2);
-        //sc.update(c1);
+        // Test updating a formation
+        formationById.ifPresent(formation -> {
+            formation.setTitre("Formation Java mise à jour");
+            formation.setDescription("Description mise à jour de la formation Java");
+            serviceFormation.updateFormation(formation.getId(), formation);
+            System.out.println("Updated Formation with ID " + formation.getId() + ": " + formation);
+        });
 
-        //System.out.println(si.getInscriptionById(i1));
-        ServiceInscription si = new ServiceInscription();
-        Inscription i1 = new Inscription(4,1);
-        //si.addInscription(i1);
-        System.out.println(si.getAllInscriptions());
-
-        ServiceCertificat serviceCertif= new ServiceCertificat();
-
-        Certifs cer1 = new Certifs("Python Fondamentaux");
-        serviceCertif.addCertif(cer1);
-        System.out.println(serviceCertif.getAllCertifs());
-
-        /*  try {
-            sc.delete(4);
-            //System.out.println("Cours updated successfully!");
-            System.out.println("Cours deleted successfully!");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Test deleting a formation
+        int formationToDeleteId = 2;
+        boolean deleted = serviceFormation.deleteFormation(formationToDeleteId);
+        if (deleted) {
+            System.out.println("Formation with ID " + formationToDeleteId + " deleted successfully.");
+        } else {
+            System.out.println("Formation with ID " + formationToDeleteId + " not found.");
         }
-        }*/
-
-      /* UserService us = new UserService();
-
-        try {
-            us.ajouter(new User("chayma", "samaali", "hjr"));
-
-        } catch (SQLException e) {
-
-            System.err.println(e.getMessage());
-        }
-        /*RoleService rs = new RoleService();
-
-        try {
-            rs.ajouter(new Role(6,"etudiant"));
-
-        } catch (SQLException e) {
-
-            System.err.println(e.getMessage());
-        }*/
-
-
-        /*ServiceQuizz sq = new ServiceQuizz();
-        try{
-
-            sq.addQuizz(new Quizz("abeer","cours", new Date(2002,12,23)));}
-        catch (SQLException e){System.out.println(e.getMessage());}*/
-
-        /*QuizzCatService sq = new QuizzCatService();
-        try{
-
-            sq.addQuizz(new QuizzCat("ali","rrrrr"));}
-        catch (SQLException e){System.out.println(e.getMessage());}*/
-
-
     }
-
-
-
 }

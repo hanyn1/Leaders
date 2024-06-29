@@ -4,35 +4,29 @@ import Interfaces.evenementInterface;
 import Models.Evenement;
 import utils.MyConfig;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EvenementService implements evenementInterface<Evenement> {
-    private Connection connection;
+MyConfig instance = MyConfig.getInstance();
+Connection connection;
 
-    public EvenementService() throws SQLException {
-        connection = MyConfig.getInstance().getConnection();
-    }
+public EvenementService(){
+    this.connection = instance.getConnection();
+    System.out.println("Service Evenement");
+}
 
     @Override
     public void ajouter(Evenement evenement) throws SQLException {
-        if (!entiteExists(evenement.getId())) {
-            ajouterEntite(evenement.getId(), evenement.getTitre());
-        }
-
-        String sql = "INSERT INTO evenement (id, titre, description) VALUES (?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setLong(1, evenement.getId());
-            statement.setString(2, evenement.getTitre());
-            statement.setString(3, evenement.getDescription());
-            statement.executeUpdate();
+        String sql = "INSERT INTO evenements (`titre`, `description`) VALUES (?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, evenement.getTitre());
+            stmt.setString(2, evenement.getDescription());
+            stmt.executeUpdate();
             System.out.println("Événement ajouté : " + evenement);
         } catch (SQLException e) {
-            System.err.println("Erreur lors de l'ajout de l'événement : " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -56,7 +50,7 @@ public class EvenementService implements evenementInterface<Evenement> {
 
     @Override
     public void supprimer(int id) {
-        String sql = "DELETE FROM evenement WHERE id = ?";
+        String sql = "DELETE FROM evenements WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             int rowsDeleted = statement.executeUpdate();
@@ -73,7 +67,7 @@ public class EvenementService implements evenementInterface<Evenement> {
     @Override
     public List<Evenement> recuperer() throws SQLException {
         List<Evenement> evenements = new ArrayList<>();
-        String sql = "SELECT * FROM evenement";
+        String sql = "SELECT * FROM evenements";
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
