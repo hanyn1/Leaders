@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="581.0" prefWidth="754.0" styleClass="form_container" stylesheets="@CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserCRUD">
    <children>
-      <VBox layoutX="14.0" layoutY="134.0" prefHeight="300.0" prefWidth="300.0" stylesheets="@CSS/styles.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="134.0">
+      <VBox layoutX="7.0" layoutY="115.0" prefHeight="300.0" prefWidth="268.0" styleClass="form_container" stylesheets="@CSS/styles.css" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="115.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
             <TextField fx:id="textName" promptText="Nom" />
@@ -23,21 +23,24 @@
             <TextField fx:id="textMotDePasse" promptText="Mot De Passe" />
          </children>
       </VBox>
-      <TableView fx:id="table" layoutX="318.0" layoutY="119.0" onMouseClicked="#getData" prefHeight="319.0" prefWidth="422.0" styleClass="form_table" stylesheets="@CSS/styles.css" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="119.0">
+      <TableView fx:id="tableUser" layoutX="284.0" layoutY="115.0" onMouseClicked="#getData" prefHeight="319.0" prefWidth="471.0" styleClass="form_table" stylesheets="@CSS/styles.css" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="115.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="colNom" prefWidth="83.0" text="Nom" />
-            <TableColumn fx:id="colEmail" prefWidth="187.0" text="Email" />
-            <TableColumn fx:id="colMotdepasse" prefWidth="101.0" text="MotDePasse" />
+          <TableColumn fx:id="colID" prefWidth="33.0" text="ID" />
+          <TableColumn fx:id="colNom" prefWidth="88.0" text="Nom" />
+            <TableColumn fx:id="colEmail" prefWidth="155.0" text="Email" />
+            <TableColumn fx:id="colMotdepasse" prefWidth="83.0" text="MotDePasse" />
+            <TableColumn fx:id="colRole" prefWidth="111.0" text="Role" />
         </columns>
       </TableView>
       <Label alignment="CENTER" layoutX="279.0" layoutY="34.0" prefHeight="35.0" prefWidth="168.0" styleClass="title" stylesheets="@CSS/styles.css" text="Utilisateur" />
-      <ButtonBar layoutX="180.0" layoutY="496.0" prefHeight="40.0" prefWidth="339.0" styleClass="form_container" stylesheets="@CSS/styles.css">
+      <ButtonBar layoutX="232.0" layoutY="494.0" prefHeight="40.0" prefWidth="339.0" styleClass="form_container" stylesheets="@CSS/styles.css">
         <buttons>
           <Button fx:id="btnAjou" mnemonicParsing="false" onAction="#ajouterUser" text="Ajouter" />
             <Button fx:id="btnModi" layoutX="286.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierUser" text="Modifier" />
             <Button fx:id="btnSupp" layoutX="286.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerUser" prefHeight="34.0" prefWidth="104.0" text="Supprimer" />
         </buttons>
       </ButtonBar>
+      <ComboBox fx:id="role" layoutX="66.0" layoutY="450.0" prefWidth="150.0" />
+      <Label layoutX="34.0" layoutY="426.0" prefHeight="17.0" prefWidth="43.0" text="Role" />
    </children>
 </AnchorPane>
