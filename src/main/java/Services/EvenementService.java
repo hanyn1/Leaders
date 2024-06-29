@@ -4,35 +4,28 @@ import Interfaces.evenementInterface;
 import Models.Evenement;
 import utils.MyConfig;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EvenementService implements evenementInterface<Evenement> {
-    private Connection connection;
+MyConfig instance = MyConfig.getInstance();
+Connection connection;
 
-    public EvenementService() throws SQLException {
-        connection = MyConfig.getInstance().getConnection();
-    }
+public EvenementService(){
+    this.connection = instance.getConnection();
+    System.out.println("Service Evenement");
+}
 
     @Override
     public void ajouter(Evenement evenement) throws SQLException {
-        if (!entiteExists(evenement.getId())) {
-            ajouterEntite(evenement.getId(), evenement.getTitre());
-        }
-
-        String sql = "INSERT INTO evenement (id, titre, description) VALUES (?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setLong(1, evenement.getId());
-            statement.setString(2, evenement.getTitre());
-            statement.setString(3, evenement.getDescription());
-            statement.executeUpdate();
+        String sql = "INSERT INTO evenement (`titre`, `description`) VALUES (?, ?)";
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
             System.out.println("Événement ajouté : " + evenement);
         } catch (SQLException e) {
-            System.err.println("Erreur lors de l'ajout de l'événement : " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

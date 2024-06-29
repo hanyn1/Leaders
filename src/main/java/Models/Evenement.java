@@ -16,6 +16,11 @@ public class Evenement {
         this.description = description;
     }
 
+    public Evenement(String titre, String description) {
+        this.titre = titre;
+        this.description = description;
+    }
+
     // Getters et setters
     public long getId() {
         return id;
