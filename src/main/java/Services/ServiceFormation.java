@@ -1,19 +1,28 @@
 package Services;
 
 import Models.Formation;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.Optional;
 
 public class ServiceFormation {
-    private final List<Formation> formations = new ArrayList<>();
+    private final ObservableList<Formation> formations = FXCollections.observableArrayList();
 
-    public List<Formation> getAllFormations() {
-        return new ArrayList<>(formations);
+    public ServiceFormation() {
+        // Initialize with some sample data or load from database
+        formations.add(new Formation(1, "Formation Java", "Description de la formation Java"));
+        formations.add(new Formation(2, "Formation Python", "Description de la formation Python"));
+    }
+
+    public ObservableList<Formation> getAllFormations() {
+        return formations;
     }
 
     public Optional<Formation> getFormationById(int id) {
-        return formations.stream().filter(f -> f.getId() == id).findFirst();
+        return formations.stream()
+                .filter(formation -> formation.getId() == id)
+                .findFirst();
     }
 
     public void addFormation(Formation formation) {
@@ -21,17 +30,17 @@ public class ServiceFormation {
     }
 
     public boolean updateFormation(int id, Formation updatedFormation) {
-        Optional<Formation> existingFormationOpt = getFormationById(id);
-        if (existingFormationOpt.isPresent()) {
-            Formation existingFormation = existingFormationOpt.get();
-            existingFormation.setTitre(updatedFormation.getTitre());
-            existingFormation.setDescription(updatedFormation.getDescription());
+        Optional<Formation> existingFormation = getFormationById(id);
+        if (existingFormation.isPresent()) {
+            existingFormation.get().setTitre(updatedFormation.getTitre());
+            existingFormation.get().setDescription(updatedFormation.getDescription());
             return true;
         }
         return false;
     }
 
     public boolean deleteFormation(int id) {
-        return formations.removeIf(f -> f.getId() == id);
+        Optional<Formation> formationToDelete = getFormationById(id);
+        return formationToDelete.map(formations::remove).orElse(false);
     }
 }
