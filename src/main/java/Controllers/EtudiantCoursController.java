@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.Cours;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,10 +15,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
 public class EtudiantCoursController {
+
     @FXML
     private ImageView courseImageView;
 
@@ -38,6 +39,9 @@ public class EtudiantCoursController {
     private Parent root;
     @FXML
     private AnchorPane main_form;
+    public void initialize() {
+        // Default initialization, if needed
+    }
 
     public void initialize(Cours course) {
         // Populate UI elements with course details
@@ -82,7 +86,7 @@ public class EtudiantCoursController {
     }
     @FXML
     public void handleReturn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/EtudiantCoursList.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -103,7 +107,7 @@ public class EtudiantCoursController {
 
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/EtudiantCoursList")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/EtudiantCoursList.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
