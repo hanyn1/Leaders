@@ -59,7 +59,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <Button styleClass="star-now-btn" text="Start Now">
+                        <Button onAction="#gotLogin" styleClass="star-now-btn" text="Start Now">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Button>

@@ -62,7 +62,7 @@
                     <AnchorPane prefHeight="800.0" prefWidth="987.0">
                         <VBox spacing="10">
 
-                            <VBox fx:id="coursesVBox" spacing="10"/>
+                            <VBox  fx:id="coursesVBox" spacing="10"/>
 
                         </VBox>
                     </AnchorPane>

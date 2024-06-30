@@ -36,4 +36,12 @@ public class VisitorController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void gotLogin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
+        Stage stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
