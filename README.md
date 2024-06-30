@@ -50,7 +50,7 @@ CREATE TABLE Cours (
     description TEXT,
     video VARCHAR(255),
     image VARCHAR(255) NOT NULL,
-    price float
+    price FLOAT
 );
 
 CREATE TABLE Quizzs (
