@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,7 @@ public class VisitorCoursController {
 
     @FXML
     private AnchorPane main_form;
-    private Parent root;
+
     @FXML
     public void initialize() {
         ServiceCours serviceCours = new ServiceCours();
@@ -39,6 +40,13 @@ public class VisitorCoursController {
         coursesVBox.getChildren().clear(); // Clear existing content
         for (Cours course : courses) {
             HBox card = createCourseCard(course);
+            card.setOnMouseClicked(event -> {
+                try {
+                    gotLogin(event); // Redirect to login page on card click
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
             coursesVBox.getChildren().add(card);
         }
     }
@@ -78,6 +86,7 @@ public class VisitorCoursController {
 
         return card;
     }
+
     public void close(ActionEvent actionEvent) {
         System.exit(0);
     }
@@ -86,6 +95,15 @@ public class VisitorCoursController {
         Stage stage = (Stage) main_form.getScene().getWindow();
         stage.setIconified(true);
     }
+
+    public void gotLogin(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void goToHome(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorPage.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
