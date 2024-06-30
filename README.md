@@ -44,14 +44,15 @@ CREATE TABLE Entites (
     description TEXT
 );
 
-CREATE TABLE Cours (
+CREATE TABLE courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     video VARCHAR(255),
     image VARCHAR(255) NOT NULL,
-    price float
+    price FLOAT
 );
+
 
 CREATE TABLE Quizzs (
     id INT AUTO_INCREMENT PRIMARY KEY,
