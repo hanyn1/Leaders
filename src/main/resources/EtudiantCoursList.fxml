@@ -10,6 +10,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Spinner?>
 <AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EtudiantCoursListController">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -61,8 +62,9 @@
                                 spacing="10">
 
 
-                            <VBox fx:id="coursesVBox" spacing="10"/>
-
+                            <VBox fx:id="coursesVBox" prefHeight="400.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                            <Spinner fx:id="spinner" visible="false" />
                         </VBox>
                     </AnchorPane>
                 </ScrollPane>
