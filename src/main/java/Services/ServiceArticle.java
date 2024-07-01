@@ -1,6 +1,5 @@
 package Services;
 
-import Interfaces.ArticleInterface;
 import Models.Article;
 import utils.MyConfig;
 
@@ -8,84 +7,64 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceArticle implements ArticleInterface<Article> {
-
+public class ServiceArticle {
     MyConfig instance= MyConfig.getInstance();
     Connection connection;
-    public ServiceArticle(){
 
+    public ServiceArticle(){
         this.connection= this.instance.getConnection();
         System.out.println("service Article");
     }
 
-    @Override
-    public void add(Article a) {
-        //String req= "INSERT INTO '"
-        String req="INSERT INTO article(titre, description, contenu, datePublication) VALUES('"+a.getTitre()+"' ,'" +a.getDescription()+"' ,'" +a.getContenu()+"' ,'" +a.getDatePublication()+"')";
-
-        try {
-            Statement st= connection.createStatement();
-            st.executeUpdate(req);
-            System.out.println("article ajouté avec succé");
-        }catch (SQLException var)
-        {
-            var.printStackTrace();
+    public void addArticle(Article article) throws SQLException {
+        String query = "INSERT INTO Articles (titre, description, contenu) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {;
+            stmt.setString(1, article.getTitre());
+            stmt.setString(2, article.getDescription());
+            stmt.setString(3, article.getContenu());
+            stmt.executeUpdate();
         }
     }
 
-    @Override
-    public List<Article> getAll() {
-        List<Article> articles = new ArrayList();
-        try {
-            Statement st=this.connection.createStatement();
-            String req="SELECT * FROM article ";
-            ResultSet rs=st.executeQuery(req);
-            while(rs.next()){
-                articles.add(new Article(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6) ));
-            }
-        }catch (SQLException var1){
-            var1.printStackTrace();
-        }
-
-        return articles;
-    }
-    @Override
-    public List<Article> getByIndex() {
-        List<Article> articles = new ArrayList();
-        try {
-            Statement st=this.connection.createStatement();
-            String req="SELECT * FROM article where id=2 ";
-            ResultSet rs=st.executeQuery(req);
-            while(rs.next()){
-                articles.add(new Article(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6) ));
-            }
-        }catch (SQLException var1){
-            var1.printStackTrace();
-        }
-
-        return articles;
-    }
-    @Override
     public void updateArticle(Article article) throws SQLException {
-        String query = "UPDATE Article SET titre = ?, description = ?, contenu = ?, datePublication = ? WHERE id = ?";
+        String query = "UPDATE Articles SET titre = ?, description = ?, contenu = ? WHERE id = ?";
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query)) {
 
-        PreparedStatement ps = this.connection.prepareStatement(query);
-        ps.setInt(1, article.getId());
-        ps.setString(2, article.getTitre());
-        ps.setString(3, article.getDescription());
-        ps.setString(4, article.getContenu());
-        ps.setDate(5, new Date(article.getDatePublication().getTime()));
-        ps.executeUpdate();
+            stmt.setString(1, article.getTitre());
+            stmt.setString(2, article.getDescription());
+            stmt.setString(3, article.getContenu());
+            stmt.setInt(4, article.getId());
+
+            stmt.executeUpdate();
+        }
     }
 
 
-    @Override
-    public void update(Article article) {
-
+    public void deleteArticle(int id) throws SQLException {
+        String query = "DELETE FROM Articles WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
     }
+
+    public List<Article> getAllArticles() throws SQLException {
+        List<Article> articles = new ArrayList<>();
+        String query = "SELECT * FROM Articles";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Article article = new Article();
+                article.setId(rs.getInt("id"));
+                article.setTitre(rs.getString("titre"));
+                article.setDescription(rs.getString("description"));
+                article.setContenu(rs.getString("contenu"));
+                article.setDateCreation(rs.getTimestamp("date_creation"));
+                articles.add(article);
+            }
+        }
+        return articles;
+    }
+
 }
-
-
-
-
-
