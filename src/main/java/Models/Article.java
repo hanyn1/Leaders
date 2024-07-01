@@ -1,39 +1,39 @@
 package Models;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Article {
     private int id;
     private String titre;
     private String description;
     private String contenu;
-    private Date datePublication;
+    private Timestamp dateCreation;
+
+
+    public Article(int id, String titre, String description, String contenu, Timestamp dateCreation) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.dateCreation = dateCreation;
+    }
+
+    public Article(String titre, String description, String contenu, Timestamp dateCreation) {
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.dateCreation = dateCreation;
+    }
 
     public Article() {
 
     }
 
-    public Article(String titre, String description, String contenu, Date datePublication) {
-        this.titre = titre;
-        this.description = description;
-        this.contenu = contenu;
-        this.datePublication = datePublication;
-    }/*free palestine*/
-    public Article(int id, String titre, String description, String contenu, Date datePublication) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.contenu = contenu;
-        this.datePublication = datePublication;
+    public Article(String text, String text1, String text2, LocalDate localDate) {
     }
 
-    public Article(String text, String text1, String text2, int date) {
-        this.titre = titre;
-        this.description = description;
-        this.contenu = contenu;
-        this.datePublication = datePublication;
-    }
-
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -66,25 +66,13 @@ public class Article {
         this.contenu = contenu;
     }
 
-    public Date getDatePublication() {
-        return datePublication;
+    public Timestamp getDateCreation() {
+        return dateCreation;
     }
 
-    public void setDatePublication(Date datePublication) {
-        this.datePublication = datePublication;
+    public void setDateCreation(Timestamp dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
-    @Override
-    public String toString() {
-        return "article{" +
-                "id=" + id +
-                ", titre='" + titre + '\'' +
-                ", description='" + description + '\'' +
-                ", contenu='" + contenu + '\'' +
-                ", datePublication=" + datePublication +
-                '}';
-    }
 
-    public void setDatePublication(int date) {
-    }
 }
