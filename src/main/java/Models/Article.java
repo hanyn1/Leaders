@@ -14,6 +14,7 @@ public class Article {
     private String contenu;
     private Timestamp dateCreation;
 
+
     public Article(int id,String titre, String description, String contenu, Timestamp dateCreation) {
         this.id = id;
         this.titre = titre;
