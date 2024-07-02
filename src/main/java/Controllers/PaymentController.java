@@ -1,10 +1,9 @@
 package Controllers;
 
-import Services.PaymentService;
-import com.stripe.exception.StripeException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PaymentController {
 
@@ -12,27 +11,60 @@ public class PaymentController {
     private TextField cardNumberField;
 
     @FXML
-    private TextField amountField;
+    private TextField expirationField;
 
     @FXML
-    private void handlePayment() {
-        String cardNumber = cardNumberField.getText().replaceAll("\\s+", ""); // Remove spaces
-        int amount = Integer.parseInt(amountField.getText()); // Parse amount from field
+    private TextField cvcField;
 
-        PaymentService paymentService = new PaymentService();
-        try {
-            paymentService.processPayment(cardNumber, amount, "usd");
-            showAlert("Payment Successful", "Payment was successful.");
-        } catch (StripeException e) {
-            showAlert("Payment Error", "Error processing payment: " + e.getMessage());
-        }
+    private double coursePrice;
+    private int courseId;
+    private int userId;
+    private boolean paymentSuccessful = false;
+
+    public void initialize(double coursePrice, int courseId, int userId) {
+        this.coursePrice = coursePrice;
+        this.courseId = courseId;
+        this.userId = userId;
     }
 
-    private void showAlert(String title, String message) {
+    @FXML
+    private void handlePay() {
+        simulatePayment();
+    }
+
+    private void simulatePayment() {
+        // Simulate successful payment
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
+        alert.setTitle("Payment Successful");
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText("Payment of $" + coursePrice + " was successful!");
         alert.showAndWait();
+
+        // Proceed to process payment in EtudiantCoursListController
+        EtudiantCoursListController controller = new EtudiantCoursListController();
+        controller.processPayment(coursePrice, courseId, userId);
+
+        // Close the payment window
+        closePaymentWindow();
+        Alert enrollmentAlert = new Alert(Alert.AlertType.INFORMATION);
+        enrollmentAlert.setTitle("Enrollment Successful");
+        enrollmentAlert.setHeaderText(null);
+        enrollmentAlert.setContentText("You have successfully enrolled in the course!");
+        enrollmentAlert.showAndWait();
+    }
+
+    @FXML
+    private void handleCancel() {
+        // Handle cancel action
+        closePaymentWindow();
+    }
+
+    private void closePaymentWindow() {
+        Stage stage = (Stage) cardNumberField.getScene().getWindow();
+        stage.close();
+    }
+
+    public boolean isPaymentSuccessful() {
+        return paymentSuccessful;
     }
 }

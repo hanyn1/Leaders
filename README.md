@@ -46,21 +46,18 @@ CREATE TABLE Entites (
 
 CREATE TABLE Cours (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     video VARCHAR(255),
-     image VARCHAR(255) NOT NULL,
-    FOREIGN KEY (entite_id) REFERENCES Entites(id)
+    image VARCHAR(255) NOT NULL,
+    price FLOAT
 );
 
 CREATE TABLE Quizzs (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (entite_id) REFERENCES Entites(id)
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Questions (
@@ -98,18 +95,14 @@ CREATE TABLE Inscriptions (
 
 CREATE TABLE Formations (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    entite_id INT,
     titre VARCHAR(255) NOT NULL,
-    description TEXT,
-    FOREIGN KEY (entite_id) REFERENCES Entites(id)
+    description TEXT
 );
 
 CREATE TABLE Evenements (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    entite_id INT,
     titre VARCHAR(255) NOT NULL,
-    description TEXT,
-    FOREIGN KEY (entite_id) REFERENCES Entites(id)
+    description TEXT
 );
 
 CREATE TABLE Categories (
@@ -131,12 +124,10 @@ CREATE TABLE Certifs (
 
 CREATE TABLE Articles (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    entite_id INT,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     contenu TEXT,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (entite_id) REFERENCES Entites(id)
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMPid)
 );
 
 CREATE TABLE Cours_Utilisateurs (
