@@ -1,5 +1,8 @@
 package Models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
 
     //Variables
@@ -16,6 +19,10 @@ public class User {
     public User(){
     }
 
+    public User(String roleName) {
+        this.roleName = roleName;
+    }
+
     public User(int id, String nom, String email, String motDePasse, int roleId){
         this.id = id;
         this.nom = nom;
@@ -24,6 +31,7 @@ public class User {
         this.roleId = roleId;
 
     }
+
     public User(String nom, String email, String motDePasse){
         this.nom = nom;
         this.email = email;
