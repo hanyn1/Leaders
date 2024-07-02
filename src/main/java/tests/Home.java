@@ -19,7 +19,7 @@ public class Home extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ManageArticle.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/EtudiantCoursList.fxml"));
 
         try {
             Parent root = loader.load();
