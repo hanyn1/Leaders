@@ -104,7 +104,10 @@
 }
 
 .form_container2{
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: #4e4406;
+    -fx-padding: 1;
+    -fx-spacing: 1;
+    -fx-border-width: 0 0 0 1;
 }
 
 .form_Button {
@@ -128,4 +131,9 @@
     -fx-background-color: white;
     -fx-background-radius: 14 14 14 14;
     -fx-text-fill: #4e4406;
+}
+
+.Button1234 {
+    -fx-background-color: transparent;
+    -fx-text-fill: transparent;
 }

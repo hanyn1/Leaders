@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class UserCRUD implements Initializable {
 
@@ -185,6 +186,63 @@ public class UserCRUD implements Initializable {
         alert.show();
 
 
+    }
+
+    private boolean validateInput(String username, String password, String email) {
+        boolean valid = true;
+
+        if (username == null || username.isEmpty()) {
+            showAlert("Invalid Input", "Username cannot be empty");
+            valid = false;
+        }
+
+        if (password == null || password.isEmpty() || password.length() < 6) {
+            showAlert("Invalid Input", "Password must be at least 6 characters long");
+            valid = false;
+        }
+
+        if (email == null || email.isEmpty() || !isValidEmail(email)) {
+            showAlert("Invalid Input", "Email is not valid");
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void setupValidation() {
+        textEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!isValidEmail(textEmail.getText())) {
+                    textEmail.setStyle("-fx-border-color: red;");
+                } else {
+                    textEmail.setStyle("");
+                }
+            }
+        });
+
+        textMotDePasse.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (textMotDePasse.getText().length() < 6) {
+                    textMotDePasse.setStyle("-fx-border-color: red;");
+                } else {
+                    textMotDePasse.setStyle("");
+                }
+            }
+        });
     }
 
 

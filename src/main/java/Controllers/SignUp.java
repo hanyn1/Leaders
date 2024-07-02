@@ -3,19 +3,28 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import Models.User;
 import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SignUp {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private ResourceBundle resources;
@@ -25,6 +34,10 @@ public class SignUp {
 
     @FXML
     private Button BConfirm;
+
+    @FXML
+    private Button textBack;
+
 
     @FXML
     private TextField emailTextField;
@@ -53,23 +66,28 @@ public class SignUp {
                 Parent root = loader.load();
                 RoleName userInfo = loader.getController();
 
-
                 nameTextField.getScene().setRoot(root);
-
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
         }
+    }
 
+    @FXML
+    void back(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
 
     }
+
 
     @FXML
     void initialize() {
     }
+
 
 }

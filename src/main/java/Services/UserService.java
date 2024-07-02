@@ -23,6 +23,8 @@ public class UserService implements IUserInterface<User> {
 
     }
 
+
+
     @Override
     public void modifier(User user) throws SQLException {
         String modifier= "UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";

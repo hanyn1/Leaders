@@ -10,8 +10,8 @@
 
 <AnchorPane prefHeight="531.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleCRUD">
    <children>
-      <TextField fx:id="roleInput" layoutX="106.0" layoutY="433.0" prefHeight="25.0" prefWidth="206.0" promptText="Name" stylesheets="@CSS/styles.css" />
-      <Label layoutX="25.0" layoutY="437.0" stylesheets="@CSS/styles.css" text="Role Name" underline="true" />
+      <TextField fx:id="roleInput" layoutX="106.0" layoutY="425.0" prefHeight="25.0" prefWidth="206.0" promptText="Name" stylesheets="@CSS/styles.css" />
+      <Label layoutX="24.0" layoutY="429.0" stylesheets="@CSS/styles.css" text="Role Name" underline="true" />
       <TableView fx:id="table" layoutX="38.0" layoutY="57.0" onMouseClicked="#getData" prefHeight="352.0" prefWidth="265.0" stylesheets="@CSS/styles.css">
         <columns>
           <TableColumn fx:id="columnID" prefWidth="82.0" text="ID" />
@@ -19,12 +19,13 @@
         </columns>
       </TableView>
       <Label layoutX="143.0" layoutY="14.0" styleClass="title" stylesheets="@CSS/styles.css" text="Role" />
-      <ButtonBar layoutX="9.0" layoutY="477.0" prefHeight="40.0" prefWidth="292.0" styleClass="form_container" stylesheets="@CSS/styles.css">
+      <ButtonBar layoutX="-6.0" layoutY="467.0" prefHeight="25.0" prefWidth="265.0" styleClass="form_container" stylesheets="@CSS/styles.css">
         <buttons>
-            <Button fx:id="btnMOD" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRole" styleClass="form_container" stylesheets="@CSS/styleRole.css" text="UPDATE" />
-            <Button fx:id="btnSUPP" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRole" text="DELETE" />
-          <Button fx:id="btnADD" mnemonicParsing="false" onAction="#ajouterRole" text="ADD" />
+            <Button fx:id="btnMOD" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRole" styleClass="form_container2" stylesheets="@CSS/styleRole.css" text="UPDATE" />
+            <Button fx:id="btnSUPP" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRole" styleClass="form_container2" text="DELETE" />
+          <Button fx:id="btnADD" mnemonicParsing="false" onAction="#ajouterRole" styleClass="form_container2" text="ADD" />
         </buttons>
       </ButtonBar>
+      <Button fx:id="textInscrire" layoutX="271.0" layoutY="492.0" mnemonicParsing="false" onAction="#Inscrire" styleClass="Button123" stylesheets="@CSS/styles.css" text="Inscrire" underline="true" />
    </children>
 </AnchorPane>
