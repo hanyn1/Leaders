@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -21,18 +22,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import utils.CloudinaryConfig;
 
 public class AjouterCours {
@@ -68,6 +63,15 @@ public class AjouterCours {
     private TextField imgTF;
 
     @FXML
+    private TextField priceTF;
+
+    @FXML
+    private DatePicker expirationDatePicker;
+
+    @FXML
+    private CheckBox activeCheckBox;
+
+    @FXML
     private TableView<Cours> tableView;
 
     @FXML
@@ -75,8 +79,6 @@ public class AjouterCours {
 
     @FXML
     private Button vidBTN;
-    @FXML
-    private TextField priceTF;
 
     private ObservableList<Cours> observableList;
     private ServiceCours sc;
@@ -96,13 +98,16 @@ public class AjouterCours {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
         float price = Float.parseFloat(priceTF.getText().trim());
+        LocalDate expirationDate = expirationDatePicker.getValue();
+        boolean isActive = activeCheckBox.isSelected();
+
         // Validate input fields
         if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
             showAlert("Validation Error", "All fields must be filled out and files must be uploaded.");
             return;
         }
 
-        Cours cours = new Cours(titre, description, uploadedVideoUrl, uploadedImageUrl,price);
+        Cours cours = new Cours(titre, description, uploadedVideoUrl, uploadedImageUrl, price);
         sc.add(cours);
 
         // Clear the text fields after adding the course
@@ -111,6 +116,8 @@ public class AjouterCours {
         vidTF.clear();
         imgTF.clear();
         priceTF.clear();
+        expirationDatePicker.setValue(null);
+        activeCheckBox.setSelected(false);
 
         // Clear the uploaded URLs
         uploadedImageUrl = null;
@@ -164,7 +171,7 @@ public class AjouterCours {
         colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colVideo.setCellValueFactory(new PropertyValueFactory<>("video"));
-
+        activeCheckBox.setSelected(false);
         // Initialize the ObservableList and load data into it
         updateTableView();
     }
@@ -186,13 +193,11 @@ public class AjouterCours {
     @FXML
     void viewCourseDetails(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
-
 
     public void close(ActionEvent actionEvent) {
         System.exit(0);
@@ -208,11 +213,10 @@ public class AjouterCours {
 
     public void goToCoursesList(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
-        stage =(Stage)( (Node)actionEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
@@ -247,7 +251,6 @@ public class AjouterCours {
             System.out.println("No course selected.");
         }
     }
-
 
     @FXML
     public void updateCours() {

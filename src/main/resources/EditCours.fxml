@@ -8,7 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane   stylesheets="@CSS/dashboardDesign.css"  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditCoursController" style="-fx-background-color: #4e4406;">
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.CheckBox?>
+<AnchorPane stylesheets="@CSS/dashboardDesign.css" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditCoursController" style="-fx-background-color: #4e4406;">
     <children>
         <VBox layoutX="50.0" layoutY="20.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #f0bd4f; -fx-padding: 20px;">
             <Label text="Edit Course" styleClass="form-label" style="-fx-text-fill: #4e4406;">

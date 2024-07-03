@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,8 +80,10 @@ public class VisitorCoursController {
         Label titleLabel = new Label(course.getTitre());
         Label descriptionLabel = new Label(course.getDescription());
         descriptionLabel.setWrapText(true);
-
-        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel);
+        Button enrollBtn = new Button();
+        enrollBtn.setStyle("-fx-background-color: green; -fx-text-fill: #fff;");
+        enrollBtn.setText("Enroll now!");
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel,enrollBtn);
 
         card.getChildren().addAll(imageView, detailsVBox);
 

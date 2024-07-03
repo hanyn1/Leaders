@@ -1,34 +1,57 @@
 package Models;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Inscription {
     private int id;
-    private Date date_creation;
+    private Timestamp date_creation;
     private int coursId;
     private int utilisateurId;
-    // Constructeurs
+    private Timestamp expirationDate;
+
+    // Constructors
     public Inscription() {}
 
-    public Inscription(int id, Date  date_creation, int coursId, int utilisateurId) {
+    public Inscription(int id, int coursId, int utilisateurId, Timestamp expirationDate) {
         this.id = id;
         this.date_creation = date_creation;
         this.coursId = coursId;
         this.utilisateurId = utilisateurId;
+        this.expirationDate = expirationDate;
     }
 
-    public Inscription(Date  date_creation, int coursId, int utilisateurId) {
-        this. date_creation=  date_creation;
+    public Inscription( int coursId, int utilisateurId, Timestamp expirationDate) {
+        this.date_creation = date_creation;
+        this.coursId = coursId;
+        this.utilisateurId = utilisateurId;
+        this.expirationDate = expirationDate;
+    }
+
+    public Inscription(int id, Timestamp date_creation, int coursId, int utilisateurId, Timestamp expirationDate) {
+        this.id = id;
+        this.date_creation = date_creation;
+        this.coursId = coursId;
+        this.utilisateurId = utilisateurId;
+        this.expirationDate = expirationDate;
+    }
+
+    public Inscription(Timestamp date_creation, int coursId, int utilisateurId, Timestamp expirationDate) {
+        this.date_creation = date_creation;
+        this.coursId = coursId;
+        this.utilisateurId = utilisateurId;
+        this.expirationDate = expirationDate;
+    }
+
+    public Inscription(int coursId, int utilisateurId) {
         this.coursId = coursId;
         this.utilisateurId = utilisateurId;
     }
 
-    public Inscription( int coursId, int utilisateurId) {
-        this.coursId = coursId;
-        this.utilisateurId = utilisateurId;
+    public Inscription(Timestamp expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -37,11 +60,11 @@ public class Inscription {
         this.id = id;
     }
 
-    public Date getDate_creation() {
+    public Timestamp getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(Date date_creation) {
+    public void setDate_creation(Timestamp date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -61,6 +84,14 @@ public class Inscription {
         this.utilisateurId = utilisateurId;
     }
 
+    public Timestamp getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Timestamp expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
     @Override
     public String toString() {
         return "Inscription{" +
@@ -68,6 +99,7 @@ public class Inscription {
                 ", date_creation=" + date_creation +
                 ", coursId=" + coursId +
                 ", utilisateurId=" + utilisateurId +
+                ", expirationDate=" + expirationDate +
                 '}';
     }
 }

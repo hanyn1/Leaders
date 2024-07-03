@@ -10,6 +10,9 @@ public interface inscriptionInterface<T> {
     void addInscription(T t) throws SQLException;
     List<T> getAllInscriptions();
 
-    Inscription getInscriptionById(T t);
+    Inscription getInscriptionById(int id) throws SQLException;
 
+    Inscription getInscriptionById(Inscription inscription) throws SQLException;
+
+    Inscription getInscriptionByCourseAndUser(int courseId, int userId);
 }

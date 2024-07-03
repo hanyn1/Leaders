@@ -39,28 +39,28 @@ public class CertificateGenerator {
         }
 
         // Title
-        g2d.setFont(new Font("Lato", Font.BOLD, 36));
+        g2d.setFont(new Font("Arial", Font.BOLD, 36));
         g2d.setColor(Color.decode("#4e4406"));
         g2d.drawString("Certificate of Completion", 150, 150);
 
         // User Name
-        g2d.setFont(new Font("Lato", Font.PLAIN, 24));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 24));
         g2d.drawString("This is to certify that", 250, 200);
         g2d.setFont(new Font("Arial", Font.BOLD, 30));
         g2d.drawString(userName, 250, 250);
 
         // Course Title
-        g2d.setFont(new Font("Lato", Font.PLAIN, 24));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 18));
         g2d.drawString("has successfully completed the course", 180, 300);
         g2d.setFont(new Font("Arial", Font.BOLD, 30));
         g2d.drawString(courseTitle, 200, 350);
 
         // Completion Date
-        g2d.setFont(new Font("Lato", Font.PLAIN, 24));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 24));
         g2d.drawString("on " + completionDate.toString(), 300, 400);
 
-        // Congratulatory Message
-        g2d.setFont(new Font("Lato", Font.PLAIN, 20));
+        // CongratuArialry Message
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.drawString("Congratulations on your achievement!", 200, 450);
 
         g2d.dispose();

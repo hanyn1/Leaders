@@ -1,5 +1,7 @@
 package Models;
 
+import java.time.LocalDate;
+
 public class Cours extends Entite {
     // Constructors
     private String video;
@@ -46,9 +48,7 @@ public class Cours extends Entite {
         this.image = image;
     }
 
-    public void ajouterEvaluation() {
 
-    }
 
     @Override
     public String toString() {

@@ -72,10 +72,14 @@
                                         <Button onAction="#pauseVideo" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Pause" />
                                         <Button onAction="#stopVideo" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Stop" />
                                     </HBox>
-                                    <!-- New Controls for Email and Certificate Generation -->
                                     <HBox spacing="10">
+                              <Label text="Get your centificate!">
+                                 <font>
+                                    <Font name="Calibri Bold" size="29.0" />
+                                 </font>
+                              </Label>
                                         <TextField fx:id="emailTextField" promptText="Enter your email" />
-                                        <Button onAction="#generateAndSendCertificate" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Generate and Send Certificate" />
+                                        <Button onAction="#generateAndSendCertificate" style=" padding: 10px; -fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Generate and Send Certificate" />
                                     </HBox>
                                 </VBox>
                             </content>

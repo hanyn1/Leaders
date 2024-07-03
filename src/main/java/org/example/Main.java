@@ -2,16 +2,25 @@ package org.example;
 
 import Models.Formation;
 import Services.ServiceFormation;
+import Services.ServiceInscription;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
         // Adding CRUD operations for Formation
         ServiceFormation serviceFormation = new ServiceFormation();
+        ServiceInscription serviceInscription = new ServiceInscription();
 
+        int courseId = 1;
+        int userId = 2;
+       System.out.println(serviceInscription.getInscriptionByCourseAndUser(courseId, userId));
+
+        System.out.println(serviceInscription.getAllInscriptions());
         // Test adding formations
-        Formation formation1 = new Formation(1, "Formation Java", "Description de la formation Java");
+       /* Formation formation1 = new Formation(1, "Formation Java", "Description de la formation Java");
         Formation formation2 = new Formation(2, "Formation Python", "Description de la formation Python");
 
 
@@ -45,6 +54,6 @@ public class Main {
             System.out.println("Formation with ID " + formationToDeleteId + " deleted successfully.");
         } else {
             System.out.println("Formation with ID " + formationToDeleteId + " not found.");
-        }
+        }*/
     }
 }
