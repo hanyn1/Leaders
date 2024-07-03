@@ -7,7 +7,6 @@ import Services.ServiceInscription;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
-import com.stripe.model.PaymentMethod;
 import com.stripe.param.PaymentIntentConfirmParams;
 import com.stripe.param.PaymentIntentCreateParams;
 import javafx.event.ActionEvent;
@@ -17,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
@@ -28,8 +28,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class EtudiantCoursListController {
@@ -106,8 +107,36 @@ public class EtudiantCoursListController {
         descriptionLabel.setStyle("-fx-font-size: 12px;");
 
         Label priceLabel = new Label("Price: " + course.getPrice());
+        Label expiredLabel = new Label("Expired");
+        Inscription inscription = getInscription(course.getId(), userId);
+        if (inscription != null && inscription.getExpirationDate() != null) {
+            if (inscription.getExpirationDate().before(Timestamp.valueOf(LocalDateTime.now()))) {
+                expiredLabel.setVisible(true);
+                expiredLabel.setStyle("-fx-text-fill: red;");
+            } else {
+                expiredLabel.setVisible(false);
+            }
+        } else {
+            expiredLabel.setVisible(false);
+        }
 
-        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel, priceLabel);
+
+        Button enrollBtn = new Button();
+        if (isEnrolled(course.getId(), userId)) {
+            enrollBtn.setText("Enrolled");
+            enrollBtn.setStyle("-fx-background-color: #8f8f8f; -fx-text-fill: #fff;");
+        } else {
+           // Inscription inscription = getInscription(course.getId(), userId);
+            if (inscription != null && inscription.getExpirationDate().before(Timestamp.valueOf(LocalDateTime.now()))) {
+                enrollBtn.setText("Enroll - Pay for a Month!");
+                enrollBtn.setStyle("-fx-background-color: red; -fx-text-fill: #fff;");
+            } else {
+                enrollBtn.setText("Enroll now For A Full Month!");
+                enrollBtn.setStyle("-fx-background-color: green; -fx-text-fill: #fff;");
+            }
+        }
+
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel, priceLabel,enrollBtn,expiredLabel);
         card.getChildren().addAll(imageView, detailsVBox);
 
         return card;
@@ -116,9 +145,20 @@ public class EtudiantCoursListController {
     private void handleCardClick(Cours course) {
         System.out.println("Handling card click for course: " + course.getTitre());
         try {
-            if (isEnrolled(course.getId(), userId)) {
-                System.out.println("User is already enrolled in course: " + course.getTitre());
-                loadCourseView(course.getId());
+            Inscription inscription = getInscription(course.getId(), userId);
+            if (inscription != null) {
+                if (inscription.getExpirationDate().before(Timestamp.valueOf(LocalDateTime.now()))) {
+                    System.out.println("User's enrollment has expired for course: " + course.getTitre());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Enrollment Expired");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Your enrollment for this course has expired. Please make a payment to re-enroll.");
+                    alert.showAndWait();
+                    initiatePayment(course);
+                } else {
+                    System.out.println("User is already enrolled in course: " + course.getTitre());
+                    loadCourseView(course.getId());
+                }
             } else {
                 System.out.println("User is not enrolled in course: " + course.getTitre());
                 initiatePayment(course);
@@ -127,7 +167,19 @@ public class EtudiantCoursListController {
             e.printStackTrace();
         }
     }
-
+    private Inscription getInscription(int courseId, int userId) {
+        try {
+            List<Inscription> inscriptions = serviceInscription.getAllInscriptions();
+            for (Inscription inscription : inscriptions) {
+                if (inscription.getCoursId() == courseId && inscription.getUtilisateurId() == userId) {
+                    return inscription;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private void initiatePayment(Cours course) throws IOException {
         System.out.println("Initiating payment for course: " + course.getTitre());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Payment.fxml"));
@@ -144,15 +196,16 @@ public class EtudiantCoursListController {
         stage.setOnHiding(event -> {
             if (controller.isPaymentSuccessful()) {
                 // Add inscription for the user after successful payment
-                Inscription inscription = new Inscription(course.getId(), userId);
-                try {
-                    serviceInscription.addInscription(inscription);
+                Timestamp expirationDate = Timestamp.valueOf(LocalDateTime.now().plusMonths(1)); // Set expiration date to 1 month from now
+                Inscription inscription = new Inscription(course.getId(), userId, expirationDate);
+             /*   try {
+                    //serviceInscription.addInscription(inscription);
                     // Load the course view after successful payment and inscription
                    // loadCourseView(course.getId());
                 } catch (SQLException e) {
                     e.printStackTrace();
                     // Handle exception during inscription or loading course view
-                }
+                }*/
             }
         });
     }
@@ -185,7 +238,6 @@ public class EtudiantCoursListController {
                     .build();
 
             PaymentIntent intent = PaymentIntent.create(createParams);
-            System.out.println("Payment intent created: " + intent);
 
             // Simulate obtaining the payment method ID from the PaymentController
             // In a real scenario, you would obtain this ID from user input in the PaymentController
@@ -209,11 +261,27 @@ public class EtudiantCoursListController {
                 alert.showAndWait();
 
                 // Add inscription for the user after successful payment
-                Inscription inscription = new Inscription(courseId, userId);
-                serviceInscription.addInscription(inscription);
+              /*  Timestamp expirationDate = Timestamp.valueOf(LocalDateTime.now().plusMonths(1)); // Set expiration date to 1 month from now
+                Inscription inscription = new Inscription(courseId, userId, expirationDate);
+                serviceInscription.addInscription(inscription);*/
+                Inscription inscription = getInscription(courseId, userId);
+
+                // If inscription exists, update expiration date
+                if (inscription != null) {
+                    Timestamp newExpirationDate = Timestamp.valueOf(LocalDateTime.now().plusMonths(1));
+                    inscription.setExpirationDate(newExpirationDate);
+                    serviceInscription.update(inscription);
+                    System.out.println("Expiration date updated for inscription: " + inscription.getId());
+                } else {
+                    // If inscription does not exist, add new inscription
+                    Timestamp expirationDate = Timestamp.valueOf(LocalDateTime.now().plusMonths(1));
+                    Inscription newInscription = new Inscription(courseId, userId, expirationDate);
+                    serviceInscription.addInscription(newInscription);
+                    System.out.println("New inscription added for course ID: " + courseId);
+                }
 
                 // Load the course view
-                //loadCourseView(courseId);//
+                loadCourseView(courseId);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Payment Error");

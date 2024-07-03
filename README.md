@@ -50,8 +50,11 @@ CREATE TABLE Cours (
     description TEXT,
     video VARCHAR(255),
     image VARCHAR(255) NOT NULL,
-    price FLOAT
+    price FLOAT,
+    expirationDate DATE,
+    isActive BOOLEAN DEFAULT TRUE
 );
+
 
 CREATE TABLE Quizzs (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,11 +87,12 @@ CREATE TABLE Answers (
     FOREIGN KEY (selected_option) REFERENCES Options(id)
 );
 
-CREATE TABLE Inscriptions (
+CREATE TABLE inscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    cours_id INT,
-    utilisateur_id INT,
+    cours_id INT NOT NULL,
+    utilisateur_id INT NOT NULL,
+    expirationDate TIMESTAMP NOT NULL,
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );

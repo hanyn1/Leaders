@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -103,19 +104,46 @@ public class EtudiantCoursController {
     void generateAndSendCertificate() {
         String recipientEmail = emailTextField.getText();
         if (recipientEmail == null || recipientEmail.isEmpty()) {
-            // Show an error message
+            showAlert(Alert.AlertType.ERROR, "Error", "Recipient Email Required", "Please enter a recipient email.");
+            return;
+        }
+
+        // Validate email format
+        if (!isValidEmail(recipientEmail)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Invalid Email Format", "Please enter a valid email address.");
             return;
         }
 
         // Generate the certificate
         CertificateGenerator generator = new CertificateGenerator();
-        String certificatePath = generator.generateCertificate("molk saouabi",currentCourse.getTitre(), LocalDate.now());
+        String certificatePath = generator.generateCertificate("Molk Saouabi", currentCourse.getTitre(), LocalDate.now());
 
         // Send the certificate via email
         EmailService emailService = new EmailService();
-        emailService.sendCertificate(recipientEmail, "Your Course Certificate", "Congratulations! Please find your certificate attached.", certificatePath);
-        // Show success message
+        try {
+            emailService.sendCertificate(recipientEmail, "Your Course Certificate", "Congratulations! Please find your certificate attached.", certificatePath);
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Certificate Sent", "The certificate has been successfully sent to " + recipientEmail);
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to Send Certificate", "An error occurred while sending the certificate. Please try again later.");
+            e.printStackTrace(); // Handle or log the exception as needed
+        }
     }
+
+    private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private boolean isValidEmail(String email) {
+        // Email validation regex pattern
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
+
+
 
     public void switchForm(ActionEvent event) {
     }
