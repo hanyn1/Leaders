@@ -1,183 +1,172 @@
 package Controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.sun.javafx.charts.Legend;
+import Models.Quizz;
+import Services.ServiceQuizz;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
-public class QuizzCRUD {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private TextField Option1;
+public class QuizzCRUD implements Initializable {
 
     @FXML
-    private Button artiles_btn;
-
+    private TextField titreField;
     @FXML
-    private Button avaialbeFD_btn;
-
+    private TextField descriptionField;
     @FXML
-    private Button close;
-
+    private TextField option1Field;
     @FXML
-    private Button dashboard_btn;
-
+    private TextField option2Field;
     @FXML
-    private Button event_btn;
-
+    private TextField option3Field;
     @FXML
-    private Button formation_btn;
+    private RadioButton rightOption1;
+    @FXML
+    private RadioButton rightOption2;
+    @FXML
+    private RadioButton rightOption3;
+    @FXML
+    private TableView<Quizz> quizzTableView;
+    @FXML
+    private TableColumn<Quizz, String> titreColumn;
+    @FXML
+    private TableColumn<Quizz, String> descriptionColumn;
+
+    private ServiceQuizz serviceQuizz;
+    private ObservableList<Quizz> quizzList;
 
     @FXML
     private AnchorPane main_form;
 
-    @FXML
-    private Button minimize;
+    public QuizzCRUD() {
+        serviceQuizz = new ServiceQuizz();
+    }
 
-    @FXML
-    private TextField option2;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        quizzList = FXCollections.observableArrayList();
+        quizzTableView.setItems(quizzList);
 
-    @FXML
-    private TextField option3;
+        // Set up table columns
+        titreColumn.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-    @FXML
-    private Button order_btn;
+        loadQuizzes();
+    }
 
-    @FXML
-    private Button quizz_btn;
-
-    @FXML
-    private Button submitQuiz;
-
-    @FXML
-    private Button textAdd;
-
-    @FXML
-    private TextField textDescription;
-
-    @FXML
-    private TextField textTitre;
-
-    @FXML
-    private Label username;
-
-    @FXML
-    private Button users_btn;
-    private ActionEvent event;
-
-    @FXML
-    void add(ActionEvent event) {
-        String titre = textTitre.getText();
-        String description = textDescription.getText();
-
-        if (validateTextInput(titre, description)) {
-            // Ajouter le titre et la description dans votre logique d'application
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Add A new Question");
-            clearFields(); // Réinitialise les champs de texte après ajout
+    private void loadQuizzes() {
+        try {
+            List<Quizz> quizzes = serviceQuizz.getAllQuizzes();
+            quizzList.setAll(quizzes);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    private void clearFields() {
-        textTitre.clear();
-        textDescription.clear();
-        Option1.clear();
-        option2.clear();
-        option3.clear();
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-    @FXML
-    void close(ActionEvent event) {
-
-    }
 
     @FXML
-    void goToCoursesList(ActionEvent event) {
-
+    public void addQuizz(ActionEvent event) {
+        try {
+            String titre = titreField.getText();
+            String description = descriptionField.getText();
+            String option1 = option1Field.getText();
+            String option2 = option2Field.getText();
+            String option3 = option3Field.getText();
+            String rightAnswer = getSelectedRightAnswer();
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Quizz quizz = new Quizz(titre, description, option1, option2, option3, rightAnswer, timestamp);
+            serviceQuizz.addQuizz(quizz);
+            quizzList.add(quizz);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void minimize(ActionEvent event) {
-
-    }
-
-    @FXML
-    void submitQuiz(ActionEvent event) {
-            // Code pour soumettre le quiz
-            String opt1 =Option1.getText();
-            String opt2 =option2 .getText();
-            String opt3 = option3.getText();
-
-            // Logique de soumission du quiz
-            if (!opt1.isEmpty() && !opt2.isEmpty() && !opt3.isEmpty()) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Quiz submitted successfully!");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "All options must be filled!");
+    public void updateQuizz(ActionEvent event) {
+        Quizz selectedQuizz = quizzTableView.getSelectionModel().getSelectedItem();
+        if (selectedQuizz != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditQuizz.fxml"));
+                Parent root = loader.load();
+                EditQuizzController controller = loader.getController();
+                controller.setQuizz(selectedQuizz);
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                quizzTableView.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    }
 
     @FXML
-    void switchForm(ActionEvent event) {
-
+    public void deleteQuizz(ActionEvent event) {
+        Quizz selectedQuizz = quizzTableView.getSelectionModel().getSelectedItem();
+        if (selectedQuizz != null) {
+            try {
+                serviceQuizz.deleteQuizz(selectedQuizz.getId());
+                quizzList.remove(selectedQuizz);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    private void radioButtonSetup() {
+    private String getSelectedRightAnswer() {
+        if (rightOption1.isSelected()) {
+            return option1Field.getText();
+        } else if (rightOption2.isSelected()) {
+            return option2Field.getText();
+        } else if (rightOption3.isSelected()) {
+            return option3Field.getText();
+        }
+        return "";
+    }
 
-}
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void switchForm(ActionEvent actionEvent) {
+    }
 
     @FXML
-    void initialize() {
-        radioButtonSetup();
-    }
-    private boolean validateTextInput(String titre, String description) {
-        if (titre.isEmpty() || description.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Title and Description cannot be empty!");
-            return false;
-        }
-        if (!isAlpha(titre)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Title must contain only letters!");
-            return false;
-        }
-        return true;
+    public void goToCoursesList(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    private boolean validateQuizInput(String opt1, String opt2, String opt3) {
-        if (opt1.isEmpty() || opt2.isEmpty() || opt3.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "All quiz options must be filled!");
-            return false;
-        }
-        if (!isNumeric(opt1) || !isNumeric(opt2) || !isNumeric(opt3)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "All quiz options must contain only numbers!");
-            return false;
-        }
-        return true;
+    public void goToUsers(ActionEvent event) {
     }
 
-    private boolean isAlpha(String str) {
-        return str.matches("[a-zA-Z]+");
+    public void goToArticles(ActionEvent event) {
     }
 
-    private boolean isNumeric(String str) {
-        return str.matches("\\d+");
+    public void goToFormation(ActionEvent event) {
     }
 }
-
-
