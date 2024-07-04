@@ -102,6 +102,7 @@ public class EditQuizzController {
         // Clear the text fields after saving
         clearFields();
 
+
         // Update the TableView
         updateTableView();
     }
