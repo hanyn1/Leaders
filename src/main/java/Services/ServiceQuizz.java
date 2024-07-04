@@ -5,6 +5,7 @@ import Models.Quizz;
 import utils.MyConfig;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,52 +16,65 @@ public class ServiceQuizz implements Quizzinterface<Quizz> {
         connection = MyConfig.getInstance().getConnection();
     }
 
-    @Override
-    public void addQuizz(Quizz q) throws SQLException {
-        String req = "INSERT INTO quizzs (`titre`, `description`, `date_creation`) VALUES ('"+q.getTitre()+"','"+q.getDescription()+"','"+q.getDate()+"')";
-        Statement st = connection.createStatement();
-        st.executeUpdate(req);
 
+    public void addQuizz(Quizz quizz) throws SQLException {
+        String query = "INSERT INTO quizzs (title, description, option1, option2, option3, rightAnswer) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, quizz.getTitre());
+            statement.setString(2, quizz.getDescription());
+            statement.setString(3, quizz.getOption1());
+            statement.setString(4, quizz.getOption2());
+            statement.setString(5, quizz.getOption3());
+            statement.setString(6, quizz.getRightAnswer());
+            statement.executeUpdate();
+        }
     }
 
-    @Override
-    public void updateQuizz(Quizz q) throws SQLException {
-        String req= "UPDATE quizzs SET titre = ?, description = ?, date_creation = ? WHERE id = ?";
-        PreparedStatement us = connection.prepareStatement(req);
-        us.setString(1, q.getTitre());
-        us.setString(2, q.getDescription());
-        us.setDate(3, q.getDate());
-        us.executeUpdate();
-
+    public List<Quizz> getAllQuizzes() throws SQLException {
+        List<Quizz> quizzes = new ArrayList<>();
+        String query = "SELECT * FROM quizzs";
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                Quizz quizz = new Quizz(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("description"),
+                        resultSet.getString("option1"),
+                        resultSet.getString("option2"),
+                        resultSet.getString("option3"),
+                        resultSet.getString("rightAnswer")
+                );
+                quizzes.add(quizz);
+            }
+        }
+        return quizzes;
     }
 
-    @Override
+    public void updateQuizz(Quizz quizz) throws SQLException {
+        String query = "UPDATE quizzs SET title = ?, description = ?, option1 = ?, option2 = ?, option3 = ?, rightAnswer = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, quizz.getTitre());
+            statement.setString(2, quizz.getDescription());
+            statement.setString(3, quizz.getOption1());
+            statement.setString(4, quizz.getOption2());
+            statement.setString(5, quizz.getOption3());
+            statement.setString(6, quizz.getRightAnswer());
+            statement.setInt(8, quizz.getId());
+            statement.executeUpdate();
+        }
+    }
+
     public void deleteQuizz(int id) throws SQLException {
-        String req = "DELETE FROM quizzs WHERE id = ?";
-        PreparedStatement us = connection.prepareStatement(req);
-        us.setInt(1,id);
-        us.executeUpdate();
-
+        String query = "DELETE FROM quizzs WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
     }
 
     @Override
     public List<Quizz> recuperer() throws SQLException {
-        List<Quizz> quizzs = new ArrayList<>();
-        String req = "SELECT * FROM quizzs";
-        Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery(req);
-
-        while (rs.next()){
-            Quizz q = new Quizz();
-            q.setId(rs.getInt("id"));
-            q.setTitre(rs.getString("titre"));
-            q.setDescription(rs.getString("description"));
-            q.setDate(rs.getDate("date_creation"));
-
-            quizzs.add(q);
-        }
-        return quizzs;
+        return null;
     }
-
-
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditQuizzController">
+    <VBox spacing="10" layoutX="20.0" layoutY="20.0" style="-fx-background-color: #4e4406; -fx-padding: 20;">
+        <Label text="Edit Quiz" style="-fx-text-fill: #f0bd4f; -fx-font-size: 24px;" />
+        <TextField fx:id="titreField" promptText="Titre" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
+        <TextField fx:id="descriptionField" promptText="Description" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
+        <TextField fx:id="option1Field" promptText="Option 1" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
+        <TextField fx:id="option2Field" promptText="Option 2" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
+        <TextField fx:id="option3Field" promptText="Option 3" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
+        <Label text="Select the Right Answer:" style="-fx-text-fill: #f0bd4f;" />
+        <HBox spacing="10">
+            <RadioButton fx:id="rightOption1" text="Option 1" style="-fx-text-fill: white;" />
+            <RadioButton fx:id="rightOption2" text="Option 2" style="-fx-text-fill: white;" />
+            <RadioButton fx:id="rightOption3" text="Option 3" style="-fx-text-fill: white;" />
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Save" onAction="#saveQuizz" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" />
+            <Button text="Cancel" onAction="#cancelEdit" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" />
+        </HBox>
+    </VBox>
+</AnchorPane>
