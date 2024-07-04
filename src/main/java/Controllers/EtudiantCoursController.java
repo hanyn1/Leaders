@@ -88,7 +88,7 @@ public class EtudiantCoursController {
 
     @FXML
     void playVideo() {
-        if (mediaPlayer != null && (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED || mediaPlayer.getStatus() == MediaPlayer.Status.STOPPED)) {
+        if (mediaPlayer != null) {
             mediaPlayer.play();
         }
     }
