@@ -1,11 +1,11 @@
 .title{
-    -fx-font-size: 2em;
+    -fx-font-size: 3em;
     -fx-text-fill: #4e4406;
     -fx-font-weight: bold;
 }
 
 .title2{
-    -fx-font-size: 1.5em;
+    -fx-font-size: 2.5em;
     -fx-text-fill: #4e4406;
     -fx-font-weight: bold;
 }
@@ -112,8 +112,8 @@
 
 .form_Button {
     -fx-background-color: #EEEEEE;
-    -fx-font-size: 1.3em;
-    -fx-font-family: "Calibri Light";
+    -fx-font-size: 1.5em;
+    -fx-font-family: "times new";
     -fx-text-fill: #4e4406;
 }
 
@@ -123,14 +123,15 @@
     -fx-text-fill: black;
 
 
-    -fx-pref-width: 130;
-    -fx-font-size: 1.0em;
+    -fx-pref-width: 250;
+    -fx-font-size: 2.0em;
 }
 
 .Button123 {
     -fx-background-color: white;
     -fx-background-radius: 14 14 14 14;
     -fx-text-fill: #4e4406;
+    -fx-font-size: 2.0em;
 }
 
 .Button1234 {

@@ -45,6 +45,16 @@ public class RoleName implements Initializable {
 
     @FXML
     void ADD(ActionEvent event) {
+
+        String selectedRole = textRole.getSelectionModel().getSelectedItem();
+
+        if (selectedRole == null || selectedRole.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Veuillez sélectionner un rôle.");
+            alert.show();
+            return;
+        }
+
         Role role = new Role(textRole.getSelectionModel().getSelectedItem());
         RoleService roleService = new RoleService();
         try {

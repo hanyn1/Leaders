@@ -22,20 +22,16 @@ EvoLearn is an online learning platform that allows users to create and follow c
 3. Use the following SQL scripts to create the necessary tables:
 
 ```sql
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE Utilisateurs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     motDePasse VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE Profils (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    bio TEXT,
-    photo VARCHAR(255),
-    utilisateur_id INT,
-    FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
 
 CREATE TABLE Entites (
@@ -50,11 +46,8 @@ CREATE TABLE Cours (
     description TEXT,
     video VARCHAR(255),
     image VARCHAR(255) NOT NULL,
-    price FLOAT,
-    expirationDate DATE,
-    isActive BOOLEAN DEFAULT TRUE
+    price FLOAT
 );
-
 
 CREATE TABLE Quizzs (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,16 +76,16 @@ CREATE TABLE Answers (
     user_id INT,
     question_id INT,
     selected_option INT,
+    FOREIGN KEY (user_id) REFERENCES Utilisateurs(id),
     FOREIGN KEY (question_id) REFERENCES Questions(id),
     FOREIGN KEY (selected_option) REFERENCES Options(id)
 );
 
-CREATE TABLE inscriptions (
+CREATE TABLE Inscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    cours_id INT NOT NULL,
-    utilisateur_id INT NOT NULL,
-    expirationDate TIMESTAMP NOT NULL,
+    cours_id INT,
+    utilisateur_id INT,
     FOREIGN KEY (cours_id) REFERENCES Cours(id),
     FOREIGN KEY (utilisateur_id) REFERENCES Utilisateurs(id)
 );
@@ -131,7 +124,7 @@ CREATE TABLE Articles (
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     contenu TEXT,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMPid)
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Cours_Utilisateurs (

@@ -107,6 +107,16 @@ public class RoleCRUD implements Initializable {
 
     @FXML
     void ajouterRole(ActionEvent event) {
+
+        String roleName = roleInput.getText().trim();
+
+        if (roleName.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Veuillez entrer un nom de rôle.");
+            alert.show();
+            return;
+        }
+
         Role role = new Role(roleInput.getText());
         RoleService roleService = new RoleService();
         try {
@@ -134,6 +144,15 @@ public class RoleCRUD implements Initializable {
 
     @FXML
     void modifierRole(ActionEvent event) {
+        String roleName = roleInput.getText().trim();
+
+        if (roleName.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Veuillez entrer un nom de rôle.");
+            alert.show();
+            return;
+        }
+
         String modifier ="UPDATE roles SET name = ? WHERE id = ?";
         instance = MyConfig.getInstance().getConnection();
         try {
@@ -184,6 +203,7 @@ public class RoleCRUD implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
     }
 

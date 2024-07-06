@@ -1,24 +1,24 @@
 package Controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.regex.Pattern;
-
 import Models.User;
 import Services.UserService;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class SignUp {
 
@@ -40,17 +40,52 @@ public class SignUp {
 
 
     @FXML
+    private Label labelShow;
+
+
+    @FXML
     private TextField emailTextField;
 
     @FXML
     private TextField nameTextField;
 
+
     @FXML
-    private TextField passwordTextField;
+    private CheckBox textShow;
+
+
+    @FXML
+    private PasswordField passwordTextField;
 
     @FXML
     void Confirm(ActionEvent event) throws SQLException {
-        User user = new User(nameTextField.getText(),emailTextField.getText(),passwordTextField.getText());
+
+        String name = nameTextField.getText().trim();
+        String email = emailTextField.getText().trim();
+        String password = passwordTextField.getText().trim();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez remplir tous les champs.");
+            alert.show();
+            return;
+        }
+
+        if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", email)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Format d'email incorrect.");
+            alert.show();
+            return;
+        }
+
+        if (password.length() < 6) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Le mot de passe doit comporter au moins 6 caractères.");
+            alert.show();
+            return;
+        }
+
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+
+        User user = new User(name,email,hashedPassword);
         UserService userService = new UserService();
         {
             try {
@@ -70,6 +105,18 @@ public class SignUp {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @FXML
+    void ShowPassword(ActionEvent event) {
+        if (textShow.isSelected()) {
+            labelShow.setVisible(true);
+            labelShow.textProperty().bind(Bindings.concat(passwordTextField.getText()));
+            textShow.setText("Hide");
+        } else {
+            labelShow.setVisible(false);
+            textShow.setText("show");
         }
     }
 
