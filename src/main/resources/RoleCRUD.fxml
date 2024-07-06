@@ -3,29 +3,164 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="531.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleCRUD">
-   <children>
-      <TextField fx:id="roleInput" layoutX="106.0" layoutY="425.0" prefHeight="25.0" prefWidth="206.0" promptText="Name" stylesheets="@CSS/styles.css" />
-      <Label layoutX="24.0" layoutY="429.0" stylesheets="@CSS/styles.css" text="Role Name" underline="true" />
-      <TableView fx:id="table" layoutX="38.0" layoutY="57.0" onMouseClicked="#getData" prefHeight="352.0" prefWidth="265.0" stylesheets="@CSS/styles.css">
-        <columns>
-          <TableColumn fx:id="columnID" prefWidth="82.0" text="ID" />
-          <TableColumn fx:id="columnNAME" prefWidth="181.0" text="NAME" />
-        </columns>
-      </TableView>
-      <Label layoutX="143.0" layoutY="14.0" styleClass="title" stylesheets="@CSS/styles.css" text="Role" />
-      <ButtonBar layoutX="-6.0" layoutY="467.0" prefHeight="25.0" prefWidth="265.0" styleClass="form_container" stylesheets="@CSS/styles.css">
-        <buttons>
-            <Button fx:id="btnMOD" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRole" styleClass="form_container2" stylesheets="@CSS/styleRole.css" text="UPDATE" />
-            <Button fx:id="btnSUPP" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRole" styleClass="form_container2" text="DELETE" />
-          <Button fx:id="btnADD" mnemonicParsing="false" onAction="#ajouterRole" styleClass="form_container2" text="ADD" />
-        </buttons>
-      </ButtonBar>
-      <Button fx:id="textInscrire" layoutX="271.0" layoutY="492.0" mnemonicParsing="false" onAction="#Inscrire" styleClass="Button123" stylesheets="@CSS/styles.css" text="Inscrire" underline="true" />
-   </children>
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleCRUD">
+<children>
+    <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <top>
+            <AnchorPane prefHeight="45.0" prefWidth="1100.0" styleClass="form_container" stylesheets="@CSS/styles.css">
+                <children>
+                    <Button fx:id="close" layoutX="1005.0" layoutY="6.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
+                    <Button fx:id="minimize" layoutX="893.0" layoutY="6.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
+                    <Label layoutX="100.0" layoutY="19.0" text="Evolearn - eLearning Platform" />
+                    <ImageView fitHeight="28.0" fitWidth="98.0" layoutX="8.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@images/logo-trans.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </AnchorPane>
+        </top>
+        <left>
+            <VBox prefHeight="600.0" prefWidth="213.0" style="-fx-background-color: #f0bd4f;">
+                <children>
+                    <AnchorPane prefHeight="555.0" prefWidth="255.0" styleClass="form_container1" stylesheets="@CSS/styles.css" VBox.vgrow="ALWAYS">
+                        <children>
+                            <Label fx:id="username" layoutX="68.0" layoutY="64.0" prefHeight="27.0" prefWidth="90.0" text="Admin">
+                                <font>
+                                    <Font size="18.0" />
+                                </font></Label>
+                            <Label layoutX="39.0" layoutY="14.0" prefHeight="40.0" prefWidth="135.0" text="Welcome" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font></Label>
+                            <AnchorPane layoutX="15.0" layoutY="100.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
+                                    <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/dashboard.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="users_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToUsers" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Users" />
+                                    <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/User1.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="210.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="avaialbeFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Online Courses" />
+                                    <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/online-learning.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="265.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="artiles_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToArticles" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Articles" />
+                                    <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/newspaper.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="320.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="quizz_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Quizz" />
+                                    <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/quiz.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="375.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="formation_btn" layoutX="40.0" layoutY="8.0" mnemonicParsing="false" onAction="#goToFormation" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Physical Courses" />
+                                    <ImageView fitHeight="33.0" fitWidth="30.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/physics.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="430.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="event_btn" layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Events" />
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/event.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="485.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="order_btn" layoutX="40.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Role" />
+                                    <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/profile.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+
+                        </children>
+                    </AnchorPane>
+                </children>
+            </VBox>
+        </left>
+        <center>
+            <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
+                <content>
+                    <VBox prefHeight="342.0" prefWidth="179.0" styleClass="nav-pane">
+                     <children>
+                        <AnchorPane prefHeight="555.0" prefWidth="881.0">
+                           <children>
+                            <Button fx:id="textInscrire" layoutX="394.0" layoutY="461.0" mnemonicParsing="false" onAction="#Inscrire" prefHeight="38.0" prefWidth="135.0" styleClass="Button123" stylesheets="@CSS/styles.css" text="Inscrire" underline="true" />
+                            <Label layoutX="55.0" layoutY="117.0" stylesheets="@CSS/styles.css" text="Role Name" underline="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font></Label>
+                            <ButtonBar layoutX="107.0" layoutY="265.0" prefHeight="45.0" prefWidth="305.0" styleClass="form_container" stylesheets="@CSS/styles.css">
+                                <buttons>
+                                    <Button fx:id="btnMOD" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifierRole" styleClass="Button1234" stylesheets="@CSS/styles.css" text="UPDATE" />
+                                    <Button fx:id="btnSUPP" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#supprimerRole" styleClass="Button1234" text="DELETE" />
+                                    <Button fx:id="btnADD" mnemonicParsing="false" onAction="#ajouterRole" styleClass="Button1234" text="ADD" />
+                                </buttons>
+                            </ButtonBar>
+                            <TextField fx:id="roleInput" layoutX="158.0" layoutY="183.0" prefHeight="43.0" prefWidth="222.0" promptText="Name" stylesheets="@CSS/styles.css" />
+                            <TableView fx:id="table" layoutX="560.0" layoutY="1.0" onMouseClicked="#getData" prefHeight="551.0" prefWidth="330.0" stylesheets="@CSS/styles.css">
+                                <columns>
+                                    <TableColumn fx:id="columnID" prefWidth="68.0" text="ID" />
+                                    <TableColumn fx:id="columnNAME" prefWidth="343.0" text="NAME" />
+                                </columns>
+                            </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children></VBox>
+                </content></ScrollPane>
+        </center>
+    </BorderPane>
+</children>
 </AnchorPane>

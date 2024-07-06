@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="188.0" styleClass="form_container1" stylesheets="@CSS/styles.css">
          <children>
@@ -26,34 +26,34 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="454.0" layoutY="59.0" prefHeight="70.0" prefWidth="174.0" styleClass="title" stylesheets="@CSS/styles.css" text="Login" />
-      <TextField fx:id="userNameText" layoutX="389.0" layoutY="182.0" prefHeight="42.0" prefWidth="247.0" promptText="UserName" />
-      <Button fx:id="btnLog" layoutX="457.0" layoutY="367.0" mnemonicParsing="false" onAction="#Login" styleClass="form_Button" stylesheets="@CSS/styles.css" text="Login Now" />
-      <Button fx:id="btnSign" layoutX="654.0" layoutY="502.0" mnemonicParsing="false" onAction="#goToSignup" prefHeight="51.0" prefWidth="114.0" style="-fx-background-color: transparent;" styleClass="form_Button" stylesheets="@CSS/styles.css" text="SignUp" textFill="#4e4406" underline="true">
+      <Label layoutX="588.0" layoutY="62.0" prefHeight="70.0" prefWidth="174.0" styleClass="title" stylesheets="@CSS/styles.css" text="Login" />
+      <TextField fx:id="userNameText" layoutX="531.0" layoutY="182.0" prefHeight="42.0" prefWidth="247.0" promptText="UserName" />
+      <Button fx:id="btnLog" layoutX="611.0" layoutY="366.0" mnemonicParsing="false" onAction="#Login" styleClass="Button123" stylesheets="@CSS/styles.css" text="Login Now" />
+      <Button fx:id="btnSign" layoutX="675.0" layoutY="524.0" mnemonicParsing="false" onAction="#goToSignup" prefHeight="39.0" prefWidth="111.0" styleClass="Button123" stylesheets="@CSS/styles.css" text="SignUp" textFill="#4e4406" underline="true">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Label layoutX="559.0" layoutY="516.0" prefHeight="27.0" prefWidth="107.0" text="Not a user?">
+      <Label layoutX="558.0" layoutY="530.0" prefHeight="27.0" prefWidth="107.0" text="Not a user?">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="342.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="469.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/user.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="28.0" layoutX="342.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="28.0" layoutX="469.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/key.png" />
          </image>
       </ImageView>
-      <CheckBox fx:id="textShow" layoutX="648.0" layoutY="250.0" mnemonicParsing="false" onAction="#ShowPassword" prefHeight="42.0" prefWidth="107.0" />
-      <PasswordField fx:id="PasswordText" layoutX="389.0" layoutY="250.0" prefHeight="42.0" prefWidth="247.0" promptText="Password" />
-      <Label fx:id="labelShow" layoutX="370.0" layoutY="315.0" prefHeight="25.0" prefWidth="99.0" text="Show Password">
+      <CheckBox fx:id="textShow" layoutX="800.0" layoutY="250.0" mnemonicParsing="false" onAction="#ShowPassword" prefHeight="42.0" prefWidth="107.0" />
+      <PasswordField fx:id="PasswordText" layoutX="531.0" layoutY="250.0" prefHeight="42.0" prefWidth="247.0" promptText="Password" />
+      <Label fx:id="labelShow" layoutX="501.0" layoutY="317.0" prefHeight="25.0" prefWidth="99.0" text="Show Password">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button fx:id="textForget" layoutX="582.0" layoutY="312.0" mnemonicParsing="false" onAction="#ForgetPassword" style="-fx-background-color: transparent;" text="Forgot Password ?" textFill="#4e4406" underline="true">
+      <Button fx:id="textForget" layoutX="743.0" layoutY="314.0" mnemonicParsing="false" onAction="#ForgetPassword" style="-fx-background-color: transparent;" text="Forgot Password ?" textFill="#4e4406" underline="true">
          <font>
             <Font size="14.0" />
          </font></Button>

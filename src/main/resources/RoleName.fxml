@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleName">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RoleName">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="600.0" prefWidth="228.0" styleClass="form_container1" stylesheets="@CSS/styles.css">
          <children>
@@ -23,9 +23,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="359.0" layoutY="76.0" prefHeight="45.0" prefWidth="282.0" styleClass="title2" stylesheets="@CSS/styles.css" text="What is your role ?" />
-      <ComboBox fx:id="textRole" layoutX="375.0" layoutY="250.0" prefHeight="51.0" prefWidth="230.0" promptText="Your Role : " styleClass="ComboBox" stylesheets="@CSS/styles.css" />
-      <Button fx:id="TextWolcome" layoutX="484.0" layoutY="459.0" mnemonicParsing="false" onAction="#Welcome" prefHeight="51.0" prefWidth="282.0" styleClass="Button123" stylesheets="@CSS/styles.css" text="Welcome to EvoLearn" underline="true" />
-      <Button fx:id="TextAdd" cache="true" layoutX="559.0" layoutY="412.0" mnemonicParsing="false" onAction="#ADD" styleClass="Button1234" stylesheets="@CSS/styles.css" text="ADD" />
+      <Label layoutX="520.0" layoutY="75.0" prefHeight="45.0" prefWidth="282.0" styleClass="title2" stylesheets="@CSS/styles.css" text="What is your role ?" />
+      <ComboBox fx:id="textRole" layoutX="520.0" layoutY="250.0" prefHeight="51.0" prefWidth="230.0" promptText="Your Role : " styleClass="ComboBox" stylesheets="@CSS/styles.css" />
+      <Button fx:id="TextWolcome" layoutX="787.0" layoutY="481.0" mnemonicParsing="false" onAction="#Welcome" prefHeight="51.0" prefWidth="282.0" styleClass="Button123" stylesheets="@CSS/styles.css" text="Welcome to EvoLearn" underline="true" />
+      <Button fx:id="TextAdd" cache="true" layoutX="595.0" layoutY="395.0" mnemonicParsing="false" onAction="#ADD" styleClass="Button1234" stylesheets="@CSS/styles.css" text="ADD" />
    </children>
 </AnchorPane>

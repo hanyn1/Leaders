@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SendEmail">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SendEmail">
    <children>
-      <TextField fx:id="textSend" layoutX="400.0" layoutY="156.0" prefHeight="43.0" prefWidth="210.0" promptText="Email" />
-      <TextField fx:id="textCode" layoutX="400.0" layoutY="394.0" prefHeight="43.0" prefWidth="210.0" promptText="Code" />
-      <Label layoutX="320.0" layoutY="103.0" prefHeight="34.0" prefWidth="191.0" text="Enter your email :">
+      <TextField fx:id="textSend" layoutX="528.0" layoutY="152.0" prefHeight="43.0" prefWidth="307.0" promptText="Email" />
+      <TextField fx:id="textCode" layoutX="528.0" layoutY="393.0" prefHeight="43.0" prefWidth="307.0" promptText="Code" />
+      <Label layoutX="311.0" layoutY="157.0" prefHeight="34.0" prefWidth="190.0" text="Enter your email :">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label layoutX="320.0" layoutY="334.0" prefHeight="35.0" prefWidth="191.0" text="Enter the code :">
+      <Label layoutX="311.0" layoutY="397.0" prefHeight="35.0" prefWidth="190.0" text="Enter the code :">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="textSendEmail" layoutX="680.0" layoutY="152.0" mnemonicParsing="false" onAction="#Send" styleClass="Button123" stylesheets="@CSS/styles.css" text="Send" />
-      <Button fx:id="textEnter" layoutX="680.0" layoutY="394.0" mnemonicParsing="false" onAction="#Enter" styleClass="Button123" stylesheets="@CSS/styles.css" text="Enter" />
+      <Button fx:id="textSendEmail" layoutX="960.0" layoutY="152.0" mnemonicParsing="false" onAction="#Send" styleClass="Button123" stylesheets="@CSS/styles.css" text="Send" />
+      <Button fx:id="textEnter" layoutX="960.0" layoutY="402.0" mnemonicParsing="false" onAction="#Enter" styleClass="Button123" stylesheets="@CSS/styles.css" text="Enter" />
       <AnchorPane prefHeight="600.0" prefWidth="257.0" styleClass="form_container2" stylesheets="@CSS/styles.css">
          <children>
             <ImageView fitHeight="51.0" fitWidth="127.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">

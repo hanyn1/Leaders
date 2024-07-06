@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.Role;
-import Models.User;
 import Services.RoleService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,11 +23,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
-import static utils.MyConfig.*;
 
 public class RoleCRUD implements Initializable {
     Connection instance = null;
@@ -65,147 +61,155 @@ public class RoleCRUD implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    int id=0;
+    int id = 0;
 
-    @FXML
-    void initialize() {
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        roleService = new RoleService();
+        instance = MyConfig.getInstance().getConnection();
+        showRole();
     }
 
-    public ObservableList<Role> getRoles(){
+    public ObservableList<Role> getRoles() {
         ObservableList<Role> roles = FXCollections.observableArrayList();
-
-        String query = "select * from roles";
-        instance = MyConfig.getInstance().getConnection();
+        String query = "SELECT * FROM roles";
         try {
             st = instance.prepareStatement(query);
             rs = st.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Role role = new Role();
                 role.setId(rs.getInt("id"));
                 role.setName(rs.getString("name"));
-
-
                 roles.add(role);
-
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return roles;
-
     }
 
-    public void showRole(){
+    public void showRole() {
         ObservableList<Role> list = getRoles();
         table.setItems(list);
-        columnID.setCellValueFactory(new PropertyValueFactory<Role,Integer>("id"));
-        columnNAME.setCellValueFactory(new PropertyValueFactory<Role,String>("name"));
-
+        columnID.setCellValueFactory(new PropertyValueFactory<Role, Integer>("id"));
+        columnNAME.setCellValueFactory(new PropertyValueFactory<Role, String>("name"));
     }
 
     @FXML
     void ajouterRole(ActionEvent event) {
-
         String roleName = roleInput.getText().trim();
-
         if (roleName.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Veuillez entrer un nom de rôle.");
             alert.show();
             return;
         }
-
-        Role role = new Role(roleInput.getText());
-        RoleService roleService = new RoleService();
+        Role role = new Role(roleName);
         try {
             roleService.ajouter(role);
             showRole();
+            roleInput.clear();
+            btnADD.setDisable(false);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Le role a été ajouté avec succés");
+        alert.setContentText("Le rôle a été ajouté avec succès");
         alert.show();
-
-
     }
+
     @FXML
     void getData(MouseEvent event) {
         Role role = table.getSelectionModel().getSelectedItem();
-        id = role.getId();
-        roleInput.setText(role.getName());
-
-        btnADD.setDisable(true);
-
+        if (role != null) {
+            id = role.getId();
+            roleInput.setText(role.getName());
+            btnADD.setDisable(true);
+        }
     }
-
 
     @FXML
     void modifierRole(ActionEvent event) {
         String roleName = roleInput.getText().trim();
-
         if (roleName.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Veuillez entrer un nom de rôle.");
             alert.show();
             return;
         }
-
-        String modifier ="UPDATE roles SET name = ? WHERE id = ?";
-        instance = MyConfig.getInstance().getConnection();
+        String modifier = "UPDATE roles SET name = ? WHERE id = ?";
         try {
             st = instance.prepareStatement(modifier);
-            st.setString(1,roleInput.getText());
-            st.setInt(2,id);
+            st.setString(1, roleName);
+            st.setInt(2, id);
             st.executeUpdate();
-
             showRole();
+            roleInput.clear();
+            btnADD.setDisable(false);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Le role a été modifié avec succés");
+        alert.setContentText("Le rôle a été modifié avec succès");
         alert.show();
-
     }
 
     @FXML
     void supprimerRole(ActionEvent event) {
-        String supprimer = "delete from roles where id=?";
-        instance = MyConfig.getInstance().getConnection();
+        String supprimer = "DELETE FROM roles WHERE id = ?";
         try {
             st = instance.prepareStatement(supprimer);
-            st.setInt(1,id);
+            st.setInt(1, id);
             st.executeUpdate();
             showRole();
-
+            roleInput.clear();
+            btnADD.setDisable(false);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Le role a été supprimé avec succés");
+        alert.setContentText("Le rôle a été supprimé avec succès");
         alert.show();
-
     }
 
     @FXML
     void Inscrire(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+        String roleName = roleInput.getText().trim();
+        if (roleName.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Veuillez entrer un nom de rôle.");
+            alert.show();
+            return;
+        } else {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+    public void close(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
+    public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
 
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
+    public void goToCoursesList(ActionEvent actionEvent) {
+    }
+
+    public void goToUsers(ActionEvent actionEvent) {
+    }
+
+    public void goToArticles(ActionEvent actionEvent) {
+    }
+
+    public void goToFormation(ActionEvent actionEvent) {
+    }
 }
