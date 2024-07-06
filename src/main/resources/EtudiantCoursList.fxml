@@ -42,7 +42,7 @@
                                         <Font size="18.0" />
                                     </font></Label>
                                 <VBox layoutX="14.0" layoutY="244.0" styleClass="nav-pane">
-                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
+                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
                                     <Button fx:id="avaialbeFD_btn" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Courses" />
                                     <Button fx:id="artiles_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Blog" />
                                     <Button fx:id="quizz_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Quizz" />

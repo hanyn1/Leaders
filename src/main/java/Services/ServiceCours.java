@@ -18,7 +18,7 @@ public class ServiceCours implements coursInterface<Cours> {
 
     public ServiceCours() {
         this.connection = this.instance.getConnection();
-        System.out.println("service");
+        System.out.println("service cours activated");
         this.cloudinary = CloudinaryConfig.getCloudinary();
     }
 
