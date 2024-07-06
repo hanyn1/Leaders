@@ -38,7 +38,7 @@ public class InstructorDashboardController implements Initializable {
     @FXML
     private VBox recentCoursesVBox;
 
-    private void populateRecentCourses() {
+   /* private void populateRecentCourses() {
         ServiceCours sc = new ServiceCours();
         List<Cours> courses = sc.getAll();
         if (courses != null) {
@@ -47,10 +47,10 @@ public class InstructorDashboardController implements Initializable {
                 recentCoursesVBox.getChildren().add(coursePane);
             }
         }
-    }
+    }*/
 
     // Create an AnchorPane representing a course entry
-    private AnchorPane createCoursePane(Cours course) {
+    /*private AnchorPane createCoursePane(Cours course) {
         AnchorPane pane = new AnchorPane();
         pane.setPrefSize(300, 60);
 
@@ -65,9 +65,9 @@ public class InstructorDashboardController implements Initializable {
 
         pane.getChildren().addAll(titleLabel, viewButton);
         return pane;
-    }
+    }*/
 
-    private void viewCourseDetails(Cours course) {
+ /*   private void viewCourseDetails(Cours course) {
         // Example: Display details in an alert dialog
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Course Details");
@@ -76,23 +76,33 @@ public class InstructorDashboardController implements Initializable {
                 "Video Link: " + course.getVideo());
 
         alert.showAndWait();
-    }
+    }*/
     @FXML
     public void goToHome(ActionEvent actionEvent) {
         contentLabel.setText("Home Content Goes Here");
     }
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterCours.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+    }
+    public void goToDashboard(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/InstructorDashboard.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML
-    public void goToProfile(ActionEvent actionEvent) {
-        contentLabel.setText("Profile Content Goes Here");
+    public void goToUsers(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void close(ActionEvent actionEvent) {
@@ -104,7 +114,39 @@ public class InstructorDashboardController implements Initializable {
         stage.setIconified(true);
     }
 
-    public void switchForm(ActionEvent actionEvent) {
+
+    public void goToArticles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+    public void goToFormation(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToEvents(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterEv.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToQuizz(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/QUIZZview.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
@@ -120,7 +162,7 @@ public class InstructorDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        populateRecentCourses();
+      //  populateRecentCourses();
 
     }
 }

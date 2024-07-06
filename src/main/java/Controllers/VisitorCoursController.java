@@ -32,16 +32,21 @@ public class VisitorCoursController {
 
     @FXML
     public void initialize() {
+        System.out.println("Initializing VisitorCoursController");
         ServiceCours serviceCours = new ServiceCours();
         List<Cours> courses = serviceCours.getAll();
+        System.out.println("Fetched courses: " + courses.size());
         displayCourses(courses);
     }
 
     private void displayCourses(List<Cours> courses) {
+        System.out.println("Displaying courses");
         coursesVBox.getChildren().clear(); // Clear existing content
         for (Cours course : courses) {
+            System.out.println("Creating card for course: " + course.getTitre());
             HBox card = createCourseCard(course);
             card.setOnMouseClicked(event -> {
+                System.out.println("Course card clicked: " + course.getTitre());
                 try {
                     gotLogin(event); // Redirect to login page on card click
                 } catch (IOException e) {
@@ -83,7 +88,8 @@ public class VisitorCoursController {
         Button enrollBtn = new Button();
         enrollBtn.setStyle("-fx-background-color: green; -fx-text-fill: #fff;");
         enrollBtn.setText("Enroll now!");
-        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel,enrollBtn);
+        Label priceLabel = new Label("Price: " + course.getPrice());
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel,enrollBtn, priceLabel);
 
         card.getChildren().addAll(imageView, detailsVBox);
 
@@ -91,15 +97,18 @@ public class VisitorCoursController {
     }
 
     public void close(ActionEvent actionEvent) {
+        System.out.println("Closing application");
         System.exit(0);
     }
 
     public void minimize(ActionEvent actionEvent) {
+        System.out.println("Minimizing window");
         Stage stage = (Stage) main_form.getScene().getWindow();
         stage.setIconified(true);
     }
 
     public void gotLogin(MouseEvent event) throws IOException {
+        System.out.println("Redirecting to login page");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -108,6 +117,7 @@ public class VisitorCoursController {
     }
 
     public void goToHome(ActionEvent actionEvent) throws IOException {
+        System.out.println("Redirecting to home page");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorPage.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
