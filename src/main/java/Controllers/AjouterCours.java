@@ -66,12 +66,6 @@ public class AjouterCours {
     private TextField priceTF;
 
     @FXML
-    private DatePicker expirationDatePicker;
-
-    @FXML
-    private CheckBox activeCheckBox;
-
-    @FXML
     private TableView<Cours> tableView;
 
     @FXML
@@ -98,8 +92,6 @@ public class AjouterCours {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
         float price = Float.parseFloat(priceTF.getText().trim());
-        LocalDate expirationDate = expirationDatePicker.getValue();
-        boolean isActive = activeCheckBox.isSelected();
 
         // Validate input fields
         if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
@@ -116,8 +108,6 @@ public class AjouterCours {
         vidTF.clear();
         imgTF.clear();
         priceTF.clear();
-        expirationDatePicker.setValue(null);
-        activeCheckBox.setSelected(false);
 
         // Clear the uploaded URLs
         uploadedImageUrl = null;
@@ -171,7 +161,7 @@ public class AjouterCours {
         colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colVideo.setCellValueFactory(new PropertyValueFactory<>("video"));
-        activeCheckBox.setSelected(false);
+
         // Initialize the ObservableList and load data into it
         updateTableView();
     }
@@ -269,5 +259,22 @@ public class AjouterCours {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void goToDashboard(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/InstructorDashboard.fxml")));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void goToArticles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 }

@@ -41,14 +41,13 @@
                                         <Font size="18.0" />
                                     </font></Label>
                                 <VBox layoutX="14.0" layoutY="244.0" styleClass="nav-pane">
-                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
-                                    <Button fx:id="avaialbeFD_btn" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Online Courses" />
+                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
+                                    <Button fx:id="avaialbeFD_btn" mnemonicParsing="false"  prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Online Courses" />
                                     <Button fx:id="users_btn" mnemonicParsing="false" onAction="#goToUsers" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Useers" />
                                     <Button fx:id="artiles_btn" mnemonicParsing="false" onAction="#goToArticles" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Articles" />
-                                    <Button fx:id="quizz_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Quizz" />
+                                    <Button fx:id="quizz_btn" mnemonicParsing="false" onAction="#goToQuizz" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Quizz" />
                                     <Button fx:id="formation_btn" mnemonicParsing="false" onAction="#goToFormation" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Physical courses" />
-                                    <Button fx:id="event_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Events" />
-                                    <Button fx:id="order_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Profile" />
+                                    <Button fx:id="event_btn" mnemonicParsing="false" onAction="#goToEvents" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Events" />
                                 </VBox>
                             </children>
                         </AnchorPane>

@@ -82,16 +82,20 @@ public class AjouterCoursAdminController {
     private Parent root;
     private ObservableList<Cours> coursList = FXCollections.observableArrayList();
 
-    public void switchForm(ActionEvent actionEvent) {
-    }
-
-    public void goToCoursesList(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterCoursAdmin.fxml")));
-        stage =(Stage)( (Node)actionEvent.getSource()).getScene().getWindow();
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+    }@FXML
+    public void goToUsers(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void close(ActionEvent actionEvent) {
@@ -103,6 +107,47 @@ public class AjouterCoursAdminController {
         stage.setIconified(true);
     }
 
+
+    public void goToArticles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+    public void goToFormation(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToEvents(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterEv.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToQuizz(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/QUIZZview.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void goToDashboard(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AdminDashboard.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
    /* @FXML
     void addCours(ActionEvent event) throws SQLException {
         String titre = titreF.getText().trim();
@@ -256,4 +301,5 @@ public class AjouterCoursAdminController {
             }
         }
     }
+
 }

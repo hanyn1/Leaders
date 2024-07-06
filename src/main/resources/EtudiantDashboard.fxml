@@ -3,13 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EtudiantDashboardController">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -41,13 +41,12 @@
                                         <Font size="18.0" />
                                     </font></Label>
                                 <VBox layoutX="14.0" layoutY="244.0" styleClass="nav-pane">
-                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
+                                    <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Dashboard" />
                                     <Button fx:id="avaialbeFD_btn" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Courses" />
-                                    <Button fx:id="artiles_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Blog" />
-                                    <Button fx:id="quizz_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Quizz" />
-                                    <Button fx:id="formation_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Physical courses" />
-                                    <Button fx:id="event_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Events" />
-                                    <Button fx:id="order_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Profile" />
+                                    <Button fx:id="artiles_btn" mnemonicParsing="false" onAction="#goToArticles" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Blog" />
+                                    <Button fx:id="quizz_btn" mnemonicParsing="false" onAction="#goToQuizz" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Quizz" />
+                                    <Button fx:id="formation_btn" mnemonicParsing="false" onAction="#goToFormation" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Physical courses" />
+                                    <Button fx:id="event_btn" mnemonicParsing="false" onAction="#goToEvents" prefHeight="38.0" prefWidth="180.0" styleClass="nav-btn" text="Events" />
                                 </VBox>
                             </children>
                         </AnchorPane>
@@ -56,11 +55,21 @@
             </left>
             <center>
                 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
-                    <AnchorPane prefHeight="800.0" prefWidth="987.0">
-                        <VBox spacing="10">
-                            <VBox fx:id="recentCoursesVBox" spacing="10" />
-                        </VBox>
-                    </AnchorPane>
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="232.0" layoutY="39.0" text="Student Dashboard">
+                                    <font>
+                                        <Font name="System Bold" size="48.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="389.0" fitWidth="641.0" layoutX="256.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Kids%20Studying%20from%20Home.gif" />
+                           </image></ImageView>
+                            </children>
+                        </AnchorPane>
+                    </content>
                 </ScrollPane>
             </center>
         </BorderPane>
