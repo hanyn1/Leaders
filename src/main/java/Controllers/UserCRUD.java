@@ -8,12 +8,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.MyConfig;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -122,19 +126,46 @@ public class UserCRUD implements Initializable {
 
     @FXML
     void ajouterUser() {
-        User user = new User(textName.getText(),textEmail.getText(),textMotDePasse.getText());
-        UserService userService = new UserService();
-        try {
-            userService.ajouter(user);
-            showUtilisateurs();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        String name = textName.getText().trim();
+        String email = textEmail.getText().trim();
+        String password = textMotDePasse.getText().trim();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez remplir tous les champs.");
+            alert.show();
+            return;
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("L'utilisateur a été ajouté avec succés");
-        alert.show();
+
+        if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", email)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Format d'email incorrect.");
+            alert.show();
+            return;
+        }
+
+        if (password.length() < 6) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Le mot de passe doit comporter au moins 6 caractères.");
+            alert.show();
+            return;
+        }
+
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+
+        User user = new User(name,email,hashedPassword);
+        UserService userService = new UserService();
+        {
+            try {
+                userService.ajouter(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("L'utilisateur a été ajouté avec succés");
+            alert.show();
+        }
 
     }
+
     @FXML
     void getData(MouseEvent event) {
         User user = tableUser.getSelectionModel().getSelectedItem();
@@ -148,6 +179,30 @@ public class UserCRUD implements Initializable {
 
     @FXML
     void modifierUser() {
+
+        String name = textName.getText().trim();
+        String email = textEmail.getText().trim();
+        String password = textMotDePasse.getText().trim();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez remplir tous les champs.");
+            alert.show();
+            return;
+        }
+
+        if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", email)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Format d'email incorrect.");
+            alert.show();
+            return;
+        }
+
+        if (password.length() < 6) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Le mot de passe doit comporter au moins 6 caractères.");
+            alert.show();
+            return;
+        }
+
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         String modifier ="UPDATE utilisateurs SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
         instance = MyConfig.getInstance().getConnection();
         try {
@@ -187,64 +242,6 @@ public class UserCRUD implements Initializable {
 
 
     }
-
-    private boolean validateInput(String username, String password, String email) {
-        boolean valid = true;
-
-        if (username == null || username.isEmpty()) {
-            showAlert("Invalid Input", "Username cannot be empty");
-            valid = false;
-        }
-
-        if (password == null || password.isEmpty() || password.length() < 6) {
-            showAlert("Invalid Input", "Password must be at least 6 characters long");
-            valid = false;
-        }
-
-        if (email == null || email.isEmpty() || !isValidEmail(email)) {
-            showAlert("Invalid Input", "Email is not valid");
-            valid = false;
-        }
-
-        return valid;
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void setupValidation() {
-        textEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                if (!isValidEmail(textEmail.getText())) {
-                    textEmail.setStyle("-fx-border-color: red;");
-                } else {
-                    textEmail.setStyle("");
-                }
-            }
-        });
-
-        textMotDePasse.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                if (textMotDePasse.getText().length() < 6) {
-                    textMotDePasse.setStyle("-fx-border-color: red;");
-                } else {
-                    textMotDePasse.setStyle("");
-                }
-            }
-        });
-    }
-
 
 
 

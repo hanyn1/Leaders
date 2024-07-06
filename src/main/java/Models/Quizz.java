@@ -12,6 +12,18 @@ public class Quizz {
     private String rightAnswer;
     private Timestamp quizCreatedAt;
 
+    public Quizz() {
+    }
+
+    public Quizz(String titre, String description, String option1, String option2, String option3, String rightAnswer) {
+        this.titre = titre;
+        this.description = description;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.rightAnswer = rightAnswer;
+    }
+
     public Quizz(int id, String titre, String description, String option1, String option2, String option3, String rightAnswer, Timestamp quizCreatedAt) {
         this.id = id;
         this.titre = titre;

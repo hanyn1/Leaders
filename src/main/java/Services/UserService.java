@@ -50,7 +50,7 @@ public class UserService implements IUserInterface<User> {
     @Override
     public List<User> recuperer() throws SQLException {
         List<User> utilisateurs = new ArrayList<>();
-        String req = "SELECT utilisateurs.id, utilisateurs.nom, utilisateurs.email, utilisateurs.motDePasse, roles.name AS roleName FROM utilisateurs JOIN roles ON utilisateurs.role_id = roles_id";
+        String req = "SELECT * FROM utilisateurs";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(req);
 
@@ -60,8 +60,7 @@ public class UserService implements IUserInterface<User> {
             user.setNom(rs.getString("nom"));
             user.setEmail(rs.getString("email"));
             user.setMotDePasse(rs.getString("motDePasse"));
-            user.setRoleId(rs.getInt("role_id"));
-            user.setRoleName(rs.getString("roleName"));
+
 
             utilisateurs.add(user);
         }
