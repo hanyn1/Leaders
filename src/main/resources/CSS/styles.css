@@ -82,6 +82,10 @@
     -fx-border-color: transparent;
 }
 
+.form {
+    -fx-border-color: black;
+}
+
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
     -fx-background-color: transparent;
@@ -114,7 +118,7 @@
     -fx-background-color: #EEEEEE;
     -fx-font-size: 1.5em;
     -fx-font-family: "times new";
-    -fx-text-fill: #4e4406;
+    -fx-text-fill: white;
 }
 
 .ComboBox {
@@ -131,10 +135,21 @@
     -fx-background-color: white;
     -fx-background-radius: 14 14 14 14;
     -fx-text-fill: #4e4406;
-    -fx-font-size: 2.0em;
+    -fx-font-size: 1.5em;
 }
 
 .Button1234 {
+    -fx-background-color: #4e4406;
+    -fx-background-radius: 14 14 14 14;
+    -fx-text-fill: #EEEEEE;
+    -fx-font-size: 1.0em;
+    -fx-pref-width: 100;
+    -fx-pref-height: 20;
+
+}
+.ButtonDash {
     -fx-background-color: transparent;
-    -fx-text-fill: transparent;
+    -fx-background-radius: 14 14 14 14;
+    -fx-text-fill: #000000;
+    -fx-font-size: 1.2em;
 }
