@@ -34,7 +34,7 @@
                     <children>
                         <AnchorPane prefHeight="555.0" prefWidth="255.0" styleClass="form_container1" stylesheets="@CSS/styles.css" VBox.vgrow="ALWAYS">
                             <children>
-                                <Label fx:id="username" layoutX="68.0" layoutY="64.0" prefHeight="27.0" prefWidth="90.0" text="Admin">
+                                <Label fx:id="username" layoutX="68.0" layoutY="64.0" prefHeight="27.0" prefWidth="90.0" text="Student">
                                     <font>
                                         <Font size="18.0" />
                                     </font></Label>
@@ -65,7 +65,7 @@
                                 </AnchorPane>
                                 <AnchorPane layoutX="15.0" layoutY="265.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="artiles_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToArticles" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Articles" />
+                                        <Button fx:id="artiles_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToArticles" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Blog" />
                                         <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/newspaper.png" />
