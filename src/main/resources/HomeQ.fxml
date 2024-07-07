@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QuizzCRUD">
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeQuiz">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -45,9 +42,9 @@
                                     <font>
                                         <Font name="System Bold" size="28.0" />
                                     </font></Label>
-                                <AnchorPane layoutX="15.0" layoutY="100.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
+                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
                                         <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/dashboard.png" />
@@ -55,16 +52,7 @@
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
-                                    <children>
-                                        <Button fx:id="users_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToUsers" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Users" />
-                                        <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" x="2.0">
-                                            <image>
-                                                <Image url="@images/User1.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </AnchorPane>
+
                                 <AnchorPane layoutX="15.0" layoutY="210.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
                                         <Button fx:id="avaialbeFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Online Courses" />
@@ -87,7 +75,7 @@
                                 </AnchorPane>
                                 <AnchorPane layoutX="15.0" layoutY="320.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="quizz_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Quizz" />
+                                        <Button fx:id="quizz_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToQuizz" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Quizz" />
                                         <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/quiz.png" />
@@ -107,7 +95,7 @@
                                 </AnchorPane>
                                 <AnchorPane layoutX="15.0" layoutY="430.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="event_btn" layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Events" />
+                                        <Button fx:id="event_btn" layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#goToEvents" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Events" />
                                         <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/event.png" />
@@ -115,16 +103,7 @@
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane layoutX="15.0" layoutY="485.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
-                                    <children>
-                                        <Button fx:id="order_btn" layoutX="40.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Role" />
-                                        <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" x="2.0">
-                                            <image>
-                                                <Image url="@images/profile.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </AnchorPane>
+
 
                             </children>
                         </AnchorPane>
@@ -133,32 +112,35 @@
             </left>
             <center>
                 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
-                    <VBox layoutX="20.0" layoutY="20.0" spacing="10" style="-fx-background-color: #4e4406; -fx-padding: 20;">
-                        <TextField fx:id="titreField" promptText="Titre" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
-                        <TextField fx:id="descriptionField" promptText="Description" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
-                        <TextField fx:id="option1Field" promptText="Option 1" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
-                        <TextField fx:id="option2Field" promptText="Option 2" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
-                        <TextField fx:id="option3Field" promptText="Option 3" style="-fx-background-color: white; -fx-text-fill: #4e4406;" />
-                        <Label style="-fx-text-fill: #f0bd4f;" text="Select the Right Answer:" />
-                        <HBox spacing="10">
-                            <RadioButton fx:id="rightOption1" style="-fx-text-fill: white;" text="Option 1" />
-                            <RadioButton fx:id="rightOption2" style="-fx-text-fill: white;" text="Option 2" />
-                            <RadioButton fx:id="rightOption3" style="-fx-text-fill: white;" text="Option 3" />
-                        </HBox>
-                        <HBox alignment="CENTER" spacing="10">
-                            <Button onAction="#addQuizz" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Add" />
-                            <Button onAction="#updateQuizz" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Update" />
-                            <Button onAction="#deleteQuizz" style="-fx-background-color: #f0bd4f; -fx-text-fill: #4e4406;" text="Delete" />
-                        </HBox>
-                        <TableView fx:id="quizzTableView" style="-fx-background-color: white; -fx-text-fill: #4e4406;" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="titreColumn" prefWidth="228.0" text="Titre" />
-                                <TableColumn fx:id="descriptionColumn" prefWidth="645.0" text="Description" />
-                            </columns>
-                        </TableView>
-                    </VBox>
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane layoutX="170.0" layoutY="78.0" prefHeight="345.0" prefWidth="561.0" style="-fx-background-color: white; -fx-background-radius: 32px; -fx-border-radius: 32px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+                                    <children>
+                                        <Label layoutX="207.0" layoutY="81.0" text="Easy Quiz">
+                                            <font>
+                                                <Font name="Open Sans Extrabold" size="30.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="playquizbtn" layoutX="129.0" layoutY="184.0" mnemonicParsing="false" onAction="#handlePlayQuizButtonAction" prefHeight="68.0" prefWidth="304.0" style="-fx-background-color: #f0db4f; -fx-background-radius: 32px;; -fx-border-radius: 32px;" text="PLAY" textFill="WHITE">
+                                            <font>
+                                                <Font name="Open Sans Semibold" size="20.0" />
+                                            </font>
+                                            <styleClass>
+                                                <String fx:value="form_container" />
+                                                <String fx:value="title" />
+                                            </styleClass>
+                                            <stylesheets>
+                                                <URL value="@CSS/QuizzStyle.css" />
+                                                <URL value="@CSS/QuizzStyle.css" />
+                                            </stylesheets>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
 
-
+                            </children>
+                        </AnchorPane>
+                    </content>
                 </ScrollPane>
             </center>
         </BorderPane>

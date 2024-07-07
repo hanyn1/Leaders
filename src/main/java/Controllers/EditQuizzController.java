@@ -80,33 +80,44 @@ public class EditQuizzController {
     }
 
     @FXML
-    private void saveQuizz() throws SQLException {
-        String titre = titreField.getText();
-        String description = descriptionField.getText();
-        String option1 = option1Field.getText();
-        String option2 = option2Field.getText();
-        String option3 = option3Field.getText();
+    private void saveQuizz() {
+        try {
+            String titre = titreField.getText();
+            String description = descriptionField.getText();
+            String option1 = option1Field.getText();
+            String option2 = option2Field.getText();
+            String option3 = option3Field.getText();
 
-        // Set the right answer
-        if (rightOption1.isSelected()) {
-            description = "Option 1";
-        } else if (rightOption2.isSelected()) {
-            description = "Option 2";
-        } else if (rightOption3.isSelected()) {
-            description = "Option 3";
+            // Log for debugging
+            System.out.println("Saving quizz with title: " + titre);
+
+            // Set the right answer
+            if (rightOption1.isSelected()) {
+                description = "Option 1";
+            } else if (rightOption2.isSelected()) {
+                description = "Option 2";
+            } else if (rightOption3.isSelected()) {
+                description = "Option 3";
+            }
+
+            Quizz quizz = new Quizz(titre, description, option1, option2, option3);
+            serviceQuizz.addQuizz(quizz);
+
+            // Clear the text fields after saving
+            clearFields();
+
+            // Update the TableView
+            updateTableView();
+
+            // Log for debugging
+            System.out.println("Quizz saved successfully!");
+
+        } catch (SQLException e) {
+            // Log for debugging
+            System.err.println("Failed to save quizz: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        Quizz quizz = new Quizz(titre, description, option1, option2, option3);
-        serviceQuizz.addQuizz(quizz);
-
-        // Clear the text fields after saving
-        clearFields();
-
-
-        // Update the TableView
-        updateTableView();
     }
-
     @FXML
     private void cancelEdit() {
         // Simply close the window without saving
