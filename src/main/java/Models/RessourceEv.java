@@ -1,76 +1,49 @@
 package Models;
 
+import java.sql.Timestamp;
+
 public class RessourceEv {
-    private long id;
+    private int id;
     private String titre;
+    private String description;
     private String url;
-    private String type;
-    private long evenement_id;
+    private Timestamp date_creation;
 
-    // Constructeur par défaut
-    public RessourceEv() {
-    }
-
-    // Constructeur avec tous les attributs
-    public RessourceEv(long id, String titre, String url, String type, long evenement_id) {
+    // Constructeur
+    public RessourceEv(int id, String titre, String description, String url, Timestamp date_creation) {
         this.id = id;
         this.titre = titre;
+        this.description = description;
         this.url = url;
-        this.type = type;
-        this.evenement_id = evenement_id;
+        this.date_creation = date_creation;
     }
 
-    // Getters et setters
-    public long getId() {
-        return id;
-    }
+    // Getters et Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public String getTitre() { return titre; }
+    public void setTitre(String titre) { this.titre = titre; }
 
-    public String getTitre() {
-        return titre;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
+    public String getUrl() { return url; }
+    public void setUrl(String url) { this.url = url; }
 
-    public String getUrl() {
-        return url;
-    }
+    public Timestamp getDateCreation() { return date_creation; }
+    public void setDateCreation(Timestamp date_creation) { this.date_creation = date_creation; }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public long getEvenementId() {
-        return evenement_id;
-    }
-
-    public void setEvenementId(long evenement_id) {
-        this.evenement_id = evenement_id;
-    }
-
-    // Méthode toString pour afficher les informations de l'objet
     @Override
     public String toString() {
         return "RessourceEv{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
-                ", type='" + type + '\'' +
-                ", evenement_id=" + evenement_id +
+                ", date_creation=" + date_creation +
                 '}';
     }
 }
+
 
