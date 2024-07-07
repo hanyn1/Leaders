@@ -27,6 +27,8 @@ public class CoursListController {
 
     @FXML
     private AnchorPane main_form;
+    private Stage stage;
+    private Scene scene;
     private Parent root;
 
     @FXML
@@ -129,6 +131,22 @@ public class CoursListController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToDashboard(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/InstructorDashboard.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToArticles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

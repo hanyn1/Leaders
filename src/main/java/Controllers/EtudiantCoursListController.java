@@ -38,7 +38,10 @@ public class EtudiantCoursListController {
     private VBox coursesVBox;
     @FXML
     private AnchorPane main_form;
+    private Stage stage;
+    private Scene scene;
     private Parent root;
+
     private ServiceCours serviceCours;
     private ServiceInscription serviceInscription;
     private int userId;
@@ -353,7 +356,39 @@ public class EtudiantCoursListController {
         stage.setIconified(true);
     }
 
-    public void switchForm(ActionEvent actionEvent) {
+
+    public void goToArticles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AfficherArticle.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+    public void goToFormation(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToEvents(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/EtudiantEvents.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToQuizz(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/HomeQ.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void goToCoursesList(ActionEvent actionEvent) throws IOException {
