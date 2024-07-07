@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Evenement;
+import javafx.event.ActionEvent;
 import utils.DatabaseHelper; // Importer DatabaseHelper depuis le package utils
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,5 +41,26 @@ public class AfficherEv implements Initializable {
         // Remplir la table avec les données de la base de données
         ObservableList<Evenement> list = DatabaseHelper.getEvenements();
         tableview.setItems(list);
+    }
+
+    public void close(ActionEvent actionEvent) {
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+    }
+
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
+    public void goToUsers(ActionEvent actionEvent) {
+    }
+
+    public void goToCoursesList(ActionEvent actionEvent) {
+    }
+
+    public void goToArticles(ActionEvent actionEvent) {
+    }
+
+    public void goToFormation(ActionEvent actionEvent) {
     }
 }

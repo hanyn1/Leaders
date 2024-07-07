@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -31,5 +32,26 @@ public class AfficherMonEv {
         if (!table.getItems().contains(evenement)) {
             table.getItems().add(evenement);
         }
+    }
+
+    public void close(ActionEvent actionEvent) {
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+    }
+
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
+    public void goToUsers(ActionEvent actionEvent) {
+    }
+
+    public void goToCoursesList(ActionEvent actionEvent) {
+    }
+
+    public void goToArticles(ActionEvent actionEvent) {
+    }
+
+    public void goToFormation(ActionEvent actionEvent) {
     }
 }
