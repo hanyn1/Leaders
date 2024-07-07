@@ -2,32 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeEv">
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"         fx:controller="Controllers.VisirorEvent">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -57,9 +40,9 @@
                                     <font>
                                         <Font name="System Bold" size="28.0" />
                                     </font></Label>
-                                <AnchorPane layoutX="15.0" layoutY="100.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
+                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
                                         <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/dashboard.png" />
@@ -67,16 +50,7 @@
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
-                                    <children>
-                                        <Button fx:id="users_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToUsers" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Users" />
-                                        <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" x="2.0">
-                                            <image>
-                                                <Image url="@images/User1.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </AnchorPane>
+
                                 <AnchorPane layoutX="15.0" layoutY="210.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
                                         <Button fx:id="avaialbeFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Online Courses" />
@@ -127,16 +101,7 @@
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane layoutX="15.0" layoutY="485.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
-                                    <children>
-                                        <Button fx:id="order_btn" layoutX="40.0" layoutY="8.0" mnemonicParsing="false" onAction="#goToRole" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Role" />
-                                        <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" x="2.0">
-                                            <image>
-                                                <Image url="@images/profile.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </AnchorPane>
+
 
                             </children>
                         </AnchorPane>
@@ -146,58 +111,19 @@
             <center>
                 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
                     <content>
-                        <AnchorPane prefHeight="481.0" prefWidth="655.0" stylesheets="@CSS/St.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
-                            <children>
-                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="34.0" prefHeight="44.0" prefWidth="555.0" styleClass="label-style" text="Bienvenue Dans Notre Espace Evenement" textFill="#b5a70b" textOverrun="LEADING_ELLIPSIS" wrapText="true">
-                                    <font>
-                                        <Font name="System Bold Italic" size="18.0" />
-                                    </font>
-                                </Label>
-                                <Button fx:id="AjouterBoutton" layoutX="444.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleAjouterEvenement" styleClass="button-style" text="Ajouter Evenement" />
-                                <Button fx:id="AfficherEv" layoutX="439.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAfficherEvenements" styleClass="button-style" text="Afficher Evenements" />
-                                <Button fx:id="MiseAjourEv" layoutX="40.0" layoutY="394.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="179.0" styleClass="button-style" text="Mise A Jour Evenement" />
-                                <Button fx:id="SupprimerEv" layoutX="40.0" layoutY="315.0" mnemonicParsing="false" styleClass="button-style" text="Supprimer Evenement" />
-                                <Button fx:id="aller" layoutX="248.0" layoutY="359.0" mnemonicParsing="false" onAction="#aller" prefHeight="11.0" prefWidth="160.0" styleClass="button-style" text="Aller A Ressources" />
-                                <ImageView fx:id="image" cache="true" cacheHint="QUALITY" fitHeight="177.0" fitWidth="319.0" layoutX="189.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/EquipeEvolearn.jpg" />
-                                    </image>
-                                    <effect>
-                                        <Glow>
-                                            <input>
-                                                <DropShadow />
-                                            </input>
-                                        </Glow>
-                                    </effect>
-                                </ImageView>
-                            </children>
+                        <AnchorPane xmlns="http://javafx.com/javafx"
+                                    xmlns:fx="http://javafx.com/fxml"
+
+                                    prefHeight="400.0" prefWidth="600.0">
+
                         </AnchorPane>
 
                     </content>
                 </ScrollPane>
             </center>
-            <VBox layoutX="7.0" layoutY="115.0" prefHeight="300.0" prefWidth="268.0" styleClass="form_container" stylesheets="@CSS/styles.css" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="115.0" />
-            <Label alignment="CENTER" layoutX="279.0" layoutY="34.0" prefHeight="35.0" prefWidth="168.0" styleClass="title" stylesheets="@CSS/styles.css" text="Utilisateur" />
-            <ButtonBar layoutX="181.0" layoutY="496.0" prefHeight="40.0" prefWidth="339.0" styleClass="form_container" stylesheets="@CSS/styles.css" />
-
         </BorderPane>
     </children>
 </AnchorPane>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
