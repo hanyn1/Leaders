@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeRs">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-style" stylesheets="@CSS/St.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeRs">
    <children>
-      <Button fx:id="AjouterRss" layoutX="91.0" layoutY="84.0" mnemonicParsing="false" text="Ajouter Ressources " />
-      <Button fx:id="MiseAJourRss" layoutX="83.0" layoutY="259.0" mnemonicParsing="false" text="Mise A Jour Ressources " />
-      <Button fx:id="SupprimerRss" layoutX="83.0" layoutY="200.0" mnemonicParsing="false" text="Supprimer Ressources " />
-      <Button fx:id="AfficherRss" layoutX="91.0" layoutY="143.0" mnemonicParsing="false" text="Afficher Ressources " />
-      <Label fx:id="Titre" layoutX="248.0" layoutY="172.0" text="Bienvenue Dans Ressources Evenements " textFill="#cfb71a">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <ImageView fx:id="image" fitHeight="210.0" fitWidth="306.0" layoutX="248.0" layoutY="161.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="150.0">
+         <image>
+            <Image url="@../../../../../../../Downloads/12.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="SW_RESIZE" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Button fx:id="AjouterRss" layoutX="29.0" layoutY="127.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="161.0" styleClass="button-style" text="Ajouter Ressources" />
+      <Button fx:id="AfficherRss" layoutX="28.0" layoutY="192.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="162.0" styleClass="button-style" text="Afficher Ressources" />
+      <Button fx:id="SupprimerRss" layoutX="25.0" layoutY="320.0" mnemonicParsing="false" styleClass="button-style" text="Supprimer Ressources" />
+      <Button fx:id="MiseAJourRss" layoutX="21.0" layoutY="255.0" mnemonicParsing="false" styleClass="button-style" text="Mise A Jour Ressources" />
+      <Label fx:id="Titre" alignment="CENTER" layoutX="100.0" layoutY="36.0" prefHeight="50.0" prefWidth="400.0" styleClass="label-style" text="Bienvenue Dans Ressources Evenements" />
+      <Button layoutX="25.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToEvent" styleClass="nav-btn" stylesheets="@CSS/dashboardDesign.css" text="Return" />
    </children>
 </AnchorPane>

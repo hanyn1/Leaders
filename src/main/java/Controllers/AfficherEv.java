@@ -63,4 +63,11 @@ public class AfficherEv implements Initializable {
 
     public void goToFormation(ActionEvent actionEvent) {
     }
+
+    public void goToClass(ActionEvent actionEvent) {
+    }
+
+    public void logout(ActionEvent actionEvent) {
+
+    }
 }
