@@ -6,18 +6,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FormationController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FormationController"
+            style="-fx-background-color: #f0db4f;">
     <children>
-        <TextField fx:id="titreField" layoutX="100.0" layoutY="30.0" promptText="Titre" text="MAth" />
-        <TextField fx:id="descriptionField" layoutX="100.0" layoutY="70.0" promptText="Description" text="Cours math" />
-        <Button fx:id="textAdd" layoutX="100.0" layoutY="110.0" onAction="#handleAddFormation" text="Add Formation" />
-        <TableView fx:id="formationTable" layoutX="25.0" layoutY="150.0" prefHeight="200.0" prefWidth="550.0">
+        <TextField fx:id="titreField" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="30.0" promptText="Titre" />
+        <TextField fx:id="descriptionField" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" promptText="Description" />
+        <Button fx:id="textAdd" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="110.0" onAction="#handleAddFormation" text="Add Formation" />
+        <TableView fx:id="formationTable" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0" prefHeight="200.0" prefWidth="550.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="titreColumn" prefWidth="200.0" text="Titre" />
                 <TableColumn fx:id="descriptionColumn" prefWidth="275.0" text="Description" />
             </columns>
         </TableView>
-        <Button fx:id="textDelete" layoutX="200.0" layoutY="110.0" onAction="#handleDeleteFormation" text="Delete Selected Formation" />
+        <Button fx:id="textDelete" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="110.0" onAction="#handleDeleteFormation" text="Delete Selected Formation" />
     </children>
 </AnchorPane>

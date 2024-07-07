@@ -1,33 +1,29 @@
 package Models;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class Formation {
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty titre = new SimpleStringProperty();
-    private final StringProperty description = new SimpleStringProperty();
+    private final SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private final SimpleStringProperty titre = new SimpleStringProperty();
+    private final SimpleStringProperty description = new SimpleStringProperty();
 
-    // Default constructor
     public Formation() {
-        this(0, "", "");
+        // Default constructor
     }
 
-    // Parameterized constructor
-    public Formation(int id, String titre, String description) {
-        setId(id);
-        setTitre(titre);
-        setDescription(description);
+    public Formation(String titre, String description) {
+        this.titre.set(titre);
+        this.description.set(description);
     }
 
-    // Getters and setters
+    // Getters and setters for properties
+
     public int getId() {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
+    public SimpleIntegerProperty idProperty() {
         return id;
     }
 
@@ -39,7 +35,7 @@ public class Formation {
         return titre.get();
     }
 
-    public StringProperty titreProperty() {
+    public SimpleStringProperty titreProperty() {
         return titre;
     }
 
@@ -51,7 +47,7 @@ public class Formation {
         return description.get();
     }
 
-    public StringProperty descriptionProperty() {
+    public SimpleStringProperty descriptionProperty() {
         return description;
     }
 

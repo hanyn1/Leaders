@@ -3,6 +3,10 @@
     -fx-text-fill: #4e4406;
     -fx-font-weight: bold;
 }
+.root {
+    -fx-background-color: #f0db4f;
+}
+
 
 .title2{
     -fx-font-size: 1.5em;

@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConfig {
-    static final String url="jdbc:mysql://localhost:3306/evolearn";
+    static final String url="jdbc:mysql://localhost:3307/evolearn";
     static final String user="root";
 
-   static final String pass ="";
+   static final String pass ="root";
   
     private Connection connection;
     static MyConfig instance;
