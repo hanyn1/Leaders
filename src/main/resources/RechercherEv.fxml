@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RechercherEv">
+   <children>
+      <Label fx:id="Titre" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="59.0" prefHeight="28.0" prefWidth="377.0" text="Bienvenue Dans Rechercher Evenements " textFill="#635a07">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="titre1" layoutX="77.0" layoutY="157.0" text="Saisir le ID de L'evenement " textFill="#aea217">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="espacerecher" layoutX="346.0" layoutY="154.0" />
+      <Button fx:id="BRcherche" layoutX="264.0" layoutY="267.0" mnemonicParsing="false" text="Recherche" />
+   </children>
+</AnchorPane>

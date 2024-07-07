@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherMonEv">
+   <children>
+      <TableView fx:id="table" layoutX="168.0" layoutY="158.0" prefHeight="134.0" prefWidth="263.0">
+        <columns>
+          <TableColumn fx:id="TitreEv" prefWidth="136.0" text="Titre Evenement" />
+          <TableColumn fx:id="DescriptionEv" prefWidth="126.4000244140625" text="Description" />
+        </columns>
+      </TableView>
+      <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="83.0" prefHeight="22.0" prefWidth="249.0" text="Mon Evenement Recherché" textFill="#a18f09">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
