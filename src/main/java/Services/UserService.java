@@ -14,7 +14,19 @@ public class UserService implements IUserInterface<User> {
     public UserService(){
         connection = MyConfig.getInstance().getConnection();
     }
+    public boolean utilisateurExists(int userId) throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM utilisateurs WHERE id = ?";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
 
+        if (rs.next()) {
+            int count = rs.getInt("count");
+            return count > 0;
+        }
+
+        return false;
+    }
     @Override
     public void ajouter(User user) throws SQLException {
         String ajouter = "INSERT INTO utilisateurs (nom,email,motDePasse) VALUES('"+user.getNom()+"','"+user.getEmail()+"','"+user.getMotDePasse()+"') ";

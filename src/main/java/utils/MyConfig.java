@@ -5,18 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConfig {
-    static final String url = "jdbc:mysql://localhost:3307/evolearn";
-    static final String user = "root";
-    static final String pass = "root";
+    private static final String URL = "jdbc:mysql://localhost:3307/evolearn";
+    private static final String USER = "root";
+    private static final String PASS = "root";
+    private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
 
     private Connection connection;
-    static MyConfig instance;
+    private static MyConfig instance;
 
     private MyConfig() {
         try {
-            connection = DriverManager.getConnection(url, user, pass);
+            Class.forName(DRIVER_CLASS);
+            this.connection = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("Connection established!");
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -30,5 +32,16 @@ public class MyConfig {
 
     public Connection getConnection() {
         return this.connection;
+    }
+
+    public void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Connection closed.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
