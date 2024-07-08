@@ -28,13 +28,14 @@
       <Label layoutX="580.0" layoutY="60.0" styleClass="title" stylesheets="@CSS/styles.css" text="Sign Up" />
       <TextField fx:id="nameTextField" layoutX="560.0" layoutY="159.0" prefHeight="40.0" prefWidth="200.0" promptText="Name" translateX="10.0" translateY="10.0" translateZ="10.0" />
       <TextField fx:id="emailTextField" layoutX="561.0" layoutY="247.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" translateX="10.0" translateY="10.0" translateZ="10.0" />
-      <Button fx:id="BConfirm" layoutX="927.0" layoutY="523.0" mnemonicParsing="false" onAction="#Confirm" styleClass="form_Button" stylesheets="@CSS/styles.css" text="Confirm" underline="true" />
+      <Button fx:id="BConfirm" layoutX="927.0" layoutY="523.0" mnemonicParsing="false" onAction="#Confirm" styleClass="Button123" stylesheets="@CSS/styles.css" text="Confirm" underline="true" />
       <Label layoutX="504.0" layoutY="181.0" prefHeight="17.0" prefWidth="40.0" text="Name" />
       <Label layoutX="504.0" layoutY="261.0" prefHeight="32.0" prefWidth="61.0" text="Email" />
       <Label layoutX="499.0" layoutY="350.0" prefHeight="32.0" prefWidth="72.0" text="Password" />
-      <Button fx:id="textBack" layoutX="312.0" layoutY="523.0" mnemonicParsing="false" onAction="#back" styleClass="form_Button" stylesheets="@CSS/styles.css" text="Back" underline="true" />
+      <Button fx:id="textBack" layoutX="823.0" layoutY="523.0" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="88.0" styleClass="Button123" stylesheets="@CSS/styles.css" text="Back" underline="true" />
       <PasswordField fx:id="passwordTextField" layoutX="561.0" layoutY="336.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" translateX="10.0" translateY="10.0" translateZ="10.0" />
       <CheckBox fx:id="textShow" layoutX="781.0" layoutY="350.0" mnemonicParsing="false" onAction="#ShowPassword" prefHeight="32.0" prefWidth="115.0" />
       <Label fx:id="labelShow" layoutX="571.0" layoutY="407.0" text="Show Password" />
+      <Button fx:id="textHome" layoutX="240.0" layoutY="523.0" mnemonicParsing="false" onAction="#Home" styleClass="Button123" stylesheets="@CSS/styles.css" text="Home Page" />
    </children>
 </AnchorPane>

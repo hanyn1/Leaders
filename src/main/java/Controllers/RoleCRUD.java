@@ -174,19 +174,12 @@ public class RoleCRUD implements Initializable {
 
     @FXML
     void Inscrire(ActionEvent event) throws IOException {
-        String roleName = roleInput.getText().trim();
-        if (roleName.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Veuillez entrer un nom de rôle.");
-            alert.show();
-            return;
-        } else {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     public void close(ActionEvent actionEvent) {
