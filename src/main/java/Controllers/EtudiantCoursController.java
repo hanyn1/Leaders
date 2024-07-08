@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Cours;
+import Models.User;
 import Services.CertificateGenerator;
 import Services.EmailService;
 import javafx.fxml.FXML;
@@ -51,7 +52,8 @@ public class EtudiantCoursController {
     private TextField emailTextField;
 
     private Cours currentCourse;
-
+    private User user;
+    private String userName = "Molk Saouabi";
     public void initialize() {
         // Default initialization, if needed
     }
@@ -116,7 +118,7 @@ public class EtudiantCoursController {
 
         // Generate the certificate
         CertificateGenerator generator = new CertificateGenerator();
-        String certificatePath = generator.generateCertificate("Molk Saouabi", currentCourse.getTitre(), LocalDate.now());
+        String certificatePath = generator.generateCertificate(userName, currentCourse.getTitre(), LocalDate.now());
 
         // Send the certificate via email
         EmailService emailService = new EmailService();

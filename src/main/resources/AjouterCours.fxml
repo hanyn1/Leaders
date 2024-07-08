@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,9 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.CheckBox?>
 
-<?import javafx.scene.control.DatePicker?>
 <AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="1100.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCours">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -41,15 +37,15 @@
                                 <Label fx:id="username" layoutX="68.0" layoutY="64.0" prefHeight="27.0" prefWidth="90.0" text="Instructor">
                                     <font>
                                         <Font size="18.0" />
-                                    </font>
-                                </Label>
+                                    </font></Label>
                                 <Label layoutX="39.0" layoutY="14.0" prefHeight="40.0" prefWidth="135.0" text="Welcome" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="28.0" />
-                                    </font></Label>
+                                    </font>
+                                </Label>
                                 <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashboard" />
+                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
                                         <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/dashboard.png" />
@@ -57,6 +53,7 @@
                                         </ImageView>
                                     </children>
                                 </AnchorPane>
+
                                 <AnchorPane layoutX="15.0" layoutY="210.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
                                         <Button fx:id="avaialbeFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Online Courses" />
@@ -66,8 +63,17 @@
                                             </image>
                                         </ImageView>
                                     </children>
-                                </AnchorPane>
-                                <AnchorPane layoutX="15.0" layoutY="265.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                </AnchorPane> <AnchorPane layoutX="15.0" layoutY="265.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="cousListFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToAjouterCours" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="List Courses" />
+                                    <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/online-learning.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                                <AnchorPane layoutX="15.0" layoutY="320.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
                                         <Button fx:id="artiles_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToArticles" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Blog" />
                                         <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
@@ -78,6 +84,7 @@
                                     </children>
                                 </AnchorPane>
 
+
                             </children>
                         </AnchorPane>
                     </children>
@@ -87,7 +94,7 @@
                 <!-- Center content, including AjouterCours form -->
                 <AnchorPane fx:id="ajouterCoursPane" prefHeight="600.0" prefWidth="800.0">
                     <children>
-                        <VBox layoutX="28.0" layoutY="34.0" prefWidth="300.0" spacing="10.0" styleClass="form-container">
+                        <VBox layoutX="75.0" layoutY="98.0" prefHeight="359.0" prefWidth="732.0" spacing="10.0" styleClass="form-container">
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Add your cours!">
                                     <font>
@@ -98,23 +105,23 @@
                             <Separator orientation="HORIZONTAL" />
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Title" />
-                                <TextField fx:id="titreF" styleClass="form-field" />
+                                <TextField fx:id="titreF" prefHeight="29.0" prefWidth="589.0" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Description" />
-                                <TextField fx:id="descTF" styleClass="form-field" />
+                                <TextField fx:id="descTF" prefHeight="29.0" prefWidth="543.0" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Image" />
-                                <TextField fx:id="imgTF" styleClass="form-field" />
+                                <TextField fx:id="imgTF" prefHeight="29.0" prefWidth="579.0" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Video" />
-                                <TextField fx:id="vidTF" styleClass="form-field" />
+                                <TextField fx:id="vidTF" prefHeight="29.0" prefWidth="582.0" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Label styleClass="form-label" text="Price" />
-                                <TextField fx:id="priceTF" styleClass="form-field" />
+                                <TextField fx:id="priceTF" prefHeight="29.0" prefWidth="590.0" styleClass="form-field" />
                             </HBox>
                             <HBox spacing="10.0">
                                 <Button fx:id="addBTN" mnemonicParsing="false" onAction="#addCours" styleClass="form-button" text="Add" />
@@ -122,18 +129,14 @@
                                 <Button fx:id="vidBTN" mnemonicParsing="false" onAction="#uploadVideo" styleClass="form-button" text="+ Video" />
                             </HBox>
                             <Separator orientation="HORIZONTAL" />
-                            <HBox centerShape="true" spacing="10.0">
-                                <Button fx:id="deleteBTN" mnemonicParsing="false" onAction="#deleteCours" styleClass="form-button" text="Delete" />
-                                <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#updateCours" styleClass="form-button" text="Update" />
-                            </HBox>
+                            <HBox centerShape="true" spacing="10.0" />
                         </VBox>
-                        <TableView fx:id="tableView" layoutX="397.0" layoutY="50.0" prefHeight="492.0" prefWidth="467.0">
-                            <columns>
-                                <TableColumn fx:id="colTitre" prefWidth="180.0" text="Titre" />
-                                <TableColumn fx:id="coldesc" prefWidth="115.99993896484375" text="Description" />
-                                <TableColumn fx:id="colVideo" prefWidth="170.40001220703124" text="Video link" />
-                            </columns>
-                        </TableView>
+                  <Button layoutX="402.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToManageCourses" styleClass="form-button" text="Manage Courses" />
+                  <Label layoutX="400.0" layoutY="46.0" text="Add Cours">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </center>

@@ -2,8 +2,10 @@ package Controllers;
 
 import Models.Cours;
 import Models.Inscription;
+import Models.User;
 import Services.ServiceCours;
 import Services.ServiceInscription;
+import Services.UserService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -44,9 +46,11 @@ public class EtudiantCoursListController {
 
     private ServiceCours serviceCours;
     private ServiceInscription serviceInscription;
+    private UserService userService;
     private int userId;
     @FXML
     private Spinner<Cours> spinner;
+    private User loggedInUser;
 
     public EtudiantCoursListController() {
         this.serviceCours = new ServiceCours();
