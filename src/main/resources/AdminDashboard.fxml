@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminDashboardController">
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminDashboardController">
     <children>
         <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -129,10 +129,26 @@
             <center>
                 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
                <content>
-                          <VBox prefHeight="342.0" prefWidth="179.0" styleClass="nav-pane" />
-               </content></ScrollPane>
+                          <VBox prefHeight="342.0" prefWidth="179.0" styleClass="nav-pane">
+                     <children>
+                        <AnchorPane prefHeight="554.0" prefWidth="890.0">
+                           <children>
+                              <ImageView fitHeight="375.0" fitWidth="492.0" layoutX="243.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Work%20time.gif" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="277.0" layoutY="50.0" text="Admin Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children></VBox>
+               </content>
+                </ScrollPane>
             </center>
         </BorderPane>
     </children>
 </AnchorPane>
-
