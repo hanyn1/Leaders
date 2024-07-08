@@ -34,8 +34,7 @@ public class WelcomeEv {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void switchForm(ActionEvent actionEvent) {
-    }
+
 
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
@@ -64,7 +63,7 @@ public class WelcomeEv {
 
 
     public void goToArticles(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AfficherArticle.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -149,7 +148,21 @@ public class WelcomeEv {
     } catch (IOException e) {
             e.printStackTrace();}}
 
-    public void goToRole(ActionEvent actionEvent) {
+    private void switchScene(ActionEvent event, String fxmlPath) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public void goToRole(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RoleCRUD.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

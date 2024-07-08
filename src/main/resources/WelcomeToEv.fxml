@@ -59,7 +59,7 @@
                                     </font></Label>
                                 <AnchorPane layoutX="15.0" layoutY="100.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
                                     <children>
-                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
+                                        <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
                                         <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
                                             <image>
                                                 <Image url="@images/dashboard.png" />
