@@ -42,15 +42,6 @@ public class AjouterCours {
     private Button addBTN;
 
     @FXML
-    private TableColumn<Cours, String> colTitre;
-
-    @FXML
-    private TableColumn<Cours, String> coldesc;
-
-    @FXML
-    private TableColumn<Cours, String> colVideo;
-
-    @FXML
     private TextField descTF;
 
     @FXML
@@ -66,15 +57,11 @@ public class AjouterCours {
     private TextField priceTF;
 
     @FXML
-    private TableView<Cours> tableView;
-
-    @FXML
     private Button imgBTN;
 
     @FXML
     private Button vidBTN;
 
-    private ObservableList<Cours> observableList;
     private ServiceCours sc;
     private Cloudinary cloudinary;
 
@@ -113,9 +100,6 @@ public class AjouterCours {
         uploadedImageUrl = null;
         uploadedVideoUrl = null;
 
-        // Update the ObservableList and refresh the TableView
-        observableList.add(cours);
-        tableView.refresh();
     }
 
     @FXML
@@ -158,19 +142,10 @@ public class AjouterCours {
     void initialize() {
         sc = new ServiceCours();
         cloudinary = CloudinaryConfig.getCloudinary();
-        colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colVideo.setCellValueFactory(new PropertyValueFactory<>("video"));
 
-        // Initialize the ObservableList and load data into it
-        updateTableView();
     }
 
-    private void updateTableView() {
-        List<Cours> cs = sc.getAll();
-        observableList = FXCollections.observableList(cs);
-        tableView.setItems(observableList);
-    }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -201,66 +176,21 @@ public class AjouterCours {
     public void switchForm(ActionEvent actionEvent) {
     }
 
-    public void goToCoursesList(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
-        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    } @FXML
+    public void goToAjouterCours(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AjouterCours.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
-    @FXML
-    public void deleteCours() {
-        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
-        if (selectedCours != null) {
-            // Create a confirmation dialog
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Delete Course");
-            alert.setContentText("Are you sure you want to delete the selected course?");
-
-            // Show the confirmation dialog and wait for user response
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    // User clicked OK, proceed with deletion
-                    tableView.getItems().remove(selectedCours);
-                    try {
-                        ServiceCours serviceCours = new ServiceCours();
-                        serviceCours.delete(selectedCours.getId());
-                        System.out.println("Course deleted from database successfully!");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // User clicked Cancel or closed the dialog, do nothing
-                    System.out.println("Deletion canceled.");
-                }
-            });
-        } else {
-            // No course selected, handle accordingly
-            System.out.println("No course selected.");
-        }
-    }
-
-    @FXML
-    public void updateCours() {
-        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
-        if (selectedCours != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCours.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(loader.load()));
-                stage.initModality(Modality.APPLICATION_MODAL);
-                EditCoursController controller = loader.getController();
-                controller.setCours(selectedCours);
-                stage.showAndWait();
-                tableView.refresh();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void goToDashboard(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/InstructorDashboard.fxml")));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -276,5 +206,12 @@ public class AjouterCours {
         stage.show();
 
 
+    }
+    public void goToManageCourses(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageCours.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -103,18 +103,6 @@ public class CoursListController {
         }
     }
 
-    @FXML
-    private void handleAddCourse() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) coursesVBox.getScene().getWindow();
-            stage.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void close(ActionEvent actionEvent) {
         System.exit(0);
     }
@@ -127,10 +115,19 @@ public class CoursListController {
     public void switchForm(ActionEvent actionEvent) {
     }
 
-    public void goToCoursesList(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    public void goToManageCours(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageCours.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

@@ -1,33 +1,31 @@
 package Controllers;
 
-
-import Models.Cours;
-import Services.ServiceCours;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Objects;
+import Models.Cours;
+import Services.ServiceCours;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
-
-public class InstructorDashboardController implements Initializable {
-
+public class ManageCours {
     @FXML
     private Label contentLabel;
     @FXML
@@ -38,45 +36,37 @@ public class InstructorDashboardController implements Initializable {
     @FXML
     private VBox recentCoursesVBox;
 
-   /* private void populateRecentCourses() {
-        ServiceCours sc = new ServiceCours();
-        List<Cours> courses = sc.getAll();
-        if (courses != null) {
-            for (Cours course : courses) {
-                AnchorPane coursePane = createCoursePane(course);
-                recentCoursesVBox.getChildren().add(coursePane);
-            }
-        }
-    }*/
+    @FXML
+    private ResourceBundle resources;
 
-    // Create an AnchorPane representing a course entry
-    /*private AnchorPane createCoursePane(Cours course) {
-        AnchorPane pane = new AnchorPane();
-        pane.setPrefSize(300, 60);
+    @FXML
+    private URL location;
 
-        Label titleLabel = new Label(course.getTitre());
-        titleLabel.setLayoutX(10);
-        titleLabel.setLayoutY(10);
+    @FXML
+    private TableView<Cours> tableView;
 
-        Button viewButton = new Button("View Details");
-        viewButton.setLayoutX(210);
-        viewButton.setLayoutY(10);
-        viewButton.setOnAction(event -> viewCourseDetails(course));
+    @FXML
+    private TableColumn<Cours, String> colTitre;
 
-        pane.getChildren().addAll(titleLabel, viewButton);
-        return pane;
-    }*/
+    @FXML
+    private TableColumn<Cours, String> coldesc;
 
- /*   private void viewCourseDetails(Cours course) {
-        // Example: Display details in an alert dialog
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Course Details");
-        alert.setHeaderText(course.getTitre());
-        alert.setContentText("Description: " + course.getDescription() + "\n" +
-                "Video Link: " + course.getVideo());
+    @FXML
+    private TableColumn<Cours, String> colVideo;
 
-        alert.showAndWait();
-    }*/
+    private ObservableList<Cours> observableList;
+    private ServiceCours sc;
+
+   @FXML
+   void initialize() {
+       sc = new ServiceCours();
+       colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+       coldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
+       colVideo.setCellValueFactory(new PropertyValueFactory<>("video"));
+
+       // Initialize the ObservableList and load data into it
+       updateTableView();
+   }
     @FXML
     public void goToHome(ActionEvent actionEvent) {
         contentLabel.setText("Home Content Goes Here");
@@ -149,28 +139,74 @@ public class InstructorDashboardController implements Initializable {
         stage.show();
     }
 
-    public void goToQuizz(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/QUIZZview.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+
+    @FXML
+    private void updateTableView() {
+        List<Cours> cs = sc.getAll();
+        observableList = FXCollections.observableList(cs);
+        tableView.setItems(observableList);
     }
 
-
-    public void handleAddCourse(ActionEvent actionEvent) {
+    @FXML
+    private void handleAddCourse(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
             Parent root = loader.load();
+            stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void updateCours() {
+        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCours != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCours.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                EditCoursController controller = loader.getController();
+                controller.setCours(selectedCours);
+                stage.showAndWait();
+                tableView.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    public void deleteCours() {
+        Cours selectedCours = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCours != null) {
+            // Create a confirmation dialog
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Delete Course");
+            alert.setContentText("Are you sure you want to delete the selected course?");
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-      //  populateRecentCourses();
-
+            // Show the confirmation dialog and wait for user response
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // User clicked OK, proceed with deletion
+                    tableView.getItems().remove(selectedCours);
+                    try {
+                        ServiceCours serviceCours = new ServiceCours();
+                        serviceCours.delete(selectedCours.getId());
+                        System.out.println("Course deleted from database successfully!");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // User clicked Cancel or closed the dialog, do nothing
+                    System.out.println("Deletion canceled.");
+                }
+            });
+        } else {
+            // No course selected, handle accordingly
+            System.out.println("No course selected.");
+        }
     }
 }
