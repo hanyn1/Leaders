@@ -36,6 +36,9 @@ public class SignUp {
     private Button BConfirm;
 
     @FXML
+    private Button textHome;
+
+    @FXML
     private Button textBack;
 
 
@@ -134,6 +137,16 @@ public class SignUp {
 
     @FXML
     void initialize() {
+    }
+
+    @FXML
+    void Home(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorPage.fxml")));
+        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 

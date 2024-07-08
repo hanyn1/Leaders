@@ -57,5 +57,6 @@
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Button layoutX="243.0" layoutY="524.0" mnemonicParsing="false" onAction="#Home" styleClass="Button123" stylesheets="@CSS/styles.css" text="Home Page" />
    </children>
 </AnchorPane>

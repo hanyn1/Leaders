@@ -18,7 +18,7 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormationController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/VisitorPage.fxml"));
 
 
         try {
