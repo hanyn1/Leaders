@@ -152,9 +152,6 @@ public class QuizzCRUD implements Initializable {
         stage.setIconified(true);
     }
 
-    public void switchForm(ActionEvent actionEvent) {
-    }
-
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));

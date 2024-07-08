@@ -18,8 +18,6 @@ public class AdminDashboardController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void switchForm(ActionEvent actionEvent) {
-    }
 
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
