@@ -118,6 +118,7 @@ public class AjouterCoursAdminController {
 
     }
 
+
     public void goToFormation(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
