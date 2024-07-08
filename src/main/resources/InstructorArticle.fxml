@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.InstructorArticle"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+<children>
+    <VBox alignment="CENTER" spacing="20" prefWidth="600" prefHeight="400">
+        <children>
+            <HBox alignment="CENTER" spacing="10">
+                <children>
+                    <Button text="Minimize" onAction="#minimize"/>
+                    <Button text="Close" onAction="#close"/>
+                </children>
+            </HBox>
+            <VBox fx:id="ArticlesVBox" alignment="TOP_LEFT" spacing="10" fillWidth="true" prefWidth="600">
+                <!-- Articles will be dynamically added here -->
+            </VBox>
+            <Button text="Retour à l'Accueil" onAction="#goToHome"/>
+        </children>
+    </VBox>
+</children>
+</AnchorPane>

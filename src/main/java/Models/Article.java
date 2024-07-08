@@ -1,41 +1,75 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package Models;
 
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.util.List;
 
 public class Article {
     private int id;
     private String titre;
     private String description;
     private String contenu;
-    private Timestamp dateCreation;
+    private List<Integer> ratings; // Liste pour stocker les évaluations
 
+    private Timestamp datePublication;
+    private double averageRating;
+    private int ratingsCount;//Nombre d'évaluations
+    public Article() {
+        this.averageRating = 0.0; // Initialiser la note moyenne à 0
+        this.ratingsCount = 0; // Initialiser le nombre d'évaluations à 0
 
-    public Article(int id, String titre, String description, String contenu, Timestamp dateCreation) {
+    }
+
+    public Article(String titre, String description, String contenu, Timestamp datePublication) {
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.datePublication = datePublication;
+        this.averageRating = 0.0; // Initialiser la note moyenne à 0
+        this.ratingsCount = 0; // Initialiser le nombre d'évaluations à 0
+    }
+
+    public Article(int id, String titre, String description, String contenu, Timestamp datePublication) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
-        this.dateCreation = dateCreation;
-    }
-
-    public Article(String titre, String description, String contenu, Timestamp dateCreation) {
-        this.titre = titre;
-        this.description = description;
-        this.contenu = contenu;
-        this.dateCreation = dateCreation;
-    }
-
-    public Article() {
+        this.datePublication = datePublication;
+        this.averageRating = 0.0; // Initialiser la note moyenne à 0
+        this.ratingsCount = 0; // Initialiser le nombre d'évaluations à 0
 
     }
 
-    public Article(String text, String text1, String text2, LocalDate localDate) {
+
+    // Méthode pour ajouter une nouvelle note à l'article
+    public void addRating(int rating) {
+        // Calcul de la nouvelle note moyenne en tenant compte de la moyenne actuelle et de la nouvelle évaluation
+        double totalRating = this.averageRating * this.ratingsCount;
+        totalRating += rating;
+        this.ratingsCount++;
+        this.averageRating = totalRating / this.ratingsCount;
     }
 
-    // Getters and setters
-    public int getId() {
-        return id;
+    // Méthode pour obtenir le nombre de notations reçues
+    public int ratingsCount() {
+        // Pour simplifier, on peut imaginer que chaque note correspond à un rating.
+        return (int) Math.round(this.averageRating);
+    }
+
+    public int getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public void setRatingsCount(int ratingsCount) {
+        this.ratingsCount = ratingsCount;
+    }
+    public long getId() {
+        return this.id;
     }
 
     public void setId(int id) {
@@ -43,7 +77,7 @@ public class Article {
     }
 
     public String getTitre() {
-        return titre;
+        return this.titre;
     }
 
     public void setTitre(String titre) {
@@ -51,7 +85,7 @@ public class Article {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -59,20 +93,40 @@ public class Article {
     }
 
     public String getContenu() {
-        return contenu;
+        return this.contenu;
     }
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
     }
 
-    public Timestamp getDateCreation() {
-        return dateCreation;
+    public Timestamp getDatePublication() {
+        return this.datePublication;
+    }
+
+    public void setDatePublication(Timestamp datePublication) {
+        this.datePublication = datePublication;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
     }
 
     public void setDateCreation(Timestamp dateCreation) {
-        this.dateCreation = dateCreation;
     }
 
-
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", content='" + contenu + '\'' +
+                ", averageRating=" + averageRating +
+                '}';
+    }
 }
