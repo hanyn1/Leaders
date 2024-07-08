@@ -124,7 +124,7 @@ public class InstructorDashboardController implements Initializable {
 
 
     public void goToArticles(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/E")));
         stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

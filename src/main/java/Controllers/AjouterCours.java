@@ -78,11 +78,20 @@ public class AjouterCours {
     void addCours(ActionEvent event) throws SQLException {
         String titre = titreF.getText().trim();
         String description = descTF.getText().trim();
-        float price = Float.parseFloat(priceTF.getText().trim());
+        String priceText = priceTF.getText().trim(); // Get the text from priceTF and trim it
 
         // Validate input fields
-        if (titre.isEmpty() || description.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
-            showAlert("Validation Error", "All fields must be filled out and files must be uploaded.");
+        if (titre.isEmpty() || description.isEmpty() || priceText.isEmpty() || uploadedVideoUrl == null || uploadedImageUrl == null) {
+            showAlertError("Validation Error", "All fields must be filled out and files must be uploaded.");
+            return;
+        }
+
+        // Parse the price text to a float
+        float price;
+        try {
+            price = Float.parseFloat(priceText);
+        } catch (NumberFormatException e) {
+            showAlertError("Validation Error", "Price must be a valid number.");
             return;
         }
 
@@ -99,8 +108,17 @@ public class AjouterCours {
         // Clear the uploaded URLs
         uploadedImageUrl = null;
         uploadedVideoUrl = null;
-
+        showAlert("Success", "Course added successfully.");
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     @FXML
     void uploadImage(ActionEvent event) {
@@ -114,7 +132,7 @@ public class AjouterCours {
                 uploadedImageUrl = (String) uploadResult.get("secure_url");
                 imgTF.setText(uploadedImageUrl);
             } catch (IOException e) {
-                showAlert("Upload Error", "Failed to upload image.");
+                showAlertError("Upload Error", "Failed to upload image.");
                 e.printStackTrace();
             }
         }
@@ -132,7 +150,7 @@ public class AjouterCours {
                 uploadedVideoUrl = (String) uploadResult.get("secure_url");
                 vidTF.setText(uploadedVideoUrl);
             } catch (IOException e) {
-                showAlert("Upload Error", "Failed to upload video.");
+                showAlertError("Upload Error", "Failed to upload video.");
                 e.printStackTrace();
             }
         }
@@ -147,7 +165,7 @@ public class AjouterCours {
 
 
 
-    private void showAlert(String title, String message) {
+    private void showAlertError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
