@@ -1,0 +1,58 @@
+/* Couleur de fond de l'AnchorPane principal */
+#main_form {
+    -fx-background-color: white;
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #f0db4f; /* Jaune */
+    -fx-text-fill: #4e4406; /* Marron foncé */
+    -fx-font-weight: bold;
+    -fx-border-color: #4e4406; /* Marron foncé */
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+}
+
+/* Style des labels */
+.label {
+    -fx-text-fill: #f0db4f; /* Jaune */
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+/* Style des TextFields */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #4e4406; /* Marron foncé */
+    -fx-border-width: 2px;
+    -fx-text-fill: black;
+    -fx-background-radius: 5px;
+}
+
+/* Style de la TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #4e4406; /* Marron foncé */
+    -fx-border-width: 2px;
+}
+
+/* Style des en-têtes de colonnes */
+.table-column-header {
+    -fx-background-color: #f0db4f; /* Jaune */
+    -fx-text-fill: #4e4406; /* Marron foncé */
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-alignment: CENTER;
+}
+
+/* Style des cellules */
+.table-cell {
+    -fx-text-fill: #4e4406; /* Marron foncé */
+}
+
+/* Style des messages de table */
+.table-placeholder {
+    -fx-text-fill: #f0db4f; /* Jaune */
+    -fx-font-weight: bold;
+}
+

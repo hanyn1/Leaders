@@ -31,8 +31,8 @@ public class Evenement {
     }
 
     // Getters et setters
-    public long getId() {
-        return id.get();
+    public int getId() {
+        return (int) id.get();
     }
 
     public void setId(long id) {

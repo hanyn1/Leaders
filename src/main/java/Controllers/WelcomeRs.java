@@ -38,4 +38,67 @@ public class WelcomeRs {
                 stage.setScene(scene);
                 stage.show();
         }
+        @FXML
+        private void handleAddResourceButtonAction(ActionEvent event) {
+                try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddRs.fxml"));
+                        Parent addRsParent = loader.load();
+                        Scene addRsScene = new Scene(addRsParent);
+
+                        Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                        window.setScene(addRsScene);
+                        window.show();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                        // Handle any IO exceptions gracefully
+                }
+        }
+
+        @FXML
+        private void handleReadRs(ActionEvent event) {
+                try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReadRs.fxml"));
+                        Parent addRsParent = loader.load();
+                        Scene addRsScene = new Scene(addRsParent);
+
+                        Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                        window.setScene(addRsScene);
+                        window.show();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                        // Handle any IO exceptions gracefully
+                }
+        }
+        @FXML
+        private void handleUpdate(ActionEvent event) {
+                try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateRss.fxml"));
+                        Parent addRsParent = loader.load();
+                        Scene addRsScene = new Scene(addRsParent);
+
+                        Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                        window.setScene(addRsScene);
+                        window.show();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                        // Handle any IO exceptions gracefully
+                }
+        }
+
+
+        @FXML
+        private void handleDelete(ActionEvent event) {
+                try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DeleteRs.fxml"));
+                        Parent addRsParent = loader.load();
+                        Scene addRsScene = new Scene(addRsParent);
+
+                        Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                        window.setScene(addRsScene);
+                        window.show();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                        // Handle any IO exceptions gracefully
+                }
+        }
 }

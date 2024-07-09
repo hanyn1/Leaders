@@ -1,0 +1,39 @@
+/* Style pour l'arrière-plan de l'AnchorPane */
+.anchor-pane-style {
+    -fx-background-color: white; /* Couleur de fond de l'AnchorPane (blanc) */
+}
+
+/* Style pour le Label */
+#Text {
+    -fx-font-size: 24px; /* Taille de la police */
+    -fx-font-weight: bold; /* Police en gras */
+    -fx-text-fill: #4e4406; /* Couleur du texte (brun foncé) */
+    -fx-background-color: #f0db4f; /* Couleur de fond du Label (jaune) */
+    -fx-padding: 10px; /* Espacement interne */
+    -fx-background-radius: 5px; /* Rayon des coins */
+    -fx-border-color: #4e4406; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+}
+
+/* Style pour le Button */
+#buttonAfficher {
+    -fx-background-color: #f0db4f; /* Couleur de fond du bouton (jaune) */
+    -fx-text-fill: #4e4406; /* Couleur du texte du bouton (brun foncé) */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-pref-width: 300px; /* Largeur préférée du bouton */
+    -fx-pref-height: 40px; /* Hauteur préférée du bouton */
+    -fx-font-weight: bold; /* Police en gras */
+    -fx-background-radius: 5px; /* Rayon des coins du bouton */
+    -fx-border-radius: 5px; /* Rayon des coins du bouton */
+    -fx-padding: 10px; /* Espacement interne */
+    -fx-border-color: #4e4406; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+}
+
+/* Style pour le Hover du Button */
+#buttonAfficher:hover {
+    -fx-background-color: #4e4406; /* Couleur de fond du bouton au survol (brun foncé) */
+    -fx-text-fill: #f0db4f; /* Couleur du texte du bouton au survol (jaune) */
+}
+
+
