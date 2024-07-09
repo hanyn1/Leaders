@@ -1,31 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.InstructorArticle"
-            prefHeight="400.0" prefWidth="600.0">
-
-
+<AnchorPane fx:id="main_form" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/dashboardDesign.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"    fx:controller="Controllers.InstructorArticle">
 <children>
-    <VBox alignment="CENTER" spacing="20" prefWidth="600" prefHeight="400">
-        <children>
-            <HBox alignment="CENTER" spacing="10">
+    <BorderPane layoutX="87.0" layoutY="100.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <top>
+            <AnchorPane prefHeight="98.0" prefWidth="1087.0" styleClass="semi-top">
                 <children>
-                    <Button text="Minimize" onAction="#minimize"/>
-                    <Button text="Close" onAction="#close"/>
+                    <Button fx:id="close" layoutX="1030.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="56.0" styleClass="close" />
+                    <Label layoutX="100.0" layoutY="19.0" text="Evolearn - eLearning Platform" />
+                    <ImageView fitHeight="28.0" fitWidth="98.0" layoutX="8.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@images/logo-trans.png" />
+                        </image>
+                    </ImageView>
+                    <Button fx:id="minimize" layoutX="911.0" layoutY="5.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="42.0" styleClass="minimize" />
                 </children>
-            </HBox>
-            <VBox fx:id="ArticlesVBox" alignment="TOP_LEFT" spacing="10" fillWidth="true" prefWidth="600">
-                <!-- Articles will be dynamically added here -->
+            </AnchorPane>
+        </top>
+        <left>
+            <VBox prefHeight="600.0" prefWidth="213.0" style="-fx-background-color: #f0bd4f;">
+                <children>
+                    <AnchorPane prefHeight="555.0" prefWidth="255.0" styleClass="form_container1" stylesheets="@CSS/styles.css" VBox.vgrow="ALWAYS">
+                        <children>
+                            <Label fx:id="username" layoutX="68.0" layoutY="64.0" prefHeight="27.0" prefWidth="90.0" text="Student">
+                                <font>
+                                    <Font size="18.0" />
+                                </font></Label>
+                            <Label layoutX="39.0" layoutY="14.0" prefHeight="40.0" prefWidth="135.0" text="Welcome" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="28.0" />
+                                </font></Label>
+                            <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="dashboard_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToDashboard" prefHeight="29.0" prefWidth="86.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Dashbord" />
+                                    <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/dashboard.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+
+                            <AnchorPane layoutX="15.0" layoutY="210.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="avaialbeFD_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToCoursesList" prefHeight="32.0" prefWidth="118.0" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Online Courses" />
+                                    <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/online-learning.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="265.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="artiles_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToArticles" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Blog" />
+                                    <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/newspaper.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="320.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="quizz_btn" layoutX="40.0" layoutY="5.0" mnemonicParsing="false" onAction="#goToQuizz" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Quizz" />
+                                    <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/quiz.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="375.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="formation_btn" layoutX="40.0" layoutY="8.0" mnemonicParsing="false" onAction="#goToFormation" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Physical Courses" />
+                                    <ImageView fitHeight="33.0" fitWidth="30.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/physics.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="15.0" layoutY="430.0" prefHeight="45.0" prefWidth="170.0" styleClass="form" stylesheets="@CSS/styles.css">
+                                <children>
+                                    <Button fx:id="event_btn" layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#goToEvents" styleClass="ButtonDash" stylesheets="@CSS/styles.css" text="Events" />
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" x="2.0">
+                                        <image>
+                                            <Image url="@images/event.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </AnchorPane>
+
+
+                        </children>
+                    </AnchorPane>
+                </children>
             </VBox>
-            <Button text="Retour à l'Accueil" onAction="#goToHome"/>
-        </children>
-    </VBox>
+        </left>
+        <center>
+            <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: white;">
+                <content>
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <children>
+                            <VBox fx:id="ArticlesVBox" alignment="TOP_LEFT" spacing="10" fillWidth="true" prefWidth="600">
+                                <!-- Articles will be dynamically added here -->
+                            </VBox>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </ScrollPane>
+        </center>
+    </BorderPane>
 </children>
 </AnchorPane>

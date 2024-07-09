@@ -1,11 +1,11 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Commentaire {
     private int id;
     private String contenu;
-    private Date datepublication;
+    private Timestamp datepublication;
 
 
     // Constructors, getters, and setters
@@ -17,7 +17,7 @@ public class Commentaire {
         this.id = id;
     }
 
-    public Commentaire(int id, String contenu, Date datepublication) {
+    public Commentaire(int id, String contenu, Timestamp datepublication) {
         this.id = id;
         this.contenu = contenu;
         this.datepublication = datepublication;
@@ -39,11 +39,11 @@ public class Commentaire {
         this.contenu = contenu;
     }
 
-    public Date getDatepublication() {
+    public Timestamp getDatepublication() {
         return datepublication;
     }
 
-    public void setDatepublication(Date datepublication) {
+    public void setDatepublication(Timestamp datepublication) {
         this.datepublication = datepublication;
     }
 

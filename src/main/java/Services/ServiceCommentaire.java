@@ -1,6 +1,8 @@
 package Services;
 import Interfaces.CommentaireInterface;
+import Models.Article;
 import Models.Commentaire;
+import Models.User;
 import utils.MyConfig;
 
 import java.sql.*;
@@ -40,7 +42,7 @@ public class ServiceCommentaire implements CommentaireInterface<Commentaire> {
             String req = "SELECT * FROM commentaire ";
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                commentaires.add(new Commentaire(rs.getInt(1), rs.getString(2), rs.getDate(3)));
+                commentaires.add(new Commentaire(rs.getInt(1), rs.getString(2), rs.getTimestamp(3)));
             }
         } catch (SQLException var1) {
             var1.printStackTrace();
@@ -48,7 +50,6 @@ public class ServiceCommentaire implements CommentaireInterface<Commentaire> {
 
         return commentaires;
     }
-
     @Override
     public List<Commentaire> getByIndex() {
         List<Commentaire> commentaires = new ArrayList();
@@ -57,7 +58,7 @@ public class ServiceCommentaire implements CommentaireInterface<Commentaire> {
             String req = "SELECT * FROM commentaire where id=2 ";
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                commentaires.add(new Commentaire(rs.getInt(1), rs.getString(2), rs.getDate(6)));
+                commentaires.add(new Commentaire(rs.getInt(1), rs.getString(2), rs.getTimestamp(6)));
             }
         } catch (SQLException var1) {
             var1.printStackTrace();
@@ -75,5 +76,20 @@ public class ServiceCommentaire implements CommentaireInterface<Commentaire> {
         ps.setDate(3, new Date(commentaire.getDatepublication().getTime()));
         ps.executeUpdate();
     }
+
+
+
+    public void add(Article a,Commentaire c, User u) throws SQLException {
+        //String req= "INSERT INTO '"
+        String req = "INSERT INTO commentaire(contenu, date_creation, article_id, utilisateur_id) VALUES (?,?,?,?)";
+        try (PreparedStatement stmt = connection.prepareStatement(req)) {;
+            stmt.setString(1, c.getContenu());
+            stmt.setTimestamp(2, c.getDatepublication());
+            stmt.setLong(3, a.getId());
+            stmt.setInt(4, u.getId());
+            stmt.executeUpdate();
+        }
+    }
+
 }
 

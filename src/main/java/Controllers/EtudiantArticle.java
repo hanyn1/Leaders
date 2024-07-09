@@ -1,5 +1,5 @@
 package Controllers;
-
+import org.controlsfx.control.Rating;
 import Services.ServiceArticle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import Models.Article;
+
 public class EtudiantArticle {
 
     @FXML
@@ -34,50 +35,94 @@ public class EtudiantArticle {
     private Scene scene;
     private Parent root;
     @FXML
+    private Rating note;
+    @FXML
     public void initialize() {
         serviceArticle = new ServiceArticle();
         displayArticles();
     }
+    private void handleButtonAction(ActionEvent event)
+    {
+        System.out.println("Rating given by user"+note.getRating());
+    }
+
+    public void start(Stage primaryStage) {
+        HBox card = createArticleCard(new Article("Exemple Titre", "Exemple Description","Exemple content", 3));
+
+        Scene scene = new Scene(card, 600, 400);
+        primaryStage.setTitle("Article Card Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     private HBox createArticleCard(Article article) {
         HBox card = new HBox(10);
         card.setStyle("-fx-padding: 10px;" +
                 "-fx-border-style: solid inside;" +
                 "-fx-border-width: 1;" +
                 "-fx-border-insets: 5;" +
-                "-fx-border-radius: 5;" +
-                "-fx-border-color: gray;");
+                "-fx-border-radius: 10;" +
+                "-fx-border-color:#4e4406");
         card.setPrefWidth(400);
 
         VBox detailsVBox = new VBox(5);
         Label titleLabel = new Label("Titre: " + article.getTitre());
         Label descriptionLabel = new Label("Description: " + article.getDescription());
-        Label averageRatingLabel = new Label("Note Moyenne: " + String.format("%.2f", article.getAverageRating()));
-        TextField ratingField = new TextField();
-        ratingField.setPromptText("Entrer une note (1-5)");
-        Button submitRatingButton = new Button("Soumettre la Note");
 
+        // Ajouter le composant Rating
+        Rating rating = new Rating();
+        rating.setMax(5); // Exemple: une échelle de 1 à 5 étoiles
+        rating.setRating(article.getRating()); // Pré-remplir avec la note existante si disponible
+
+        Button submitRatingButton = new Button("Soumettre la Note");
+        submitRatingButton.setStyle("-fx-border-color:#4e4406;-fx-background-color: #4e4406; -fx-text-fill: white");
         submitRatingButton.setOnAction(event -> {
-            try {
-                int rating = Integer.parseInt(ratingField.getText());
-                if (rating >= 1 && rating <= 5) {
-                    serviceArticle.rateArticle(article.getId(), rating); // Insère l'évaluation dans la base de données
-                    article.addRating(rating); // Ajoute la note à l'article
-                    averageRatingLabel.setText("Note Moyenne: " + String.format("%.2f", article.getAverageRating())); // Met à jour l'affichage de la note moyenne
-                } else {
-                    showAlert("Erreur", "La note doit être entre 1 et 5.");
-                }
-            } catch (NumberFormatException e) {
-                showAlert("Erreur", "Entrée de note invalide.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            double newRating = rating.getRating();
+            System.out.println("New Rating: " + newRating);
+            // Logique pour soumettre la note, par exemple :
+            article.setRating(newRating);
+            // Appeler le service pour sauvegarder la note, etc.
         });
 
-        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel, averageRatingLabel, ratingField, submitRatingButton);
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel, rating, submitRatingButton);
         card.getChildren().add(detailsVBox);
 
         return card;
     }
+
+    /*private HBox createArticleCard(Article article) {
+        HBox card = new HBox(10);
+        card.setStyle("-fx-padding: 10px;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 1;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 10;" +
+                "-fx-border-color:#4e4406");
+        card.setPrefWidth(400);
+
+        VBox detailsVBox = new VBox(5);
+        Label titleLabel = new Label("Titre: " + article.getTitre());
+        Label descriptionLabel = new Label("Description: " + article.getDescription());
+
+        // Ajouter le composant Rating
+        Rating rating = new Rating();
+        rating.setMax(5); // Exemple: une échelle de 1 à 5 étoiles
+        rating.setRating(article.getRating()); // Pré-remplir avec la note existante si disponible
+
+        Button submitRatingButton = new Button("Soumettre la Note");
+        submitRatingButton.setStyle("-fx-border-color:#4e4406;-fx-background-color: #4e4406; -fx-text-fill: white");
+        submitRatingButton.setOnAction(event -> {
+            double newRating = rating.getRating();
+            // Logique pour soumettre la note, par exemple :
+            article.setRating(newRating);
+            // Appeler le service pour sauvegarder la note, etc.
+        });
+
+        detailsVBox.getChildren().addAll(titleLabel, descriptionLabel, rating, submitRatingButton);
+        card.getChildren().add(detailsVBox);
+
+        return card;
+    }*/
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
