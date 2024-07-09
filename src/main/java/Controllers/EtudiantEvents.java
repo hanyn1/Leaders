@@ -30,6 +30,7 @@ public class EtudiantEvents {
     public void switchForm(ActionEvent actionEvent) {
     }
 
+
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/EtudiantCoursList.fxml")));
@@ -90,5 +91,18 @@ public class EtudiantEvents {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void switchForml(ActionEvent event) throws IOException {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AfficherEv.fxml"));
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

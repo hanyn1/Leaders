@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Statistique">
+
+    <Label layoutX="208.0" style="-fx-font-size: 18pt; -fx-font-weight: bold;" text="Événements Classés par Titre" />
+
+    <!-- ListView pour afficher les événements -->
+    <ListView fx:id="eventsListView" prefHeight="400" prefWidth="199.0">
+        <!-- Les éléments seront ajoutés dynamiquement depuis le contrôleur -->
+    </ListView>
+
+</AnchorPane>

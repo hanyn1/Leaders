@@ -1,59 +1,133 @@
 package org.example;
 
-import Models.Formation;
-import Services.ServiceFormation;
-import Services.ServiceInscription;
+import Models.Evenement;
+import Models.RessourceEv;
+import Services.EvenementService;
+import Services.RessourceEvService;
+import utils.MyConfig;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
-        // Adding CRUD operations for Formation
-        ServiceFormation serviceFormation = new ServiceFormation();
-        ServiceInscription serviceInscription = new ServiceInscription();
 
-        int courseId = 1;
-        int userId = 2;
-       System.out.println(serviceInscription.getInscriptionByCourseAndUser(courseId, userId));
+    public static void main(String[] args) throws SQLException {
+        MyConfig myConfig = MyConfig.getInstance();
+        System.out.println("Hello and welcome!");
 
-        System.out.println(serviceInscription.getAllInscriptions());
-        // Test adding formations
-       /* Formation formation1 = new Formation(1, "Formation Java", "Description de la formation Java");
-        Formation formation2 = new Formation(2, "Formation Python", "Description de la formation Python");
+        // Partie gestion des événements
+        gestionEvenements();
 
+        // Partie gestion des ressources événementielles
+        gestionRessourcesEv();
+    }
 
-        serviceFormation.addFormation(formation1);
-        serviceFormation.addFormation(formation2);
+    public static void gestionEvenements() throws SQLException {
+        EvenementService evenementService = new EvenementService();
 
-        // Test getting all formations
-        System.out.println("All Formations:");
-        serviceFormation.getAllFormations().forEach(System.out::println);
+        // Ajout de quelques événements
+        Evenement evenement1 = new Evenement(1, "Conférence A", "Description de la conférence A");
+        Evenement evenement2 = new Evenement(2, "Festival B", "Description du festival B");
+        Evenement evenement3 = new Evenement(3, "Exposition C", "Description de l'exposition C");
+        Evenement evenement4 = new Evenement(4, "Festival D", "Description du festival D");
+        Evenement evenement5 = new Evenement(5, "Conférence E", "Description de la conférence E");
+        Evenement evenement6 = new Evenement(6, "Exposition F", "Description de l'exposition F");
 
-        // Test getting a formation by ID
-        int formationId = 1;
-        Optional<Formation> formationById = serviceFormation.getFormationById(formationId);
-        formationById.ifPresentOrElse(
-                formation -> System.out.println("Formation with ID " + formation.getId() + ": " + formation),
-                () -> System.out.println("Formation with ID " + formationId + " not found")
-        );
+        // Ajout des événements
+        evenementService.ajouter(evenement1);
+        evenementService.ajouter(evenement2);
+        evenementService.ajouter(evenement3);
+        evenementService.ajouter(evenement4);
+        evenementService.ajouter(evenement5);
+        evenementService.ajouter(evenement6);
 
-        // Test updating a formation
-        formationById.ifPresent(formation -> {
-            formation.setTitre("Formation Java mise à jour");
-            formation.setDescription("Description mise à jour de la formation Java");
-            serviceFormation.updateFormation(formation.getId(), formation);
-            System.out.println("Updated Formation with ID " + formation.getId() + ": " + formation);
-        });
+        // Modification d'un événement
+        evenement1.setTitre("Conférence A modifiée");
+        evenementService.modifier(evenement1);
 
-        // Test deleting a formation
-        int formationToDeleteId = 2;
-        boolean deleted = serviceFormation.deleteFormation(formationToDeleteId);
-        if (deleted) {
-            System.out.println("Formation with ID " + formationToDeleteId + " deleted successfully.");
-        } else {
-            System.out.println("Formation with ID " + formationToDeleteId + " not found.");
-        }*/
+        // Suppression d'un événement spécifique par ID
+        evenementService.supprimer(evenement2.getId());
+
+        // Récupération de tous les événements
+        List<Evenement> evenements = evenementService.recuperer();
+
+        // Affichage des événements récupérés
+        for (Evenement evenement : evenements) {
+            System.out.println(evenement);
+        }
+
+        // Classification des événements par titre
+        Map<String, List<Evenement>> categorizedEvents = categorizeEventsByTitle(evenements);
+
+        // Affichage des événements classés par titre
+        for (Map.Entry<String, List<Evenement>> entry : categorizedEvents.entrySet()) {
+            System.out.println("Titre : " + entry.getKey());
+            for (Evenement evenement : entry.getValue()) {
+                System.out.println(" - " + evenement.getTitre());
+            }
+        }
+
+        // Génération du fichier FXML avec les données classifiées
+        generateFXMLFile(categorizedEvents);
+    }
+
+    public static void gestionRessourcesEv() throws SQLException {
+        RessourceEvService ressourceEvService = new RessourceEvService();
+
+        RessourceEv ressourceEv1 = new RessourceEv(2, "Titre1", "Description1", "http://example.com/1", new Timestamp(System.currentTimeMillis()));
+        RessourceEv ressourceEv2 = new RessourceEv(5, "Titre2", "Description2", "http://example.com/2", new Timestamp(System.currentTimeMillis()));
+
+        ressourceEvService.ajouter(ressourceEv1);
+        ressourceEvService.ajouter(ressourceEv2);
+
+        ressourceEv1.setTitre("Titre modifié");
+        ressourceEvService.modifier(ressourceEv1);
+
+        // Suppression d'une ressource spécifique par ID
+        ressourceEvService.supprimer(ressourceEv1.getId());
+
+        List<RessourceEv> ressources = null;
+        try {
+            ressources = ressourceEvService.recuperer();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for (RessourceEv ressource : ressources) {
+            System.out.println(ressource);
+        }
+    }
+
+    public static Map<String, List<Evenement>> categorizeEventsByTitle(List<Evenement> events) {
+        Map<String, List<Evenement>> categorizedEvents = new HashMap<>();
+
+        for (Evenement event : events) {
+            String title = event.getTitre();
+            categorizedEvents.computeIfAbsent(title, k -> new ArrayList<>()).add(event);
+        }
+
+        return categorizedEvents;
+    }
+
+    public static void generateFXMLFile(Map<String, List<Evenement>> categorizedEvents) {
+        // Ici, vous implémenterez la logique pour générer le fichier FXML
+        // Cette partie dépend de votre cadre de développement (JavaFX, etc.)
+        // Voici un exemple très basique de sortie
+        System.out.println("Génération du fichier FXML...");
+
+        // Exemple de sortie des données dans le fichier FXML
+        for (Map.Entry<String, List<Evenement>> entry : categorizedEvents.entrySet()) {
+            System.out.println("Titre : " + entry.getKey());
+            for (Evenement event : entry.getValue()) {
+                System.out.println(" - " + event.getTitre());
+                // Ici, vous écririez dans votre fichier FXML en fonction de votre besoin
+                // Par exemple, créer des éléments de vue JavaFX
+            }
+        }
+
+        System.out.println("Fichier FXML généré avec succès.");
     }
 }

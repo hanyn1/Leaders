@@ -52,11 +52,7 @@ public class EtudiantDashboardController {
     }
 
     public void goToFormation(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
     }
 
     public void goToEvents(ActionEvent event) throws IOException {
@@ -81,5 +77,23 @@ public class EtudiantDashboardController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void handleJavaScriptBase(ActionEvent actionEvent) {
+    }
+
+    public void handleHTMLBase(ActionEvent actionEvent) {
+    }
+
+    public void handlePHPBase(ActionEvent actionEvent) {
+    }
+
+    public void handleCSSBase(ActionEvent actionEvent) {
+    }
+
+    public void handleAngularBase(ActionEvent actionEvent) {
+    }
+
+    public void handleGitBase(ActionEvent actionEvent) {
     }
 }

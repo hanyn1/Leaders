@@ -1,0 +1,71 @@
+/* styles.css */
+
+/* Style pour le titre */
+.label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #f0db4f; /* Jaune */
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* Style pour la table */
+.table-view {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-border-color: #4e4406; /* Marron */
+    -fx-border-width: 1px;
+    -fx-table-cell-border-color: transparent; /* Pas de bordure entre les cellules */
+}
+
+/* Style pour les cellules de la table */
+.table-cell {
+    -fx-background-color: #f8f8f8; /* Gris clair */
+    -fx-border-width: 0 0 1px 0; /* Bordure uniquement en bas */
+    -fx-border-color: #e6e6e6; /* Couleur de la bordure des cellules */
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+}
+
+/* Style pour les cellules des en-têtes */
+.table-column-header {
+    -fx-background-color: #4e4406; /* Marron */
+    -fx-text-fill: #f0db4f; /* Jaune */
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-border-width: 0 0 2px 0; /* Bordure uniquement en bas */
+    -fx-border-color: #4e4406; /* Couleur de la bordure des en-têtes */
+    -fx-font-size: 14px;
+}
+
+/* Style pour les lignes sélectionnées */
+.table-row-cell:selected {
+    -fx-background-color: #f0db4f; /* Jaune */
+    -fx-text-fill: #ffffff; /* Blanc */
+    -fx-font-size: 10px;
+}
+
+/* Style général pour l'apparence de la fenêtre */
+.root {
+    -fx-background-color: #ffffff; /* Blanc */
+}
+
+/* Style pour les boutons */
+.button {
+    -fx-background-color: #4e4406; /* Marron */
+    -fx-text-fill: #ffffff; /* Blanc */
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #f0db4f; /* Jaune */
+    -fx-text-fill: #ffffff; /* Blanc */
+}
+
+.button:pressed {
+    -fx-background-color: #ffffff; /* Blanc */
+    -fx-text-fill: #4e4406; /* Marron */
+}

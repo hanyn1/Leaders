@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 
 public class RessourceEv {
@@ -9,7 +11,15 @@ public class RessourceEv {
     private String url;
     private Timestamp date_creation;
 
-    // Constructeur
+    // Constructeur pour les données String
+    public RessourceEv(String titre, String description, String url, Timestamp date_creation) {
+        this.titre = titre;
+        this.description = description;
+        this.url = url;
+        this.date_creation = date_creation;
+    }
+
+    // Constructeur avec ID (pour la récupération depuis la base de données)
     public RessourceEv(int id, String titre, String description, String url, Timestamp date_creation) {
         this.id = id;
         this.titre = titre;
@@ -17,22 +27,46 @@ public class RessourceEv {
         this.url = url;
         this.date_creation = date_creation;
     }
-
     // Getters et Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getTitre() { return titre; }
-    public void setTitre(String titre) { this.titre = titre; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getTitre() {
+        return titre;
+    }
 
-    public String getUrl() { return url; }
-    public void setUrl(String url) { this.url = url; }
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
 
-    public Timestamp getDateCreation() { return date_creation; }
-    public void setDateCreation(Timestamp date_creation) { this.date_creation = date_creation; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Timestamp getDateCreation() {
+        return date_creation;
+    }
+
+    public void setDateCreation(Timestamp date_creation) {
+        this.date_creation = date_creation;
+    }
 
     @Override
     public String toString() {
@@ -45,5 +79,3 @@ public class RessourceEv {
                 '}';
     }
 }
-
-

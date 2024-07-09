@@ -33,12 +33,11 @@
 
                             <HBox alignment="CENTER" layoutX="5.0" layoutY="39.0" prefHeight="94.0" prefWidth="1110.0" spacing="20.0" style="-fx-background-color: #ffffff;" >
                                 <children>
-                                    <Button styleClass="nav-btn" text="Home" />
+                                    <Button onAction="#goToHome" styleClass="nav-btn" text="Home" />
                                     <Button onAction="#goToArticleList" styleClass="nav-btn" text="Blog" />
                                     <Button styleClass="nav-btn" text="Events" />
                                     <Button onAction="#goToCoursesList" styleClass="nav-btn" text="Courses" />
                                     <Button styleClass="nav-btn" text="Formation" />
-                                    <Button styleClass="nav-btn" text="Quizz" />
                                 </children>
                             </HBox>
                         </children>
@@ -58,6 +57,9 @@
                     </VBox>
             </AnchorPane>
             </ScrollPane>
+
+                </children>
+            </VBox>
         </center>
     </BorderPane>
 </children>
