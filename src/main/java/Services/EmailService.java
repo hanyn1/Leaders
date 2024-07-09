@@ -6,8 +6,8 @@ import java.util.Properties;
 
 public class EmailService {
 
-    private final String username = "molk.saouabi@wecraft.tn";
-    private final String password = "usle ljbv snjp sqrn";
+    private final String username = "";
+    private final String password = "";
 
     public void sendCertificate(String recipientEmail, String subject, String body, String attachmentPath) {
         Properties props = new Properties();
