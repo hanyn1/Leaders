@@ -5,10 +5,8 @@
 
 package Models;
 
-import org.controlsfx.control.Rating;
-
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class Article {
@@ -16,7 +14,6 @@ public class Article {
     private String titre;
     private String description;
     private String contenu;
-    private Double rating;
     private List<Integer> ratings; // Liste pour stocker les évaluations
 
     private Timestamp datePublication;
@@ -28,12 +25,11 @@ public class Article {
 
     }
 
-    public Article(String titre, String description, String contenu, double rating) {
+    public Article(String titre, String description, String contenu, Timestamp datePublication) {
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
         this.datePublication = datePublication;
-        this.rating=rating;
         this.averageRating = 0.0; // Initialiser la note moyenne à 0
         this.ratingsCount = 0; // Initialiser le nombre d'évaluations à 0
     }
@@ -132,12 +128,5 @@ public class Article {
                 ", content='" + contenu + '\'' +
                 ", averageRating=" + averageRating +
                 '}';
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double newRating) {
     }
 }

@@ -145,7 +145,6 @@
                             <Button fx:id="addButton" layoutX="20" layoutY="140" text="Add" onAction="#addArticle"/>
                             <Button fx:id="updateButton" layoutX="80" layoutY="140" text="Update" onAction="#openEditWindow"/>
                             <Button fx:id="deleteButton" layoutX="150" layoutY="140" text="Delete" onAction="#deleteArticle"/>
-                            <Button fx:id="Comment" layoutX="150" layoutY="140" text="Comment" onAction="#comment"/>
 
                             <TableView fx:id="articlesTable" layoutX="20" layoutY="200" prefHeight="300" prefWidth="656.0">
                                 <columns>
