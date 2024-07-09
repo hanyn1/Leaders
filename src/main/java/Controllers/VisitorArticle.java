@@ -44,7 +44,7 @@ public class VisitorArticle {
                 "-fx-border-width: 1;" +
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" +
-                "-fx-background-color: #f0db4f;");
+                "-fx-border-color: gray;");
         card.setPrefWidth(400);
 
         VBox detailsVBox = new VBox(5);
@@ -90,7 +90,7 @@ public class VisitorArticle {
         Stage stage = (Stage) main_form.getScene().getWindow();
         stage.setIconified(true);
     }
-@FXML
+
     public void gotLogin(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,7 +98,7 @@ public class VisitorArticle {
         stage.setScene(scene);
         stage.show();
     }
-@FXML
+
     public void goToHome(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorPage.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -106,10 +106,6 @@ public class VisitorArticle {
         stage.setScene(scene);
         stage.show();
     }
-   @FXML
-    public void goToArticleList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorArticle.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
     public void goToCoursesList(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorCours.fxml")));
@@ -122,15 +118,10 @@ public class VisitorArticle {
     public void gotLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
         Stage stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-       
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    public void goToCoursesList(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
     public void goToArticleList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/VisitorArticle.fxml")));
@@ -139,6 +130,5 @@ public class VisitorArticle {
         stage.setScene(scene);
         stage.show();
     }
-
 }
 
