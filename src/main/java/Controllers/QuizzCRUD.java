@@ -22,7 +22,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 public class QuizzCRUD implements Initializable {
 
     @FXML
@@ -53,13 +52,11 @@ public class QuizzCRUD implements Initializable {
 
     @FXML
     private AnchorPane main_form;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     public QuizzCRUD() {
         serviceQuizz = new ServiceQuizz();
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,20 +82,64 @@ public class QuizzCRUD implements Initializable {
     @FXML
     public void addQuizz(ActionEvent event) {
         try {
+            // Validation des champs de saisie
             String titre = titreField.getText();
             String description = descriptionField.getText();
             String option1 = option1Field.getText();
             String option2 = option2Field.getText();
             String option3 = option3Field.getText();
             String rightAnswer = getSelectedRightAnswer();
+
+            if (titre.isEmpty() || description.isEmpty() || option1.isEmpty() || option2.isEmpty() || option3.isEmpty() || rightAnswer.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Erreur de validation", "Tous les champs doivent être remplis et une réponse correcte doit être sélectionnée.");
+                return;
+            }
+
+            // Validation des caractères pour les champs title et description
+            if (!titre.matches("[\\p{L} ]+") || !description.matches("[\\p{L} ]+")) {
+                showAlert(Alert.AlertType.ERROR, "Erreur de validation", "Les champs titre et description ne doivent contenir que des lettres et des espaces.");
+                return;
+            }
+
+            // Création du quiz
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             Quizz quizz = new Quizz(titre, description, option1, option2, option3, rightAnswer, timestamp);
+
+            // Ajout du quiz à la base de données et à la liste observable
             serviceQuizz.addQuizz(quizz);
             quizzList.add(quizz);
+
+            // Effacement des champs de saisie après l'ajout du quiz
+            clearFields();
+
+            // Affichage d'un message de succès
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Quiz ajouté avec succès !");
         } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Une erreur s'est produite lors de l'ajout du quiz : " + e.getMessage());
             e.printStackTrace();
         }
     }
+
+    private void clearFields() {
+        titreField.clear();
+        descriptionField.clear();
+        option1Field.clear();
+        option2Field.clear();
+        option3Field.clear();
+        rightOption1.setSelected(false);
+        rightOption2.setSelected(false);
+        rightOption3.setSelected(false);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
 
     @FXML
     public void updateQuizz(ActionEvent event) {
@@ -152,6 +193,9 @@ public class QuizzCRUD implements Initializable {
         stage.setIconified(true);
     }
 
+    public void switchForm(ActionEvent actionEvent) {
+    }
+
     @FXML
     public void goToCoursesList(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/CoursList.fxml")));
@@ -161,61 +205,12 @@ public class QuizzCRUD implements Initializable {
         stage.show();
     }
 
-    public void goToArticles(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ManageArticle.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-
+    public void goToUsers(ActionEvent event) {
     }
 
-    public void goToFormation(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FormationController.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void goToArticles(ActionEvent event) {
     }
 
-    public void goToEvents(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/WelcomeToEv.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToQuizz(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/QUIZZview.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToDashboard(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/AdminDashboard.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToRole(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RoleCRUD.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToUsers(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/UserCRUD.fxml")));
-        stage =(Stage)( (Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void goToFormation(ActionEvent event) {
     }
 }
