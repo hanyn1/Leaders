@@ -18,7 +18,7 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/VisitorPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WelcomeToEv.fxml"));
 
 
         try {
@@ -29,7 +29,6 @@ public class Home extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }
 
