@@ -18,8 +18,8 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserCRUD.fxml"));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserCRUD.fxml"));
 
         try {
             Parent root = loader.load();
@@ -29,7 +29,6 @@ public class Home extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }
 

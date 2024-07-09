@@ -171,6 +171,20 @@ public class WelcomeEv {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void goTo(ActionEvent event) {
+        try {
+            Parent ajouterEvenementParent = FXMLLoader.load(getClass().getResource("/EtudiantEvents.fxml"));
+            Scene ajouterEvenementScene = new Scene(ajouterEvenementParent);
+
+            // Obtenez la fenêtre (stage) et changez la scène
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(ajouterEvenementScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void goToRole(ActionEvent actionEvent) {
     }
 }
