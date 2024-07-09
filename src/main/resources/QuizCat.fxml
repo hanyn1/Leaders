@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="categoryAnchorPane" prefWidth="1100" prefHeight="600" style="-fx-background-color: #4e4406;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QuizCategoryController">
+    <children>
+        <Label layoutX="50.0" layoutY="50.0" text="Choose a quiz category::" textFill="WHITE">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <GridPane fx:id="categoryGridPane" layoutX="50.0" layoutY="100.0" hgap="20.0" vgap="20.0">
+            <Button text="JavaScript - Les bases" onAction="#handleJavaScriptBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="HTML - Les bases" onAction="#handleHTMLBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="PHP - Les bases" onAction="#handlePHPBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="CSS - Les bases" onAction="#handleCSSBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="Angular - Les bases" onAction="#handleAngularBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="Git - Les bases" onAction="#handleGitBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+            <Button text="Java - Les bases" onAction="#handleJavaBase" style="-fx-background-color: #f0db4f; -fx-text-fill: white; -fx-font-size: 16px;" />
+        </GridPane>
+    </children>
+</AnchorPane>

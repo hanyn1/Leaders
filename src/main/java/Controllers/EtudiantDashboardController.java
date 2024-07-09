@@ -78,4 +78,22 @@ public class EtudiantDashboardController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void handleJavaScriptBase(ActionEvent actionEvent) {
+    }
+
+    public void handleHTMLBase(ActionEvent actionEvent) {
+    }
+
+    public void handlePHPBase(ActionEvent actionEvent) {
+    }
+
+    public void handleCSSBase(ActionEvent actionEvent) {
+    }
+
+    public void handleAngularBase(ActionEvent actionEvent) {
+    }
+
+    public void handleGitBase(ActionEvent actionEvent) {
+    }
 }
