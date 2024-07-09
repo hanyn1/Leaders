@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Article;
 import Services.ServiceArticle;
+import com.beust.ah.A;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +24,17 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Objects;
+import javafx.fxml.FXML;
+import org.controlsfx.control.Rating;
+
+
+
+
+
 
 public class ManageArticlesController {
-
+    @FXML
+    private Button Comment;
     @FXML
     private TextField titleField;
     @FXML
@@ -50,7 +59,8 @@ public class ManageArticlesController {
     private TableColumn<Article, String> contentColumn;
     @FXML
     private TableColumn<Article, Timestamp> dateColumn;
-
+    @FXML
+    private Rating Rate;
     private ObservableList<Article> articleData = FXCollections.observableArrayList();
     private ServiceArticle serviceArticle;
     private Article selectedArticle;
@@ -69,6 +79,29 @@ public class ManageArticlesController {
         }
     }
 
+    @FXML
+    private void comment() {
+        if (selectedArticle != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/CommentaireAdd.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+                stage.setTitle("Ajouter un Commentaire");
+
+                ArticleCommentController controller = loader.getController();
+                controller.setArticle(selectedArticle);
+
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(Comment.getScene().getWindow());
+                stage.showAndWait();
+
+                // Rafraîchir la table des articles ou des commentaires si nécessaire
+                articlesTable.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @FXML
     private void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -226,4 +259,14 @@ public class ManageArticlesController {
 
     public void switchForm(ActionEvent event) {
     }
+/*
+    @FXML
+    private Label label;
+    @FXML
+    private Rating tacoRation;
+    @FXML
+    private void handleButtonAction(ActionEvent event)
+    {
+        System.out.println("Rating given by user:"+myRating.getRating());
+    }*/
 }

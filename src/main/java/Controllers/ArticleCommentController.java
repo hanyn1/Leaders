@@ -2,7 +2,11 @@ package Controllers;
 
 
 import Models.Article;
+import Models.Commentaire;
+import Models.User;
 import Services.ServiceArticle;
+import Services.ServiceCommentaire;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -24,12 +28,16 @@ public class ArticleCommentController {
     private Button cancelButton;
 
     private ServiceArticle serviceArticle;
+    private ServiceCommentaire serviceCommentaire;
+    private Commentaire commentaire;
     private Article article;
-
-    public void setServiceArticle(ServiceArticle serviceArticle) {
-        this.serviceArticle = serviceArticle;
+    private User user;
+    public void setServiceCommentaire(ServiceCommentaire serviceCommentaire) {
+        this.serviceCommentaire = serviceCommentaire;
     }
+    {
 
+    }
     public void setArticle(Article article) {
         this.article = article;
         titleField.setText(article.getTitre());
@@ -37,6 +45,14 @@ public class ArticleCommentController {
         contentField.setText(article.getContenu());
     }
 
+    public void setCommentaire(Commentaire commentaire) {
+        this.commentaire = commentaire;
+        contentField.setText(commentaire.getContenu());
+    }
+    @FXML
+    void addCommentaire(ActionEvent event) {
+
+    }
     @FXML
     private void initialize() {
         saveButton.setOnAction(event -> saveArticle());
@@ -54,6 +70,12 @@ public class ArticleCommentController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    private void saveComment() throws SQLException {
+        commentaire.setContenu(contentField.getText());
+
+        serviceCommentaire.add(article, commentaire, user);
+        closeWindow();
     }
 
     private void cancelEdit() {
